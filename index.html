@@ -34,7 +34,6 @@
             padding: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-            /* Убираем подсветку при нажатии на телефонах */
             -webkit-tap-highlight-color: transparent; 
         }
 
@@ -52,8 +51,8 @@
         .app-container {
             width: 100%;
             max-width: 400px;
-            height: 100vh; /* Фолбэк для старых браузеров */
-            height: 100dvh; /* Важно: динамическая высота, учитывает панели браузера */
+            height: 100vh; 
+            height: 100dvh; 
             max-height: 850px;
             background-color: var(--bg-color);
             position: relative;
@@ -63,7 +62,6 @@
         }
 
         /* --- ОБЩИЕ ПРАВИЛА ДЛЯ ЭКРАНОВ --- */
-        /* Все экраны занимают 100% высоты контейнера и не дают скроллиться наружу */
         .screen {
             display: none;
             flex-direction: column;
@@ -92,8 +90,8 @@
             align-items: center;
             margin-top: 5vh;
             width: 100%;
-            flex-grow: 1; /* Занимает свободное место */
-            justify-content: center; /* Центрируем контент */
+            flex-grow: 1; 
+            justify-content: center; 
         }
 
         .mascot-photo {
@@ -132,7 +130,7 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(28, 126, 214, 0.2);
-            flex-shrink: 0; /* Запрещаем кнопке сжиматься */
+            flex-shrink: 0;
         }
 
         /* =========================================
@@ -157,11 +155,10 @@
         }
         .close-btn svg { width: 28px; height: 28px; }
 
-        /* Середина экрана 2 - скроллится, если не влезает */
         .main-content-2 {
             padding: 0 20px;
             flex-grow: 1;
-            overflow-y: auto; /* Включаем скролл только здесь */
+            overflow-y: auto; 
         }
 
         .character-block {
@@ -204,6 +201,7 @@
             border-bottom: 2px solid var(--border-color);
         }
 
+        /* Карточки выбора */
         .option-card {
             background: var(--card-bg);
             border: 2px solid var(--border-color);
@@ -213,10 +211,16 @@
             align-items: center;
             margin-bottom: 15px;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .option-card:active {
+        /* Стиль для выбранной карточки */
+        .option-card.selected {
             border-color: var(--primary-blue);
+            background-color: rgba(28, 126, 214, 0.05); /* Легкий синий фон */
+        }
+        body.dark-theme .option-card.selected {
+            background-color: rgba(59, 130, 246, 0.1);
         }
 
         .icon-box {
@@ -238,12 +242,12 @@
             color: var(--text-main);
         }
 
-        /* Нижняя панель экрана 2 - прижата к низу */
+        /* Нижняя панель экрана 2 */
         .bottom-bar {
             padding: 20px;
             background-color: var(--bg-color);
             border-top: 2px solid var(--border-color);
-            flex-shrink: 0; /* Запрещаем сжиматься */
+            flex-shrink: 0;
         }
 
         .continue-btn {
@@ -257,12 +261,15 @@
             font-weight: 700;
             cursor: not-allowed;
             text-transform: uppercase;
+            transition: all 0.3s ease;
         }
 
+        /* Активная кнопка "Продолжить" */
         .continue-btn.active {
             background-color: var(--primary-blue);
             color: white;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(28, 126, 214, 0.2);
         }
 
         /* =========================================
@@ -272,7 +279,6 @@
             background-color: var(--bg-secondary);
         }
 
-        /* Верхние вкладки */
         .course-tabs {
             display: flex;
             padding: 15px 20px;
@@ -300,11 +306,10 @@
             border-color: var(--primary-blue);
         }
 
-        /* Контент экрана 3 - скроллится отдельно */
         .main-content-3 {
             padding: 20px;
             flex-grow: 1;
-            overflow-y: auto; /* Скролл только для контента */
+            overflow-y: auto; 
         }
 
         .module-banner {
@@ -418,7 +423,6 @@
             color: var(--text-muted);
         }
 
-        /* Нижнее меню - прижато к низу экрана 3 */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
@@ -426,7 +430,7 @@
             padding: 10px 20px;
             background-color: var(--nav-bg);
             border-top: 2px solid var(--border-color);
-            flex-shrink: 0; /* Запрещаем сжиматься */
+            flex-shrink: 0; 
         }
 
         .nav-btn {
@@ -592,7 +596,8 @@
         <!-- ЭКРАН 2: Выбор темы -->
         <div id="screen-2" class="screen">
             <div class="top-bar">
-                <button class="close-btn" onclick="goToScreen('screen-1')">
+                <!-- Крестик теперь сбрасывает выбор -->
+                <button class="close-btn" onclick="resetAndGoBack()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </div>
@@ -601,22 +606,26 @@
                     <img src="Пахомова.jpg" alt="Пахомова" class="character-photo" onerror="this.src='https://via.placeholder.com/120x150?text=Пахомова'">
                     <div class="speech-bubble">Что вы хотите<br>изучать?</div>
                 </div>
-                <div class="option-card" onclick="goToScreen('screen-3')">
+                
+                <!-- Карточка Методология: при клике вызывает функцию selectOption -->
+                <div class="option-card" id="card-methodology" onclick="selectOption(this)">
                     <div class="icon-box icon-purple">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     </div>
                     <div class="option-title">Методология</div>
                 </div>
-                <div class="option-card">
+                
+                <div class="option-card" id="card-statistics" onclick="selectOption(this)">
                     <div class="icon-box icon-blue">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                     </div>
                     <div class="option-title">Статистика</div>
                 </div>
             </div>
-            <!-- Нижняя панель всегда внизу -->
+            
+            <!-- Кнопка Продолжить: теперь ведет на экран заданий -->
             <div class="bottom-bar">
-                <button class="continue-btn" id="continue-btn">ПРОДОЛЖИТЬ</button>
+                <button class="continue-btn" id="continue-btn" onclick="proceedToTasks()">ПРОДОЛЖИТЬ</button>
             </div>
         </div>
 
@@ -627,7 +636,6 @@
                 <button class="tab-btn" onclick="switchCourse(this)">Курс 2</button>
             </div>
             
-            <!-- Скроллящийся контент -->
             <div class="main-content-3">
                 <div class="module-banner">
                     <div class="module-text">
@@ -662,7 +670,6 @@
                 </div>
             </div>
 
-            <!-- Нижнее меню всегда внизу -->
             <div class="bottom-nav">
                 <button class="nav-btn" onclick="goToScreen('screen-2')">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -705,23 +712,72 @@
     </div>
 
     <script>
+        // Переменная для хранения выбранной темы
+        let selectedTopic = null;
+
         // Универсальная функция переключения экранов
         function goToScreen(screenId) {
-            // Скрываем все экраны
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
-            // Показываем нужный
             document.getElementById(screenId).classList.add('active');
         }
 
-        // Переключение между курсами (вкладки)
+        // Функция выбора карточки (Методология или Статистика)
+        function selectOption(cardElement) {
+            // 1. Убираем класс 'selected' со всех карточек
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // 2. Добавляем класс 'selected' на нажатую карточку
+            cardElement.classList.add('selected');
+
+            // 3. Запоминаем, что выбрано
+            selectedTopic = cardElement.id;
+
+            // 4. Активируем кнопку "Продолжить"
+            const btn = document.getElementById('continue-btn');
+            btn.classList.add('active');
+            btn.disabled = false;
+        }
+
+        // Переход к заданиям по кнопке "Продолжить"
+        function proceedToTasks() {
+            // Проверяем, выбрана ли тема. Если да - переходим.
+            if (selectedTopic) {
+                goToScreen('screen-3');
+                
+                // Опционально: можно менять заголовок на третьем экране в зависимости от выбора
+                if (selectedTopic === 'card-statistics') {
+                    document.querySelector('.module-text h3').textContent = 'Статистика';
+                    // Тут можно подгрузить другие данные
+                } else {
+                    document.querySelector('.module-text h3').textContent = 'Методология';
+                }
+            }
+        }
+
+        // Сброс выбора при выходе (крестик)
+        function resetAndGoBack() {
+            // Снимаем выделение
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            selectedTopic = null;
+            
+            // Делаем кнопку неактивной
+            const btn = document.getElementById('continue-btn');
+            btn.classList.remove('active');
+            
+            goToScreen('screen-1');
+        }
+
         function switchCourse(btn) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
 
-        // Открытие/закрытие настроек
         function toggleSettings(show) {
             const modal = document.getElementById('settings-modal');
             if (show) {
@@ -733,14 +789,12 @@
             }
         }
 
-        // Закрытие настроек по клику на затемненную область
         function overlayClick(event) {
             if (event.target === document.getElementById('settings-modal')) {
                 toggleSettings(false);
             }
         }
 
-        // Установка темы
         function setTheme(theme) {
             const body = document.body;
             const lightCard = document.getElementById('theme-light');
