@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Comingo - Обучение</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg-color:#ffffff; --bg-secondary:#f7f9fc; --text-main:#1f2937; --text-muted:#6b7280;
@@ -17,18 +20,34 @@ body.dark-theme {
   --success-bg:#064e3b; --success-border:#10b981; --error-bg:#7f1d1d; --error-border:#ef4444;
   --warning-bg:#78350f; --warning-border:#f59e0b;
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;transition:background-color .3s,color .3s,border-color .3s;-webkit-tap-highlight-color:transparent;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Nunito', sans-serif;transition:background-color .3s,color .3s,border-color .3s;-webkit-tap-highlight-color:transparent;}
 body{background:var(--bg-color);display:flex;justify-content:center;align-items:flex-start;min-height:100vh;color:var(--text-main);overflow:hidden;}
 .app-container{width:100%;max-width:400px;height:100vh;height:100dvh;max-height:900px;background:var(--bg-color);position:relative;overflow:hidden;display:flex;flex-direction:column;}
 .screen{display:none;flex-direction:column;height:100%;width:100%;overflow:hidden;}
 .screen.active{display:flex;}
+
+/* Шрифты для акцентных элементов */
+h1, h2, h3, h4, .subtitle, .start-btn, .option-title, .continue-btn, .tab-btn, .module-text h2, .module-text h3,
+.vocab-btn span, .progress-header, .level-title, .category-header, .term-title, .truefalse-title, .truefalse-term,
+.check-btn, .error-feedback-title, .result-title, .result-sub, .gameover-title, .settings-header h2, .section-title,
+.theme-name, .course2-title, .nav-btn, .level-circle, .result-emoji, .mistake-list-title, .builder-bubble,
+.speech-bubble, .task-bubble, .term-status, .answer-number, .pair-item, .builder-word, .word-chip {
+  font-family: 'Rubik', sans-serif;
+}
+
+/* Основной текст (уже наследуется от body, но зафиксируем для полей и текстов) */
+p, .def-text, .term-points, .level-desc, .find-error-instruction, .find-error-text, .truefalse-def,
+.answer-option, .task-bubble, .keyboard-input, .blank-input, .error-feedback-text, .mistake-def,
+.settings-footer, .theme-preview, .keyboard-instruction {
+  font-family: 'Nunito', sans-serif;
+}
 
 /* ЭКРАН 1 */
 #screen-1{justify-content:space-between;align-items:center;padding:10px 20px 30px;text-align:center;}
 .content-1{display:flex;flex-direction:column;align-items:center;margin-top:2vh;width:100%;flex-grow:1;justify-content:center;}
 .mascot-photo{width:240px;height:auto;object-fit:contain;margin-bottom:15px;display:block;}
 .logo-img{width:100%;max-width:260px;height:auto;object-fit:contain;margin-bottom:20px;display:block;border-radius:12px;}
-.subtitle{font-size:18px;color:var(--text-muted);line-height:1.5;max-width:280px;}
+.subtitle{font-size:18px;color:var(--text-muted);line-height:1.5;max-width:280px;font-family:'Rubik',sans-serif;font-weight:600;}
 .start-btn{width:100%;padding:20px;background:var(--primary-blue);color:#fff;border:none;border-radius:16px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 10px rgba(28,126,214,.2);}
 
 /* ЭКРАН 2 */
@@ -73,6 +92,24 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 .level-title{font-size:20px;font-weight:800;margin-bottom:5px;}
 .level-desc{font-size:14px;color:var(--text-muted);}
 
+/* Звёзды на карте уровней */
+.level-stars {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 8px;
+}
+.level-stars .star {
+  font-size: 20px;
+  opacity: 0.25;
+  transition: all 0.3s;
+}
+.level-stars .star.filled {
+  opacity: 1;
+  color: var(--warning-border);
+  transform: scale(1.1);
+}
+
 /* ЭКРАН 4 */
 #screen-4{background:var(--bg-secondary);}
 .dict-content{padding:15px 20px;flex-grow:1;overflow-y:auto;}
@@ -87,8 +124,8 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 .term-body{max-height:0;opacity:0;padding:0 15px;transition:all .3s;overflow:hidden;}
 .term-card.active{border-color:var(--primary-blue);}
 .term-card.active .term-body{max-height:800px;opacity:1;padding:0 15px 15px;}
-.def-text{font-size:15px;line-height:1.5;}
-.term-points{font-size:11px;color:var(--text-muted);margin-top:6px;font-weight:700;}
+.def-text{font-size:15px;line-height:1.5;font-family:'Nunito',sans-serif;font-weight:600;}
+.term-points{font-size:11px;color:var(--text-muted);margin-top:6px;font-weight:700;font-family:'Nunito',sans-serif;}
 
 /* ЭКРАН 5 */
 #screen-5{background:var(--bg-secondary);}
@@ -102,9 +139,9 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 /* Общие стили заданий */
 .truefalse-title{font-size:14px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:15px;}
 .truefalse-term{font-size:20px;font-weight:800;margin-bottom:15px;}
-.truefalse-def{font-size:16px;line-height:1.5;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;}
+.truefalse-def{font-size:16px;line-height:1.5;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;font-weight:600;}
 .truefalse-buttons{display:flex;gap:15px;margin-top:auto;}
-.tf-btn{flex:1;padding:20px;border-radius:16px;font-size:18px;font-weight:800;border:2px solid var(--border-color);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.tf-btn{flex:1;padding:20px;border-radius:16px;font-size:18px;font-weight:800;border:2px solid var(--border-color);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Rubik',sans-serif;}
 .tf-btn.true-btn{background:var(--card-bg);color:var(--text-main);}
 .tf-btn.false-btn{background:var(--card-bg);color:var(--text-main);}
 .tf-btn.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.05);color:var(--primary-blue);}
@@ -113,8 +150,8 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 .tf-btn.partial{border-color:var(--warning-border);background:var(--warning-bg);color:var(--warning-border);}
 
 /* Найди ошибку */
-.find-error-instruction{font-size:15px;color:var(--text-muted);margin-bottom:15px;}
-.find-error-text{font-size:18px;line-height:1.6;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:6px;}
+.find-error-instruction{font-size:15px;color:var(--text-muted);margin-bottom:15px;font-weight:600;}
+.find-error-text{font-size:18px;line-height:1.6;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:6px;font-weight:600;}
 .word-chip{padding:4px 6px;border-radius:6px;cursor:pointer;transition:background .2s,color .2s;}
 .word-chip:hover{background:rgba(28,126,214,.1);}
 .word-chip.selected{background:var(--primary-blue);color:white;}
@@ -134,7 +171,7 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 .builder-answer-box{min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;margin-bottom:30px;}
 .builder-line{border-bottom:2px solid var(--border-color);min-height:50px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;padding-bottom:5px;}
 .builder-pool{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;margin-bottom:20px;}
-.builder-word{background:var(--card-bg);border:2px solid var(--border-color);border-radius:12px;padding:12px 18px;font-size:16px;font-weight:600;color:var(--text-main);cursor:pointer;box-shadow:0 2px 0 var(--border-color);transition:transform .1s, background .2s;}
+.builder-word{background:var(--card-bg);border:2px solid var(--border-color);border-radius:12px;padding:12px 18px;font-size:16px;font-weight:600;color:var(--text-main);cursor:pointer;box-shadow:0 2px 0 var(--border-color);transition:transform .1s, background .2s;font-family:'Nunito',sans-serif;}
 .builder-word:active{transform:translateY(2px);box-shadow:none;}
 .builder-word.in-answer{background:var(--primary-blue);color:white;border-color:var(--primary-blue);box-shadow:none;margin-bottom:5px;}
 .builder-word.hidden{display:none;}
@@ -142,15 +179,15 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 /* Пары */
 .pairs-container{display:flex;flex-direction:column;gap:15px;margin-bottom:20px;}
 .pair-column{display:flex;flex-direction:column;gap:10px;}
-.pair-item{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:15px;font-size:15px;line-height:1.4;cursor:pointer;transition:all .2s;position:relative;}
+.pair-item{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:15px;font-size:15px;line-height:1.4;cursor:pointer;transition:all .2s;position:relative;font-weight:600;}
 .pair-item.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.05);}
 .pair-item.matched{border-color:var(--success-border);background:var(--success-bg);opacity:0.7;pointer-events:none;}
 .pair-item.correct-pair{border-color:var(--success-border);background:var(--success-bg);}
 .pair-item.wrong-pair{border-color:var(--error-border);background:var(--error-bg);}
 
 /* Пропуски */
-.fill-blank-text{font-size:16px;line-height:1.6;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;}
-.blank-input{border:2px solid var(--border-color);border-radius:10px;background:var(--bg-color);font-size:16px;padding:10px 12px;min-width:140px;color:var(--text-main);outline:none;font-family:inherit;width:100%;}
+.fill-blank-text{font-size:16px;line-height:1.6;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;font-family:'Nunito',sans-serif;font-weight:600;}
+.blank-input{border:2px solid var(--border-color);border-radius:10px;background:var(--bg-color);font-size:16px;padding:10px 12px;min-width:140px;color:var(--text-main);outline:none;font-family:'Nunito',sans-serif;width:100%;font-weight:600;}
 .blank-input:focus{border-color:var(--primary-blue);background:rgba(28,126,214,.05);}
 .blank-input.correct{border-color:var(--success-border);color:var(--success-border);font-weight:700;}
 .blank-input.wrong{border-color:var(--error-border);color:var(--error-border);}
@@ -158,8 +195,8 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 
 /* Ввод с клавиатуры */
 .keyboard-input-wrap{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;}
-.keyboard-instruction{font-size:15px;color:var(--text-muted);margin-bottom:10px;}
-.keyboard-input{width:100%;padding:15px;border:2px solid var(--border-color);border-radius:12px;font-size:16px;background:var(--bg-color);color:var(--text-main);outline:none;font-family:inherit;resize:vertical;min-height:100px;}
+.keyboard-instruction{font-size:15px;color:var(--text-muted);margin-bottom:10px;font-family:'Nunito',sans-serif;font-weight:600;}
+.keyboard-input{width:100%;padding:15px;border:2px solid var(--border-color);border-radius:12px;font-size:16px;background:var(--bg-color);color:var(--text-main);outline:none;font-family:'Nunito',sans-serif;resize:vertical;min-height:100px;font-weight:600;}
 .keyboard-input:focus{border-color:var(--primary-blue);}
 .keyboard-input.correct{border-color:var(--success-border);background:var(--success-bg);}
 .keyboard-input.wrong{border-color:var(--error-border);background:var(--error-bg);}
@@ -180,11 +217,11 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 .error-feedback-panel.partial .error-feedback-title{ color: var(--warning-border); }
 @keyframes slideUp { from{opacity:0; transform: translateY(10px);} to{opacity:1; transform: translateY(0);} }
 .error-feedback-title{font-size:20px;font-weight:800;color:var(--error-border);margin-bottom:10px;}
-.error-feedback-text{font-size:15px;color:var(--text-main);line-height:1.4;margin-bottom:15px;}
+.error-feedback-text{font-size:15px;color:var(--text-main);line-height:1.4;margin-bottom:15px;font-family:'Nunito',sans-serif;font-weight:600;}
 .error-feedback-text b{color:var(--text-main);}
 
 /* Общие стили ответов */
-.answer-option{display:flex;align-items:center;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:15px;margin-bottom:15px;cursor:pointer;font-size:16px;line-height:1.4;transition:all .2s;}
+.answer-option{display:flex;align-items:center;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:15px;margin-bottom:15px;cursor:pointer;font-size:16px;line-height:1.4;transition:all .2s;font-family:'Nunito',sans-serif;font-weight:600;}
 .answer-option:active{background:var(--bg-secondary);}
 .answer-number{width:30px;height:30px;border-radius:8px;border:2px solid var(--border-color);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--text-muted);margin-right:15px;flex-shrink:0;}
 .answer-option.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.05);}
@@ -205,26 +242,26 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 #screen-6{background:var(--bg-secondary);justify-content:flex-start;align-items:center;padding:30px 20px 20px;}
 .gameover-mascot{width:160px;height:auto;object-fit:contain;margin-bottom:15px;}
 .gameover-title{font-size:28px;font-weight:900;margin-bottom:10px;text-align:center;color:var(--text-main);}
-.gameover-sub{font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:25px;line-height:1.5;}
+.gameover-sub{font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:25px;line-height:1.5;font-family:'Nunito',sans-serif;font-weight:600;}
 .mistake-list-title{font-size:13px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;width:100%;text-align:left;}
 .mistake-list{width:100%;flex-grow:1;overflow-y:auto;margin-bottom:20px;}
 .mistake-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:12px;}
 .mistake-term{font-size:16px;font-weight:800;margin-bottom:8px;}
-.mistake-def{font-size:14px;line-height:1.5;color:var(--text-muted);}
+.mistake-def{font-size:14px;line-height:1.5;color:var(--text-muted);font-family:'Nunito',sans-serif;font-weight:600;}
 .gameover-actions{width:100%;display:flex;flex-direction:column;gap:12px;padding-bottom:10px;}
-.restart-btn{padding:18px;background:var(--primary-blue);color:#fff;border:none;border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;}
-.back-btn{padding:18px;background:var(--card-bg);color:var(--primary-blue);border:2px solid var(--border-color);border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;}
+.restart-btn{padding:18px;background:var(--primary-blue);color:#fff;border:none;border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Rubik',sans-serif;}
+.back-btn{padding:18px;background:var(--card-bg);color:var(--primary-blue);border:2px solid var(--border-color);border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Rubik',sans-serif;}
 
 /* ЭКРАН 7: УРОВЕНЬ ПРОЙДЕН */
 #screen-7{background:var(--bg-secondary);justify-content:center;align-items:center;padding:30px 20px;}
 .result-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:24px;padding:30px 25px;width:100%;text-align:center;}
 .result-emoji{font-size:64px;margin-bottom:15px;}
 .result-title{font-size:26px;font-weight:800;margin-bottom:10px;}
-.result-sub{font-size:15px;color:var(--text-muted);margin-bottom:25px;line-height:1.5;}
+.result-sub{font-size:15px;color:var(--text-muted);margin-bottom:25px;line-height:1.5;font-family:'Nunito',sans-serif;font-weight:600;}
 .stars-row{display:flex;justify-content:center;gap:10px;margin-bottom:25px;}
 .star{font-size:40px;opacity:.25;transition:all .3s;}
 .star.filled{opacity:1;transform:scale(1.1);color:var(--warning-border);}
-.result-stats{background:var(--bg-secondary);border-radius:12px;padding:15px;margin-bottom:25px;text-align:left;font-size:14px;}
+.result-stats{background:var(--bg-secondary);border-radius:12px;padding:15px;margin-bottom:25px;text-align:left;font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;}
 .result-stats div{margin-bottom:6px;}
 .result-stats div:last-child{margin-bottom:0;}
 .result-actions{display:flex;flex-direction:column;gap:10px;}
@@ -251,8 +288,8 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
 .theme-preview.light{background:#fff;} .theme-preview.dark{background:#121212;border-color:#374151;}
 .theme-preview::after{content:'';width:25px;height:6px;background:#10b981;border-radius:3px;}
 .theme-name{font-size:16px;font-weight:700;}
-.settings-footer{text-align:center;font-size:13px;color:#9ca3af;margin-top:10px;}
-.reset-btn{width:100%;padding:14px;background:var(--error-bg);color:var(--error-border);border:2px solid var(--error-border);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:15px;}
+.settings-footer{text-align:center;font-size:13px;color:#9ca3af;margin-top:10px;font-family:'Nunito',sans-serif;}
+.reset-btn{width:100%;padding:14px;background:var(--error-bg);color:var(--error-border);border:2px solid var(--error-border);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:15px;font-family:'Rubik',sans-serif;}
 
 /* ЭКРАН ЗАГЛУШКА КУРС 2 */
 #screen-course2 { background: var(--bg-color); }
@@ -341,58 +378,85 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="mastery-fill"></div></div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('normal', 3)">
+      <div class="level-item" onclick="startTaskLevel('normal', 3, 'level-1')">
         <div class="level-circle unlocked">1</div>
         <div class="level-title">Знакомство</div>
         <div class="level-desc">3 варианта, выбери верный</div>
+        <div class="level-stars" id="stars-level-1">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('recognition', 4)">
+      <div class="level-item" onclick="startTaskLevel('recognition', 4, 'level-2')">
         <div class="level-circle unlocked">2</div>
         <div class="level-title">Узнавание</div>
         <div class="level-desc">4 варианта, похожие по смыслу</div>
+        <div class="level-stars" id="stars-level-2">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('truefalse', 4)">
+      <div class="level-item" onclick="startTaskLevel('truefalse', 4, 'level-3')">
         <div class="level-circle unlocked">3</div>
         <div class="level-title">Верно или нет</div>
         <div class="level-desc">Найди подмену в определении</div>
+        <div class="level-stars" id="stars-level-3">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('find-error')">
+      <div class="level-item" onclick="startTaskLevel('find-error', 3, 'level-4')">
         <div class="level-circle unlocked">4</div>
         <div class="level-title">Найди ошибку</div>
         <div class="level-desc">Нажми на неверный фрагмент</div>
+        <div class="level-stars" id="stars-level-4">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('builder')">
+      <div class="level-item" onclick="startTaskLevel('builder', 3, 'level-5')">
         <div class="level-circle unlocked">5</div>
         <div class="level-title">Конструктор</div>
         <div class="level-desc">Собери определение из слов</div>
+        <div class="level-stars" id="stars-level-5">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('pairs')">
+      <div class="level-item" onclick="startTaskLevel('pairs', 3, 'level-6')">
         <div class="level-circle unlocked">6</div>
         <div class="level-title">Пары</div>
         <div class="level-desc">Соедини термин со смыслом</div>
+        <div class="level-stars" id="stars-level-6">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('traps')">
+      <div class="level-item" onclick="startTaskLevel('traps', 3, 'level-7')">
         <div class="level-circle unlocked">7</div>
         <div class="level-title">Ловушки</div>
         <div class="level-desc">5 похожих определений</div>
+        <div class="level-stars" id="stars-level-7">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('manual')">
+      <div class="level-item" onclick="startTaskLevel('manual', 3, 'level-8')">
         <div class="level-circle unlocked">8</div>
         <div class="level-title">Вручную</div>
         <div class="level-desc">Впиши определение с клавиатуры</div>
+        <div class="level-stars" id="stars-level-8">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('exam')">
+      <div class="level-item" onclick="startTaskLevel('exam', 3, 'level-9')">
         <div class="level-circle unlocked">9</div>
         <div class="level-title">Экзамен</div>
         <div class="level-desc">Всё сразу: сборка, ввод, пары</div>
+        <div class="level-stars" id="stars-level-9">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
       </div>
     </div>
     <div class="bottom-nav">
@@ -632,10 +696,16 @@ function saveProgress(customProgress = null, dictId = currentDictId) {
 }
 
 function resetProgress() {
-  if (!confirm('Сбросить весь прогресс по терминам?')) return;
+  if (!confirm('Сбросить весь прогресс по терминам и звёздам?')) return;
   progress = {};
   TERMS.forEach(t => { progress[t.id] = freshEntry(); });
   saveProgress();
+  
+  // Сброс звёзд
+  for (let i = 1; i <= 9; i++) {
+    localStorage.removeItem('comingo_stars_level-' + i);
+  }
+
   refreshMapUI();
   renderDictionary();
   alert('Прогресс сброшен.');
@@ -662,12 +732,49 @@ function subtractPoints(termId) {
 }
 
 /* ============================================================
+   ЗВЁЗДЫ
+   ============================================================ */
+function getStarsForLevel(levelId) {
+  if (!levelId) return 0;
+  const saved = localStorage.getItem('comingo_stars_' + levelId);
+  return saved ? parseInt(saved, 10) : 0;
+}
+
+function saveStarsForLevel(levelId, stars) {
+  if (!levelId) return;
+  const current = getStarsForLevel(levelId);
+  if (stars > current) {
+    localStorage.setItem('comingo_stars_' + levelId, stars.toString());
+  }
+}
+
+function renderStarsOnMap() {
+  const levelItems = document.querySelectorAll('.main-content-3 .level-item');
+  levelItems.forEach((item) => {
+    const levelId = item.getAttribute('onclick')?.match(/'level-\d+'/)?.[0]?.replace(/'/g, '');
+    if (!levelId) return;
+    
+    const stars = getStarsForLevel(levelId);
+    const starsContainer = item.querySelector('.level-stars');
+    if (starsContainer) {
+      const starSpans = starsContainer.querySelectorAll('.star');
+      starSpans.forEach((span, i) => {
+        span.classList.toggle('filled', i < stars);
+      });
+    }
+  });
+}
+
+/* ============================================================
    НАВИГАЦИЯ
    ============================================================ */
 function goToScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  if (id === 'screen-3') refreshMapUI();
+  if (id === 'screen-3') {
+    refreshMapUI();
+    renderStarsOnMap();
+  }
   if (id === 'screen-4') renderDictionary();
 }
 
@@ -689,16 +796,30 @@ function resetAndGoBack() {
   btn.disabled = true;
   goToScreen('screen-1');
 }
+
 function switchCourse(btn, course) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
   
+  document.querySelectorAll('.course-tabs').forEach(container => {
+    const btns = container.querySelectorAll('.tab-btn');
+    if (btns.length >= 2) {
+      if (course === 'course1') {
+        btns[0].classList.add('active');
+        btns[1].classList.remove('active');
+      } else {
+        btns[1].classList.add('active');
+        btns[0].classList.remove('active');
+      }
+    }
+  });
+
   if (course === 'course2') {
     goToScreen('screen-course2');
   } else {
     goToScreen('screen-3');
   }
 }
+
 function toggleTerm(card) { card.classList.toggle('active'); }
 
 /* ============================================================
@@ -947,7 +1068,7 @@ function buildExamQueue(need) {
 /* ============================================================
    ЗАПУСК УРОВНЯ
    ============================================================ */
-function startTaskLevel(mode, optionCount = 3) {
+function startTaskLevel(mode, optionCount = 3, levelId = null) {
   let questions = [];
 
   if (mode === 'truefalse') {
@@ -1005,6 +1126,7 @@ function startTaskLevel(mode, optionCount = 3) {
   game = {
     mode,
     optionCount,
+    levelId,
     queue: questions,
     targetCount: questions.length,
     solvedCount: 0,
@@ -1653,10 +1775,16 @@ function quitTask() {
 function finishLevel() {
   const heartsLeft = game.hearts;
   let stars = 0;
-  if (heartsLeft >= 3) stars = 3;
-  else if (heartsLeft >= 2) stars = 2;
-  else if (heartsLeft >= 1) stars = 1;
-  else stars = 0;
+  
+  const flooredHearts = Math.floor(heartsLeft);
+  if (flooredHearts >= 3) stars = 3;
+  else if (flooredHearts >= 2) stars = 2;
+  else if (flooredHearts >= 1) stars = 1;
+  else stars = 1; // минимум 1 звезда
+
+  if (game && game.levelId) {
+    saveStarsForLevel(game.levelId, stars);
+  }
 
   const errors = game.mistakeLog.length;
 
@@ -1701,7 +1829,8 @@ function showGameOver() {
 function restartLevel() {
   const mode = game?.mode || 'normal';
   const count = game?.optionCount || 3;
-  startTaskLevel(mode, count);
+  const levelId = game?.levelId || null;
+  startTaskLevel(mode, count, levelId);
 }
 </script>
 </body>
