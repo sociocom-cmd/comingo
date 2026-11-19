@@ -70,10 +70,8 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
 .level-circle{width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;margin-bottom:12px;background:var(--border-color);color:var(--text-muted);border:6px solid var(--bg-secondary);box-shadow:0 0 0 4px var(--border-color);transition:transform .2s;}
 .level-item:active .level-circle{transform:scale(.95);}
 .level-circle.unlocked{background:var(--primary-blue);color:#fff;box-shadow:0 0 0 4px rgba(28,126,214,.3);}
-.level-circle.repeat{background:var(--warning-border);color:#fff;box-shadow:0 0 0 4px rgba(245,158,11,.3);}
 .level-title{font-size:20px;font-weight:800;margin-bottom:5px;}
 .level-desc{font-size:14px;color:var(--text-muted);}
-.repeat-badge{display:inline-block;background:var(--warning-border);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:10px;margin-top:6px;}
 
 /* ЭКРАН 4 */
 #screen-4{background:var(--bg-secondary);}
@@ -179,8 +177,8 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
   <!-- ЭКРАН 1 -->
   <div id="screen-1" class="screen active">
     <div class="content-1">
-      <img src="Сорока.jpg" alt="Сорока" class="mascot-photo" onerror="this.src='https://via.placeholder.com/240x240?text=Фото+Сорока'">
-      <img src="Логотип.jpg" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/280x90?text=Логотип'">
+      <img src="Сорока.png" alt="Сорока" class="mascot-photo" onerror="this.src='https://via.placeholder.com/240x240?text=Сорока'">
+      <img src="Лого.png" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/280x90?text=Лого'">
       <p class="subtitle">Выучи все определения шаг за<br>шагом</p>
     </div>
     <button class="start-btn" onclick="goToScreen('screen-2')">НАЧАТЬ</button>
@@ -195,7 +193,7 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
     </div>
     <div class="main-content-2">
       <div class="character-block">
-        <img src="Пахомова.jpg" alt="Пахомова" class="character-photo" onerror="this.src='https://via.placeholder.com/120x150?text=Пахомова'">
+        <img src="Пахомова.png" alt="Пахомова" class="character-photo" onerror="this.src='https://via.placeholder.com/120x150?text=Пахомова'">
         <div class="speech-bubble">Что вы хотите<br>изучать?</div>
       </div>
       <div class="option-card" id="card-methodology" onclick="selectOption(this)">
@@ -235,20 +233,24 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="mastery-fill"></div></div>
       </div>
 
-      <div class="level-item" onclick="startTaskLevel('normal')">
+      <!-- 1 УРОВЕНЬ -->
+      <div class="level-item" onclick="startTaskLevel('normal', 3)">
         <div class="level-circle unlocked">1</div>
         <div class="level-title">Знакомство</div>
         <div class="level-desc">Подбери определение к термину</div>
       </div>
-      <div class="level-item" onclick="startTaskLevel('repeat')">
-        <div class="level-circle repeat">↻</div>
-        <div class="level-title">Повторение</div>
-        <div class="level-desc">Трудные термины — чаще</div>
-        <div class="repeat-badge" id="hard-count-badge">0 трудных</div>
+      
+      <!-- 2 УРОВЕНЬ -->
+      <div class="level-item" onclick="startTaskLevel('recognition', 4)">
+        <div class="level-circle unlocked">2</div>
+        <div class="level-title">Узнавание</div>
+        <div class="level-desc">4 варианта, похожие по смыслу</div>
       </div>
+
+      <!-- 3 УРОВЕНЬ (Заглушка) -->
       <div class="level-item">
         <div class="level-circle"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <div class="level-title">Узнавание</div>
+        <div class="level-title">Применение</div>
         <div class="level-desc">Скоро</div>
       </div>
     </div>
@@ -290,7 +292,7 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
 
   <!-- ЭКРАН 6: GAME OVER -->
   <div id="screen-6" class="screen">
-    <img src="Пахомова_грустная.jpg" alt="Маскот" class="gameover-mascot" onerror="this.src='https://via.placeholder.com/160x200?text=Грустный+Маскот'">
+    <img src="метода ч.png" alt="Маскот" class="gameover-mascot" onerror="this.src='https://via.placeholder.com/160x200?text=Грустный+Маскот'">
     <h2 class="gameover-title">Сердца закончились</h2>
     <p class="gameover-sub">Ничего страшного. Перечитай<br>определения ниже и попробуй ещё раз:<br>задания будут другими.</p>
     
@@ -316,7 +318,7 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
       </div>
       <div class="result-stats" id="result-stats"></div>
       <div class="result-actions">
-        <button class="restart-btn" onclick="startTaskLevel('normal')">ЕЩЁ РАЗ</button>
+        <button class="restart-btn" onclick="restartLevel()">ЕЩЁ РАЗ</button>
         <button class="back-btn" onclick="goToScreen('screen-3')">НА КАРТУ</button>
       </div>
     </div>
@@ -344,28 +346,21 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
 
 <script>
 /* ============================================================
-   БАЗА ДАННЫХ ТЕРМИНОВ (полный список)
+   БАЗА ДАННЫХ ТЕРМИНОВ
    ============================================================ */
 const TERMS = [
-  // Методология (общие понятия)
   { id:'methodology', category:'Основы методологии', term:'Методология', correct:'Учение о системе принципов и способов организации теоретической и практической научной деятельности.' },
   { id:'method', category:'Основы методологии', term:'Метод', correct:'Совокупность приёмов и операций теоретического или практического освоения действительности, а также человеческой деятельности, организованной определённым образом.' },
   { id:'technique', category:'Основы методологии', term:'Техника', correct:'Совокупность приёмов для использования метода.' },
   { id:'methodics', category:'Основы методологии', term:'Методика', correct:'Общая система действий и последовательность операций.' },
   { id:'procedure', category:'Основы методологии', term:'Процедура', correct:'Технические приёмы, связанные с методом, и их последовательность.' },
   { id:'methodology-role', category:'Основы методологии', term:'Роль методологии', correct:'Выступает фундаментом исследования, определяя логику научного поиска и правила организации познавательной деятельности.' },
-  
-  // Требования
   { id:'req-researcher', category:'Требования', term:'Требования к исследователю', correct:'Объективность и беспристрастность; теоретическая эрудиция; совершенное владение методологией и методами СИ.' },
   { id:'req-info', category:'Требования', term:'Требования к социальной информации', correct:'Объективность; достоверность; обоснованность; надёжность; репрезентативность; валидность.' },
-  
-  // Качества информации
   { id:'objectivity', category:'Качества информации', term:'Объективность', correct:'Стремление воспроизвести и объяснить явление/процесс, отвлекаясь от ценностной точки зрения исследователя, его теоретической предубеждённости, отказ от субъективности.' },
   { id:'reliability', category:'Качества информации', term:'Достоверность', correct:'Истинность знания об объективной действительности, которая должна быть обеспечена на всех этапах СИ: подготовительном, полевом, адекватных способов обработки и анализа информации.' },
   { id:'certainty', category:'Качества информации', term:'Надёжность', correct:'Уверенность в том, что исследователь имеет дело с подлинными, а не иллюзорными фактами, что эти факты сгруппированы по определённому правилу, а не собраны случайно и бессистемно.' },
   { id:'representativeness', category:'Качества информации', term:'Репрезентативность', correct:'Свойство достаточно точно отражать выборкой генеральную совокупность по заданному составу признаков объекта и состоянию репрезентируемых качеств.' },
-  
-  // Исследование
   { id:'social-info', category:'Исследование', term:'Социальная информация', correct:'Информация, полученная в результате социального исследования, совокупность знаний, сведений, данных, получаемых исследователем из различных источников как объективного, так и субъективного характера.' },
   { id:'sociological-research', category:'Исследование', term:'Понятие социологического исследования', correct:'Система логически последовательных методологических и организационных процедур, связанных между собой единой целью: получить достоверные данные об изучаемом явлении или процессе, о тенденциях и противоречиях их развития, чтобы эти данные могли быть использованы в практике управления общественной деятельностью.' },
   { id:'social-research', category:'Исследование', term:'Социальное исследование (СИ)', correct:'Система логически последовательных процедур, связанных единой целью получить достоверные данные об изучаемом явлении для их использования в практике управления.' },
@@ -375,8 +370,6 @@ const TERMS = [
   { id:'program', category:'Исследование', term:'Программа СИ', correct:'Научный документ, в котором содержатся методологические, методические и процедурные основы изучения социальной проблемы.' },
   { id:'problem', category:'Исследование', term:'Проблема', correct:'Теоретический или практический вопрос, который требует изучения и разрешения.' },
   { id:'problem-situation', category:'Исследование', term:'Проблемная ситуация', correct:'Такие сложные обстоятельства в социальной жизни, которые требуют теоретического обдумывания и/или практического разрешения.' },
-  
-  // Виды исследований
   { id:'functions-si', category:'Виды исследований', term:'Функции СИ', correct:'Исследовательская (изучение реального состояния ситуации), управленческая (выявление тенденций для принятия решений), информационная (сбор достоверных сведений).' },
   { id:'exploratory', category:'Виды исследований', term:'Разведывательное исследование', correct:'Оперативный сбор предварительной информации и апробация инструментария.' },
   { id:'descriptive', category:'Виды исследований', term:'Описательное исследование', correct:'Получение эмпирических данных для целостного представления о структуре объекта.' },
@@ -386,8 +379,6 @@ const TERMS = [
   { id:'monographic', category:'Виды исследований', term:'Монографическое исследование', correct:'Детальное изучение одного случая (case-study).' },
   { id:'continuous', category:'Виды исследований', term:'Сплошное исследование', correct:'Охват всех единиц наблюдения (обычно при объёме ГС до 500–700 человек).' },
   { id:'sampling', category:'Виды исследований', term:'Выборочное исследование', correct:'Изучение части объекта для выводов о целом.' },
-  
-  // Этапы и структура
   { id:'stages', category:'Этапы и структура', term:'Этапы исследования', correct:'Подготовительный (программирование), полевой (сбор данных), этап обработки и анализа, и итоговый (представление результатов). Все этапы логически взаимосвязаны, ошибки на подготовительном этапе ведут к недостоверности итогов.' },
   { id:'program-functions', category:'Этапы и структура', term:'Функции программы исследования', correct:'Методологическая, методическая, организационная.' },
   { id:'program-elements', category:'Этапы и структура', term:'Элементы программы исследования', correct:'Методологический раздел (проблема, объект, предмет, цель, задачи, гипотезы, понятия) и методико-процедурный раздел (выборка, методы, план).' },
@@ -401,18 +392,14 @@ const TERMS = [
   { id:'task-types', category:'Этапы и структура', term:'Виды задач', correct:'Основные (решение проблемы в целом) и неосновные (отдельные стороны).' },
   { id:'hypothesis', category:'Этапы и структура', term:'Гипотеза', correct:'Научное предположение для объяснения фактов. Она необходима для проверки теоретических догадок через эмпирические данные.' },
   { id:'hypothesis-req', category:'Этапы и структура', term:'Требования к гипотезам', correct:'Должны быть проверяемыми, логически непротиворечивыми и направленными на поиск алгоритмов решения социальных проблем.' },
-  
-  // Выборка
   { id:'random-sampling', category:'Выборка', term:'Методы случайной выборки', correct:'Случайный, стратифицированный (районированный), гнездовой (кластерный).' },
   { id:'targeted-sampling', category:'Выборка', term:'Методы целенаправленной выборки', correct:'Квотный отбор, «снежный ком», стихийная выборка, основной массив, отбор типичных представителей.' },
-  
-  // Совокупности
   { id:'population', category:'Совокупности и выборка', term:'Генеральная совокупность', correct:'Вся совокупность объектов, из которых производится выборка.' },
   { id:'stats-population', category:'Совокупности и выборка', term:'Статистическая совокупность', correct:'Совокупность объектов или явлений общественной жизни, отобранных для изучения определённого свойства.' },
   { id:'sample', category:'Совокупности и выборка', term:'Выборочная совокупность (выборка)', correct:'Часть элементов генеральной совокупности, отбираемая исследователем для изучения.' }
 ];
 
-const STORAGE_KEY = 'comingo_progress_v2'; // Обновили версию из-за новых терминов
+const STORAGE_KEY = 'comingo_progress_v2';
 const QUESTIONS_PER_LEVEL = 8;
 const MAX_MASTERY = 5;
 
@@ -426,7 +413,6 @@ function loadProgress() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      // Проверяем, что все текущие термины есть в прогрессе
       let changed = false;
       TERMS.forEach(t => {
         if (!parsed[t.id]) {
@@ -526,15 +512,11 @@ function setTheme(theme) {
 function countMastered() {
   return TERMS.filter(t => (progress[t.id]?.mastery || 0) >= 3).length;
 }
-function countHard() {
-  return TERMS.filter(t => progress[t.id]?.status === 'hard').length;
-}
 function refreshMapUI() {
   const mastered = countMastered();
   const total = TERMS.length;
   document.getElementById('mastery-counter').textContent = `${mastered} из ${total}`;
   document.getElementById('mastery-fill').style.width = `${(mastered/total)*100}%`;
-  document.getElementById('hard-count-badge').textContent = `${countHard()} трудных`;
 }
 
 /* ============================================================
@@ -572,7 +554,7 @@ function renderDictionary() {
 }
 
 /* ============================================================
-   ЛОГИКА ЗАДАНИЙ — ровно 8 терминов за раунд
+   ЛОГИКА ЗАДАНИЙ
    ============================================================ */
 let game = null;
 let isAnswerSelected = false;
@@ -587,35 +569,13 @@ function shuffle(a) {
   return a;
 }
 
-// Взвешенная выборка: hard=3, new=2, easy=1
-function weightedPick(terms, count) {
-  const pool = [...terms];
-  const picked = [];
-  while (picked.length < count && pool.length) {
-    const weights = pool.map(t => {
-      const s = progress[t.id]?.status || 'new';
-      return s === 'hard' ? 3 : s === 'easy' ? 1 : 2;
-    });
-    const total = weights.reduce((a, b) => a + b, 0);
-    let r = Math.random() * total;
-    let idx = 0;
-    for (let i = 0; i < pool.length; i++) {
-      r -= weights[i];
-      if (r <= 0) { idx = i; break; }
-    }
-    picked.push(pool.splice(idx, 1)[0]);
-  }
-  return picked;
-}
-
-function startTaskLevel(mode) {
+function startTaskLevel(mode, optionCount = 3) {
   const need = Math.min(QUESTIONS_PER_LEVEL, TERMS.length);
-  const questions = (mode === 'repeat')
-    ? weightedPick(TERMS, need)
-    : shuffle([...TERMS]).slice(0, need);
+  const questions = shuffle([...TERMS]).slice(0, need);
 
   game = {
     mode,
+    optionCount,
     queue: [...questions],
     targetCount: questions.length,
     solvedCount: 0,
@@ -651,12 +611,11 @@ function updateProgressBar() {
   document.getElementById('task-progress').style.width = pct + '%';
 }
 
-// Умный подбор неправильных вариантов (из той же категории)
-function getWrongOptions(task) {
-  const sameCat = TERMS.filter(t => t.id !== task.id && t.category === task.category);
-  const otherCat = TERMS.filter(t => t.id !== task.id && t.category !== task.category);
-  const pool = [...sameCat, ...otherCat]; // Сначала приоритет одинаковым категориям
-  return pool.slice(0, 2).map(t => t.correct);
+function getWrongOptions(task, count) {
+  const sameCat = shuffle(TERMS.filter(t => t.id !== task.id && t.category === task.category));
+  const otherCat = shuffle(TERMS.filter(t => t.id !== task.id && t.category !== task.category));
+  const pool = [...sameCat, ...otherCat];
+  return pool.slice(0, count).map(t => t.correct);
 }
 
 function loadQuestion() {
@@ -674,13 +633,14 @@ function loadQuestion() {
   const task = game.queue[0];
   game.currentTask = task;
 
-  // Подбор неправильных вариантов
-  const wrongTexts = getWrongOptions(task);
-  const options = shuffle([
+  // Используем game.optionCount для генерации нужного числа вариантов
+  const wrongTexts = getWrongOptions(task, game.optionCount - 1);
+  
+  const options = [
     { text: task.correct, isCorrect: true },
-    { text: wrongTexts[0], isCorrect: false },
-    { text: wrongTexts[1], isCorrect: false }
-  ]);
+    ...wrongTexts.map(w => ({ text: w, isCorrect: false }))
+  ];
+  shuffle(options);
 
   let optionsHTML = '';
   options.forEach((opt, i) => {
@@ -695,7 +655,7 @@ function loadQuestion() {
   content.innerHTML = `
     <h2 class="task-title">Выбери определение</h2>
     <div class="task-question-block">
-      <img src="Пахомова.jpg" alt="Пахомова" class="task-character" onerror="this.src='https://via.placeholder.com/100x120?text=Фото'">
+      <img src="метода нейтрал.png" alt="Маскот" class="task-character" onerror="this.src='https://via.placeholder.com/100x120?text=Фото'">
       <div class="task-bubble">${task.term}</div>
     </div>
     ${optionsHTML}
@@ -721,14 +681,16 @@ function checkAnswer() {
   const task = game.currentTask;
   const selected = document.querySelector('.answer-option.selected');
   const prog = progress[task.id];
+  const mascot = document.querySelector('.task-character');
 
   if (selectedIsCorrect) {
-    // ✅ ВЕРНО
     selected.classList.add('correct');
     prog.correctCount++;
     prog.mastery = Math.min(MAX_MASTERY, prog.mastery + 1);
     if (prog.mastery >= 3) prog.status = 'easy';
     saveProgress();
+
+    if (mascot) mascot.src = 'метода з.png';
 
     btn.className = 'check-btn success';
     btn.textContent = 'ПРОДОЛЖИТЬ';
@@ -740,11 +702,12 @@ function checkAnswer() {
       loadQuestion();
     };
   } else {
-    // ❌ ОШИБКА
     selected.classList.add('wrong');
     document.querySelectorAll('.answer-option').forEach(o => {
       if (o.dataset.correct === 'true') o.classList.add('correct');
     });
+
+    if (mascot) mascot.src = 'метода ч.png';
 
     prog.mistakes++;
     prog.mastery = Math.max(0, prog.mastery - 1.5);
@@ -800,7 +763,7 @@ function finishLevel() {
   const errors = game.mistakeLog.length;
 
   let emoji = '🏆', title = 'Уровень пройден!', sub = 'Отличная работа';
-  if (errors === 0) { emoji = '🏆'; title = 'Идеально!'; sub = 'Все 8 терминов — верно'; }
+  if (errors === 0) { emoji = '🏆'; title = 'Идеально!'; sub = `Все ${game.targetCount} терминов — верно`; }
   else if (stars === 3) { emoji = '🎉'; title = 'Уровень пройден!'; sub = 'Отлично справилась'; }
   else if (stars === 2) { emoji = '👍'; title = 'Уровень пройден!'; sub = 'Хороший результат'; }
   else { emoji = '✅'; title = 'Уровень пройден'; sub = 'Есть над чем поработать'; }
@@ -843,7 +806,8 @@ function showGameOver() {
 
 function restartLevel() {
   const mode = game?.mode || 'normal';
-  startTaskLevel(mode);
+  const count = game?.optionCount || 3;
+  startTaskLevel(mode, count);
 }
 </script>
 </body>
