@@ -37,25 +37,24 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        /* ИЗМЕНЕНИЯ ЗДЕСЬ: прижимаем приложение к верху */
+        /* Прижимаем приложение к верху */
         body {
             background-color: var(--bg-color);
             display: flex;
             justify-content: center;
-            /* align-items: center; <-- Убрали центрирование по вертикали */
             align-items: flex-start; 
             min-height: 100vh;
             color: var(--text-main);
-            overflow: hidden; /* Отключаем скролл страницы */
+            overflow: hidden; 
         }
 
         /* Контейнер приложения */
         .app-container {
             width: 100%;
-            max-width: 400px; /* Ограничение для ПК */
-            height: 100vh;    /* Занимает всю высоту */
-            height: 100dvh;   /* Динамическая высота для мобильных */
-            max-height: 900px;/* Максимальная высота для очень больших экранов */
+            max-width: 400px; 
+            height: 100vh;    
+            height: 100dvh;   
+            max-height: 900px;
             background-color: var(--bg-color);
             position: relative;
             overflow: hidden;
@@ -82,7 +81,7 @@
         #screen-1 {
             justify-content: space-between;
             align-items: center;
-            padding: 20px 20px 40px 20px; /* Уменьшили верхний отступ */
+            padding: 10px 20px 30px 20px; 
             text-align: center;
         }
 
@@ -90,15 +89,38 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 5vh; /* Немного подняли контент */
+            margin-top: 2vh; 
             width: 100%;
             flex-grow: 1; 
             justify-content: center; 
         }
 
-        .mascot-photo { width: 240px; height: auto; object-fit: contain; margin-bottom: 15px; display: block; }
-        .logo-img { width: 100%; max-width: 280px; height: auto; max-height: 90px; object-fit: contain; margin-bottom: 20px; display: block; }
-        .subtitle { font-size: 18px; color: var(--text-muted); line-height: 1.5; max-width: 280px; }
+        /* Фото Сороки */
+        .mascot-photo { 
+            width: 240px; 
+            height: auto; 
+            object-fit: contain; 
+            margin-bottom: 15px; 
+            display: block; 
+        }
+        
+        /* Логотип */
+        .logo-img { 
+            width: 100%; 
+            max-width: 260px; 
+            height: auto; 
+            object-fit: contain; 
+            margin-bottom: 20px; 
+            display: block;
+            border-radius: 12px; /* Скругление, так как фон у JPG белый */
+        }
+        
+        .subtitle { 
+            font-size: 18px; 
+            color: var(--text-muted); 
+            line-height: 1.5; 
+            max-width: 280px; 
+        }
 
         .start-btn {
             width: 100%;
@@ -119,15 +141,23 @@
            ========================================= */
         #screen-2 { background-color: var(--bg-color); }
 
-        /* Уменьшили верхний отступ у панели с крестиком */
-        .top-bar { padding: 10px 20px; display: flex; justify-content: flex-start; flex-shrink: 0; }
+        .top-bar { padding: 5px 20px 15px 20px; display: flex; justify-content: flex-start; flex-shrink: 0; }
         .close-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); }
         .close-btn svg { width: 28px; height: 28px; }
 
         .main-content-2 { padding: 0 20px; flex-grow: 1; overflow-y: auto; }
 
         .character-block { display: flex; align-items: center; margin-bottom: 30px; }
-        .character-photo { width: 120px; height: auto; max-height: 150px; object-fit: contain; margin-right: 10px; z-index: 2; }
+        
+        /* Фото Пахомовой */
+        .character-photo { 
+            width: 130px; 
+            height: auto; 
+            object-fit: contain; 
+            margin-right: 10px; 
+            z-index: 2; 
+            border-radius: 12px; /* Легкое скругление, если JPG */
+        }
 
         .speech-bubble {
             background: var(--card-bg);
@@ -207,7 +237,7 @@
 
         .course-tabs {
             display: flex;
-            padding: 10px 20px; 
+            padding: 5px 20px 10px 20px; 
             background-color: var(--bg-color);
             gap: 10px;
             border-bottom: 1px solid var(--border-color);
@@ -230,7 +260,7 @@
             background-color: var(--primary-blue); color: white; border-color: var(--primary-blue);
         }
 
-        .main-content-3 { padding: 20px; flex-grow: 1; overflow-y: auto; }
+        .main-content-3 { padding: 15px 20px; flex-grow: 1; overflow-y: auto; }
 
         .module-banner {
             background-color: var(--primary-blue);
@@ -253,15 +283,15 @@
         .vocab-btn svg { margin-bottom: 4px; }
         .vocab-btn span { font-size: 12px; font-weight: 700; }
 
-        .progress-card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px; padding: 20px; margin-bottom: 30px; }
+        .progress-card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px; padding: 20px; margin-bottom: 20px; }
         .progress-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
         .progress-bar-bg { width: 100%; height: 12px; background-color: var(--border-color); border-radius: 6px; overflow: hidden; }
         .progress-bar-fill { width: 5%; height: 100%; background-color: var(--primary-blue); border-radius: 6px; }
 
-        .level-item { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; text-align: center; }
+        .level-item { display: flex; flex-direction: column; align-items: center; margin-bottom: 25px; text-align: center; }
         .level-circle {
-            width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 36px; font-weight: 800; margin-bottom: 15px; background-color: var(--border-color);
+            width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 32px; font-weight: 800; margin-bottom: 12px; background-color: var(--border-color);
             color: var(--text-muted); border: 6px solid var(--bg-secondary); box-shadow: 0 0 0 4px var(--border-color);
         }
         .level-circle.unlocked { background-color: var(--primary-blue); color: white; box-shadow: 0 0 0 4px rgba(28, 126, 214, 0.3); }
@@ -272,12 +302,11 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 8px 20px;
-            padding-bottom: max(8px, env(safe-area-inset-bottom));
+            padding: 10px 20px;
+            padding-bottom: 25px; 
             background-color: var(--nav-bg);
             border-top: 2px solid var(--border-color);
             flex-shrink: 0; 
-            min-height: 60px;
         }
 
         .nav-btn {
@@ -341,8 +370,12 @@
         <!-- ЭКРАН 1: Стартовый -->
         <div id="screen-1" class="screen active">
             <div class="content-1">
+                <!-- ВСТАВКА ФОТО "Сорока.jpg" -->
                 <img src="Сорока.jpg" alt="Сорока" class="mascot-photo" onerror="this.src='https://via.placeholder.com/240x240?text=Фото+Сорока'">
-                <img src="логотип.png" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/280x90?text=Логотип'">
+                
+                <!-- ВСТАВКА ЛОГОТИПА "Логотип.jpg" -->
+                <img src="Логотип.jpg" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/280x90?text=Логотип'">
+                
                 <p class="subtitle">Выучи все определения шаг за<br>шагом</p>
             </div>
             <button class="start-btn" onclick="goToScreen('screen-2')">НАЧАТЬ</button>
@@ -357,7 +390,9 @@
             </div>
             <div class="main-content-2">
                 <div class="character-block">
+                    <!-- ВСТАВКА ФОТО "Пахомова.jpg" -->
                     <img src="Пахомова.jpg" alt="Пахомова" class="character-photo" onerror="this.src='https://via.placeholder.com/120x150?text=Пахомова'">
+                    
                     <div class="speech-bubble">Что вы хотите<br>изучать?</div>
                 </div>
                 
