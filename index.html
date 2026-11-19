@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Comingo - Обучение</title>
     <style>
         /* Базовые стили и переменные для тем */
@@ -94,30 +94,9 @@
             justify-content: center; 
         }
 
-        .mascot-photo {
-            width: 240px;       
-            height: auto;       
-            object-fit: contain; 
-            margin-bottom: 15px;
-            display: block; 
-        }
-
-        .logo-img {
-            width: 100%;
-            max-width: 280px; 
-            height: auto;
-            max-height: 90px; 
-            object-fit: contain;
-            margin-bottom: 20px; 
-            display: block;
-        }
-        
-        .subtitle { 
-            font-size: 18px; 
-            color: var(--text-muted); 
-            line-height: 1.5; 
-            max-width: 280px; 
-        }
+        .mascot-photo { width: 240px; height: auto; object-fit: contain; margin-bottom: 15px; display: block; }
+        .logo-img { width: 100%; max-width: 280px; height: auto; max-height: 90px; object-fit: contain; margin-bottom: 20px; display: block; }
+        .subtitle { font-size: 18px; color: var(--text-muted); line-height: 1.5; max-width: 280px; }
 
         .start-btn {
             width: 100%;
@@ -136,45 +115,16 @@
         /* =========================================
            ЭКРАН 2 (Выбор темы)
            ========================================= */
-        #screen-2 {
-            background-color: var(--bg-color);
-        }
+        #screen-2 { background-color: var(--bg-color); }
 
-        .top-bar {
-            padding: 20px;
-            display: flex;
-            justify-content: flex-start;
-            flex-shrink: 0;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
+        .top-bar { padding: 20px; display: flex; justify-content: flex-start; flex-shrink: 0; }
+        .close-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); }
         .close-btn svg { width: 28px; height: 28px; }
 
-        .main-content-2 {
-            padding: 0 20px;
-            flex-grow: 1;
-            overflow-y: auto; 
-        }
+        .main-content-2 { padding: 0 20px; flex-grow: 1; overflow-y: auto; }
 
-        .character-block {
-            display: flex;
-            align-items: center; 
-            margin-bottom: 30px;
-        }
-
-        .character-photo {
-            width: 120px;        
-            height: auto;
-            max-height: 150px;
-            object-fit: contain; 
-            margin-right: 10px;  
-            z-index: 2;
-        }
+        .character-block { display: flex; align-items: center; margin-bottom: 30px; }
+        .character-photo { width: 120px; height: auto; max-height: 150px; object-fit: contain; margin-right: 10px; z-index: 2; }
 
         .speech-bubble {
             background: var(--card-bg);
@@ -194,14 +144,12 @@
             left: -12px;
             top: 50%; 
             transform: translateY(-50%) rotate(45deg);
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             background: var(--card-bg);
             border-left: 2px solid var(--border-color);
             border-bottom: 2px solid var(--border-color);
         }
 
-        /* Карточки выбора */
         .option-card {
             background: var(--card-bg);
             border: 2px solid var(--border-color);
@@ -214,35 +162,20 @@
             transition: all 0.2s ease;
         }
 
-        /* Стиль для выбранной карточки */
         .option-card.selected {
             border-color: var(--primary-blue);
-            background-color: rgba(28, 126, 214, 0.05); /* Легкий синий фон */
+            background-color: rgba(28, 126, 214, 0.05);
         }
         body.dark-theme .option-card.selected {
             background-color: rgba(59, 130, 246, 0.1);
         }
 
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-        }
-
+        .icon-box { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
         .icon-purple { background-color: #9b51e0; }
         .icon-blue { background-color: #2d9cdb; }
 
-        .option-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--text-main);
-        }
+        .option-title { font-size: 18px; font-weight: 800; color: var(--text-main); }
 
-        /* Нижняя панель экрана 2 */
         .bottom-bar {
             padding: 20px;
             background-color: var(--bg-color);
@@ -251,37 +184,28 @@
         }
 
         .continue-btn {
-            width: 100%;
-            padding: 20px;
-            background-color: var(--border-color); 
-            color: var(--text-muted);
-            border: none;
-            border-radius: 16px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: not-allowed;
-            text-transform: uppercase;
+            width: 100%; padding: 20px;
+            background-color: var(--border-color); color: var(--text-muted);
+            border: none; border-radius: 16px;
+            font-size: 18px; font-weight: 700;
+            cursor: not-allowed; text-transform: uppercase;
             transition: all 0.3s ease;
         }
 
-        /* Активная кнопка "Продолжить" */
         .continue-btn.active {
-            background-color: var(--primary-blue);
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(28, 126, 214, 0.2);
+            background-color: var(--primary-blue); color: white;
+            cursor: pointer; box-shadow: 0 4px 10px rgba(28, 126, 214, 0.2);
         }
 
         /* =========================================
            ЭКРАН 3 (Задания)
            ========================================= */
-        #screen-3 {
-            background-color: var(--bg-secondary);
-        }
+        #screen-3 { background-color: var(--bg-secondary); }
 
+        /* УМЕНЬШИЛИ ВЕРХНЮЮ ПАНЕЛЬ */
         .course-tabs {
             display: flex;
-            padding: 15px 20px;
+            padding: 10px 20px; /* Было 15px, стало 10px */
             background-color: var(--bg-color);
             gap: 10px;
             border-bottom: 1px solid var(--border-color);
@@ -290,27 +214,21 @@
 
         .tab-btn {
             flex: 1;
-            padding: 12px;
+            padding: 10px; /* Было 12px, стало 10px */
             border-radius: 12px;
             border: 2px solid var(--border-color);
             background: var(--bg-color);
-            font-size: 16px;
+            font-size: 15px; /* Чуть уменьшили шрифт */
             font-weight: 700;
             color: var(--text-muted);
             cursor: pointer;
         }
 
         .tab-btn.active {
-            background-color: var(--primary-blue);
-            color: white;
-            border-color: var(--primary-blue);
+            background-color: var(--primary-blue); color: white; border-color: var(--primary-blue);
         }
 
-        .main-content-3 {
-            padding: 20px;
-            flex-grow: 1;
-            overflow-y: auto; 
-        }
+        .main-content-3 { padding: 20px; flex-grow: 1; overflow-y: auto; }
 
         .module-banner {
             background-color: var(--primary-blue);
@@ -323,259 +241,95 @@
             margin-bottom: 20px;
         }
 
-        .module-text h3 {
-            font-size: 12px;
-            text-transform: uppercase;
-            opacity: 0.8;
-            margin-bottom: 5px;
-        }
-
-        .module-text h2 {
-            font-size: 22px;
-            font-weight: 800;
-        }
+        .module-text h3 { font-size: 12px; text-transform: uppercase; opacity: 0.8; margin-bottom: 5px; }
+        .module-text h2 { font-size: 22px; font-weight: 800; }
 
         .vocab-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 10px;
-            border-radius: 12px;
-            border: none;
-            color: white;
-            cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; background: rgba(255, 255, 255, 0.15);
+            padding: 10px; border-radius: 12px; border: none; color: white; cursor: pointer;
         }
-        
         .vocab-btn svg { margin-bottom: 4px; }
         .vocab-btn span { font-size: 12px; font-weight: 700; }
 
-        .progress-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
+        .progress-card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px; padding: 20px; margin-bottom: 30px; }
+        .progress-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
+        .progress-bar-bg { width: 100%; height: 12px; background-color: var(--border-color); border-radius: 6px; overflow: hidden; }
+        .progress-bar-fill { width: 5%; height: 100%; background-color: var(--primary-blue); border-radius: 6px; }
 
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        .progress-bar-bg {
-            width: 100%;
-            height: 12px;
-            background-color: var(--border-color);
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill {
-            width: 5%;
-            height: 100%;
-            background-color: var(--primary-blue);
-            border-radius: 6px;
-        }
-
-        .level-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
+        .level-item { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; text-align: center; }
         .level-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            background-color: var(--border-color);
-            color: var(--text-muted);
-            border: 6px solid var(--bg-secondary);
-            box-shadow: 0 0 0 4px var(--border-color);
+            width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 36px; font-weight: 800; margin-bottom: 15px; background-color: var(--border-color);
+            color: var(--text-muted); border: 6px solid var(--bg-secondary); box-shadow: 0 0 0 4px var(--border-color);
         }
+        .level-circle.unlocked { background-color: var(--primary-blue); color: white; box-shadow: 0 0 0 4px rgba(28, 126, 214, 0.3); }
+        .level-title { font-size: 20px; font-weight: 800; margin-bottom: 5px; }
+        .level-desc { font-size: 14px; color: var(--text-muted); }
 
-        .level-circle.unlocked {
-            background-color: var(--primary-blue);
-            color: white;
-            box-shadow: 0 0 0 4px rgba(28, 126, 214, 0.3);
-        }
-
-        .level-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
-
-        .level-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
+        /* УЛУЧШИЛИ НИЖНЮЮ ПАНЕЛЬ */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 10px 20px;
+            padding: 8px 20px; /* Уменьшили отступы */
+            padding-bottom: max(8px, env(safe-area-inset-bottom)); /* ВАЖНО: добавляет отступ для iPhone (под виртуальный Home Bar) */
             background-color: var(--nav-bg);
             border-top: 2px solid var(--border-color);
             flex-shrink: 0; 
+            min-height: 60px; /* Минимальная высота, чтобы не сжималась */
         }
 
         .nav-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: none; border: none; color: var(--text-muted); cursor: pointer;
+            padding: 8px; /* Сделали кнопки чуть меньше, чтобы влезали */
+            display: flex; align-items: center; justify-content: center;
         }
 
         .nav-btn.active-home {
-            background-color: rgba(28, 126, 214, 0.1);
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
-            border-radius: 12px;
+            background-color: rgba(28, 126, 214, 0.1); color: var(--primary-blue);
+            border: 2px solid var(--primary-blue); border-radius: 12px;
         }
 
         /* =========================================
            МОДАЛЬНОЕ ОКНО НАСТРОЕК
            ========================================= */
         .settings-overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            display: none;
-            align-items: flex-end;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4); display: none; align-items: flex-end;
+            z-index: 100; opacity: 0; transition: opacity 0.3s ease;
         }
-
-        .settings-overlay.show {
-            display: flex;
-            opacity: 1;
-        }
+        .settings-overlay.show { display: flex; opacity: 1; }
 
         .settings-sheet {
-            background-color: var(--bg-secondary);
-            width: 100%;
-            border-radius: 24px 24px 0 0;
-            padding: 25px 20px 30px 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1);
+            background-color: var(--bg-secondary); width: 100%;
+            border-radius: 24px 24px 0 0; padding: 25px 20px 30px 20px;
+            transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1);
         }
+        .settings-overlay.show .settings-sheet { transform: translateY(0); }
 
-        .settings-overlay.show .settings-sheet {
-            transform: translateY(0);
-        }
+        .settings-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .settings-header h2 { font-size: 26px; font-weight: 800; color: var(--text-main); }
+        .close-settings-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 5px; }
 
-        .settings-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .settings-header h2 {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        .close-settings-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .section-title {
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .theme-options {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
+        .section-title { font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 15px; }
+        .theme-options { display: flex; gap: 15px; margin-bottom: 30px; }
 
         .theme-card {
-            flex: 1;
-            background-color: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            flex: 1; background-color: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px;
+            padding: 15px; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: all 0.2s ease;
         }
-
-        .theme-card.active {
-            border-color: var(--primary-blue);
-            background-color: rgba(28, 126, 214, 0.05);
-        }
-        body.dark-theme .theme-card.active {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
+        .theme-card.active { border-color: var(--primary-blue); background-color: rgba(28, 126, 214, 0.05); }
+        body.dark-theme .theme-card.active { background-color: rgba(59, 130, 246, 0.1); }
 
         .theme-preview {
-            width: 50px;
-            height: 60px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border: 2px solid var(--border-color);
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 5px;
+            width: 50px; height: 60px; border-radius: 8px; margin-bottom: 10px; border: 2px solid var(--border-color);
+            position: relative; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 5px;
         }
-
         .theme-preview.light { background-color: #ffffff; }
         .theme-preview.dark { background-color: #121212; border-color: #374151; }
-
-        .theme-preview::after {
-            content: '';
-            width: 25px;
-            height: 6px;
-            background-color: #10b981;
-            border-radius: 3px;
-        }
-
-        .theme-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .settings-footer {
-            text-align: center;
-            font-size: 13px;
-            color: #9ca3af;
-            margin-top: 10px;
-        }
+        .theme-preview::after { content: ''; width: 25px; height: 6px; background-color: #10b981; border-radius: 3px; }
+        .theme-name { font-size: 16px; font-weight: 700; color: var(--text-main); }
+        .settings-footer { text-align: center; font-size: 13px; color: #9ca3af; margin-top: 10px; }
 
     </style>
 </head>
@@ -596,7 +350,6 @@
         <!-- ЭКРАН 2: Выбор темы -->
         <div id="screen-2" class="screen">
             <div class="top-bar">
-                <!-- Крестик теперь сбрасывает выбор -->
                 <button class="close-btn" onclick="resetAndGoBack()">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
@@ -607,7 +360,6 @@
                     <div class="speech-bubble">Что вы хотите<br>изучать?</div>
                 </div>
                 
-                <!-- Карточка Методология: при клике вызывает функцию selectOption -->
                 <div class="option-card" id="card-methodology" onclick="selectOption(this)">
                     <div class="icon-box icon-purple">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
@@ -623,7 +375,6 @@
                 </div>
             </div>
             
-            <!-- Кнопка Продолжить: теперь ведет на экран заданий -->
             <div class="bottom-bar">
                 <button class="continue-btn" id="continue-btn" onclick="proceedToTasks()">ПРОДОЛЖИТЬ</button>
             </div>
@@ -712,10 +463,8 @@
     </div>
 
     <script>
-        // Переменная для хранения выбранной темы
         let selectedTopic = null;
 
-        // Универсальная функция переключения экранов
         function goToScreen(screenId) {
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
@@ -723,50 +472,29 @@
             document.getElementById(screenId).classList.add('active');
         }
 
-        // Функция выбора карточки (Методология или Статистика)
         function selectOption(cardElement) {
-            // 1. Убираем класс 'selected' со всех карточек
             document.querySelectorAll('.option-card').forEach(card => {
                 card.classList.remove('selected');
             });
-
-            // 2. Добавляем класс 'selected' на нажатую карточку
             cardElement.classList.add('selected');
-
-            // 3. Запоминаем, что выбрано
             selectedTopic = cardElement.id;
 
-            // 4. Активируем кнопку "Продолжить"
             const btn = document.getElementById('continue-btn');
             btn.classList.add('active');
             btn.disabled = false;
         }
 
-        // Переход к заданиям по кнопке "Продолжить"
         function proceedToTasks() {
-            // Проверяем, выбрана ли тема. Если да - переходим.
             if (selectedTopic) {
                 goToScreen('screen-3');
-                
-                // Опционально: можно менять заголовок на третьем экране в зависимости от выбора
-                if (selectedTopic === 'card-statistics') {
-                    document.querySelector('.module-text h3').textContent = 'Статистика';
-                    // Тут можно подгрузить другие данные
-                } else {
-                    document.querySelector('.module-text h3').textContent = 'Методология';
-                }
             }
         }
 
-        // Сброс выбора при выходе (крестик)
         function resetAndGoBack() {
-            // Снимаем выделение
             document.querySelectorAll('.option-card').forEach(card => {
                 card.classList.remove('selected');
             });
             selectedTopic = null;
-            
-            // Делаем кнопку неактивной
             const btn = document.getElementById('continue-btn');
             btn.classList.remove('active');
             
