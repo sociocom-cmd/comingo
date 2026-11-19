@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Comingo - Словарь</title>
+    <title>Comingo - Обучение</title>
     <style>
         /* Базовые стили и переменные для тем */
         :root {
@@ -16,9 +16,6 @@
             --primary-blue: #1c7ed6;
             --nav-bg: #ffffff;
             
-            /* Цвета для словаря */
-            --dict-header-bg: #f1f5f9;
-            --dict-card-bg: #ffffff;
             --difficult-bg: #fef3c7;
             --difficult-text: #d97706;
         }
@@ -33,8 +30,6 @@
             --primary-blue: #3b82f6;
             --nav-bg: #121212;
 
-            --dict-header-bg: #1e1e1e;
-            --dict-card-bg: #2d2d2d;
             --difficult-bg: #78350f;
             --difficult-text: #fcd34d;
         }
@@ -192,7 +187,6 @@
         .vocab-btn {
             display: flex; flex-direction: column; align-items: center; background: rgba(255, 255, 255, 0.15);
             padding: 10px; border-radius: 12px; border: none; color: white; cursor: pointer;
-            transition: background-color 0.2s;
         }
         .vocab-btn:active { background: rgba(255, 255, 255, 0.25); }
         .vocab-btn svg { margin-bottom: 4px; }
@@ -234,7 +228,7 @@
         }
 
         .term-card {
-            background: var(--dict-card-bg);
+            background: var(--card-bg);
             border: 2px solid var(--border-color);
             border-radius: 16px;
             padding: 15px;
@@ -272,27 +266,44 @@
             margin-top: 6px;
         }
 
-        /* Маленький прогресс-бар в карточке */
         .mini-progress-bg {
-            width: 60px;
-            height: 8px;
-            background-color: var(--border-color);
-            border-radius: 4px;
-            flex-shrink: 0;
-            overflow: hidden;
+            width: 60px; height: 8px; background-color: var(--border-color);
+            border-radius: 4px; flex-shrink: 0; overflow: hidden;
         }
 
         .mini-progress-fill {
-            height: 100%;
-            background-color: var(--primary-blue);
-            border-radius: 4px;
-            width: 10%; /* Разный процент для разных карточек */
+            height: 100%; background-color: var(--primary-blue); border-radius: 4px; width: 10%;
         }
 
-        /* Для пустого прогресса */
         .mini-progress-fill.empty { width: 0%; }
 
-        /* Нижнее меню навигации (общее для экранов 3 и 4) */
+        /* Модальное окно для словаря */
+        .definition-modal {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5); display: none; justify-content: center;
+            align-items: center; z-index: 200; opacity: 0; transition: opacity 0.3s; padding: 20px;
+        }
+        .definition-modal.show { display: flex; opacity: 1; }
+
+        .definition-box {
+            background: var(--card-bg); width: 100%; border-radius: 20px; padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        .definition-modal.show .definition-box { transform: translateY(0); }
+
+        .def-term { font-size: 22px; font-weight: 800; color: var(--primary-blue); margin-bottom: 15px; }
+        .def-text { font-size: 16px; line-height: 1.5; color: var(--text-main); margin-bottom: 25px; }
+        
+        .def-close-btn {
+            width: 100%; padding: 15px; background: var(--bg-secondary);
+            border: 2px solid var(--border-color); border-radius: 12px;
+            font-size: 16px; font-weight: 700; color: var(--text-main); cursor: pointer;
+        }
+
+        /* =========================================
+           НИЖНЕЕ МЕНЮ И НАСТРОЙКИ
+           ========================================= */
         .bottom-nav {
             display: flex; justify-content: space-around; align-items: center;
             padding: 10px 20px; padding-bottom: 25px; 
@@ -309,47 +320,6 @@
             border: 2px solid var(--primary-blue); border-radius: 12px;
         }
 
-        /* =========================================
-           МОДАЛЬНОЕ ОКНО ДЛЯ ОПРЕДЕЛЕНИЙ (В словаре)
-           ========================================= */
-        .definition-modal {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-            opacity: 0;
-            transition: opacity 0.3s;
-            padding: 20px;
-        }
-        
-        .definition-modal.show { display: flex; opacity: 1; }
-
-        .definition-box {
-            background: var(--card-bg);
-            width: 100%;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transform: translateY(20px);
-            transition: transform 0.3s;
-        }
-        .definition-modal.show .definition-box { transform: translateY(0); }
-
-        .def-term { font-size: 22px; font-weight: 800; color: var(--primary-blue); margin-bottom: 15px; }
-        .def-text { font-size: 16px; line-height: 1.5; color: var(--text-main); margin-bottom: 25px; }
-        
-        .def-close-btn {
-            width: 100%; padding: 15px; background: var(--bg-secondary);
-            border: 2px solid var(--border-color); border-radius: 12px;
-            font-size: 16px; font-weight: 700; color: var(--text-main); cursor: pointer;
-        }
-
-        /* =========================================
-           МОДАЛЬНОЕ ОКНО НАСТРОЕК
-           ========================================= */
         .settings-overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.4); display: none; align-items: flex-end;
@@ -450,7 +420,6 @@
                         <h3>Методология</h3>
                         <h2>Определения</h2>
                     </div>
-                    <!-- Кнопка "Словарь" ведет на экран 4 -->
                     <button class="vocab-btn" onclick="goToScreen('screen-4')">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
                         <span>Словарь</span>
@@ -513,7 +482,7 @@
                     </div>
                 </div>
 
-                <!-- Категория 1: Основы -->
+                <!-- Категория 1: Основы методологии -->
                 <div class="category-header">Основы методологии</div>
 
                 <div class="term-card" onclick="showDefinition('Методология', 'Учение о системе принципов и способов организации теоретической и практической научной деятельности.')">
@@ -521,7 +490,7 @@
                     <div class="mini-progress-bg"><div class="mini-progress-fill" style="width: 10%;"></div></div>
                 </div>
 
-                <div class="term-card" onclick="showDefinition('Метод', 'Совокупность приемов и операций теоретического или практического освоения действительности, а также человеческой деятельности, организованной определенным образом.')">
+                <div class="term-card" onclick="showDefinition('Метод', 'Совокупность приемов и операций теоретического или практического освоения действительности.')">
                     <div class="term-info"><span class="term-title">Метод</span></div>
                     <div class="mini-progress-bg"><div class="mini-progress-fill" style="width: 10%;"></div></div>
                 </div>
@@ -544,11 +513,19 @@
                 <!-- Категория 2: Информация -->
                 <div class="category-header">Информация и данные</div>
 
-                <div class="term-card" onclick="showDefinition('Социальная информация', 'Это информация, полученная в результате социального исследования, совокупность знаний, сведений, данных, получаемых исследователем из различных источников как объективного, так и субъективного характера.')">
+                <div class="term-card" onclick="showDefinition('Социальная информация', 'Это информация, полученная в результате социального исследования, совокупность знаний, сведений, данных, получаемых исследователем из различных источников.')">
                     <div class="term-info"><span class="term-title">Социальная информация</span></div>
                     <div class="mini-progress-bg"><div class="mini-progress-fill" style="width: 10%;"></div></div>
                 </div>
 
-                <div class="term-card" onclick="showDefinition('Объективность', 'Стремление воспроизвести и объяснить явление/процесс, отвлекаясь от ценностной точки зрения исследователя, его теоретической предубежденности, отказ от субъективности.')">
+                <div class="term-card" onclick="showDefinition('Объективность', 'Стремление воспроизвести и объяснить явление/процесс, отвлекаясь от ценностной точки зрения исследователя, отказ от субъективности.')">
                     <div class="term-info"><span class="term-title">Объективность</span></div>
-                    <div class="mini-progress-bg"><div class="mini-progress-fill" style="width:
+                    <div class="mini-progress-bg"><div class="mini-progress-fill" style="width: 40%;"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Достоверность', 'Истинность знания об объективной действительности, которая должна быть обеспечена на всех этапах СИ.')">
+                    <div class="term-info"><span class="term-title">Достоверность</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Надежность', 'Уверенность в том, что исследователь имеет дело с подлинными фактами, сгруппированными по правилу, а не собранными случайно
