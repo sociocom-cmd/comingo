@@ -37,25 +37,23 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        /* ИЗМЕНЕНИЯ ЗДЕСЬ: прижимаем приложение к верху */
         body {
             background-color: var(--bg-color);
             display: flex;
             justify-content: center;
-            /* align-items: center; <-- Убрали центрирование по вертикали */
             align-items: flex-start; 
             min-height: 100vh;
             color: var(--text-main);
-            overflow: hidden; /* Отключаем скролл страницы */
+            overflow: hidden; 
         }
 
         /* Контейнер приложения */
         .app-container {
             width: 100%;
-            max-width: 400px; /* Ограничение для ПК */
-            height: 100vh;    /* Занимает всю высоту */
-            height: 100dvh;   /* Динамическая высота для мобильных */
-            max-height: 900px;/* Максимальная высота для очень больших экранов */
+            max-width: 400px;
+            height: 100vh; 
+            height: 100dvh; 
+            max-height: 900px;
             background-color: var(--bg-color);
             position: relative;
             overflow: hidden;
@@ -82,7 +80,8 @@
         #screen-1 {
             justify-content: space-between;
             align-items: center;
-            padding: 20px 20px 40px 20px; /* Уменьшили верхний отступ */
+            /* Уменьшили верхний отступ с 20px до 10px */
+            padding: 10px 20px 30px 20px; 
             text-align: center;
         }
 
@@ -90,7 +89,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 5vh; /* Немного подняли контент */
+            margin-top: 2vh; /* Уменьшили отступ сверху для контента */
             width: 100%;
             flex-grow: 1; 
             justify-content: center; 
@@ -119,8 +118,8 @@
            ========================================= */
         #screen-2 { background-color: var(--bg-color); }
 
-        /* Уменьшили верхний отступ у панели с крестиком */
-        .top-bar { padding: 10px 20px; display: flex; justify-content: flex-start; flex-shrink: 0; }
+        /* Уменьшили отступы, чтобы крестик был выше */
+        .top-bar { padding: 5px 20px 15px 20px; display: flex; justify-content: flex-start; flex-shrink: 0; }
         .close-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); }
         .close-btn svg { width: 28px; height: 28px; }
 
@@ -205,9 +204,10 @@
            ========================================= */
         #screen-3 { background-color: var(--bg-secondary); }
 
+        /* УМЕНЬШИЛИ ВЕРХНИЙ ОТСТУП У ВКЛАДОК */
         .course-tabs {
             display: flex;
-            padding: 10px 20px; 
+            padding: 5px 20px 10px 20px; /* Сверху 5px вместо 10px */
             background-color: var(--bg-color);
             gap: 10px;
             border-bottom: 1px solid var(--border-color);
@@ -230,7 +230,7 @@
             background-color: var(--primary-blue); color: white; border-color: var(--primary-blue);
         }
 
-        .main-content-3 { padding: 20px; flex-grow: 1; overflow-y: auto; }
+        .main-content-3 { padding: 15px 20px; flex-grow: 1; overflow-y: auto; } /* Уменьшили отступ контента */
 
         .module-banner {
             background-color: var(--primary-blue);
@@ -253,15 +253,15 @@
         .vocab-btn svg { margin-bottom: 4px; }
         .vocab-btn span { font-size: 12px; font-weight: 700; }
 
-        .progress-card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px; padding: 20px; margin-bottom: 30px; }
+        .progress-card { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px; padding: 20px; margin-bottom: 20px; }
         .progress-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; color: var(--text-muted); margin-bottom: 15px; }
         .progress-bar-bg { width: 100%; height: 12px; background-color: var(--border-color); border-radius: 6px; overflow: hidden; }
         .progress-bar-fill { width: 5%; height: 100%; background-color: var(--primary-blue); border-radius: 6px; }
 
-        .level-item { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; text-align: center; }
+        .level-item { display: flex; flex-direction: column; align-items: center; margin-bottom: 25px; text-align: center; }
         .level-circle {
-            width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 36px; font-weight: 800; margin-bottom: 15px; background-color: var(--border-color);
+            width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 32px; font-weight: 800; margin-bottom: 12px; background-color: var(--border-color);
             color: var(--text-muted); border: 6px solid var(--bg-secondary); box-shadow: 0 0 0 4px var(--border-color);
         }
         .level-circle.unlocked { background-color: var(--primary-blue); color: white; box-shadow: 0 0 0 4px rgba(28, 126, 214, 0.3); }
@@ -272,12 +272,11 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 8px 20px;
-            padding-bottom: max(8px, env(safe-area-inset-bottom));
+            padding: 10px 20px;
+            padding-bottom: 25px; /* Оставили отступ снизу для удобства */
             background-color: var(--nav-bg);
             border-top: 2px solid var(--border-color);
             flex-shrink: 0; 
-            min-height: 60px;
         }
 
         .nav-btn {
@@ -383,6 +382,7 @@
 
         <!-- ЭКРАН 3: Методология (Задания) -->
         <div id="screen-3" class="screen">
+            <!-- Панель вкладок -->
             <div class="course-tabs">
                 <button class="tab-btn active" onclick="switchCourse(this)">Курс 1</button>
                 <button class="tab-btn" onclick="switchCourse(this)">Курс 2</button>
