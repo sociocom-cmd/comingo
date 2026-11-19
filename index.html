@@ -37,23 +37,25 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
+        /* ИЗМЕНЕНИЯ ЗДЕСЬ: прижимаем приложение к верху */
         body {
             background-color: var(--bg-color);
             display: flex;
             justify-content: center;
-            align-items: center;
+            /* align-items: center; <-- Убрали центрирование по вертикали */
+            align-items: flex-start; 
             min-height: 100vh;
             color: var(--text-main);
-            overflow: hidden;
+            overflow: hidden; /* Отключаем скролл страницы */
         }
 
         /* Контейнер приложения */
         .app-container {
             width: 100%;
-            max-width: 400px;
-            height: 100vh; 
-            height: 100dvh; 
-            max-height: 850px;
+            max-width: 400px; /* Ограничение для ПК */
+            height: 100vh;    /* Занимает всю высоту */
+            height: 100dvh;   /* Динамическая высота для мобильных */
+            max-height: 900px;/* Максимальная высота для очень больших экранов */
             background-color: var(--bg-color);
             position: relative;
             overflow: hidden;
@@ -80,7 +82,7 @@
         #screen-1 {
             justify-content: space-between;
             align-items: center;
-            padding: 40px 20px;
+            padding: 20px 20px 40px 20px; /* Уменьшили верхний отступ */
             text-align: center;
         }
 
@@ -88,7 +90,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 5vh;
+            margin-top: 5vh; /* Немного подняли контент */
             width: 100%;
             flex-grow: 1; 
             justify-content: center; 
@@ -117,7 +119,8 @@
            ========================================= */
         #screen-2 { background-color: var(--bg-color); }
 
-        .top-bar { padding: 20px; display: flex; justify-content: flex-start; flex-shrink: 0; }
+        /* Уменьшили верхний отступ у панели с крестиком */
+        .top-bar { padding: 10px 20px; display: flex; justify-content: flex-start; flex-shrink: 0; }
         .close-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); }
         .close-btn svg { width: 28px; height: 28px; }
 
@@ -202,10 +205,9 @@
            ========================================= */
         #screen-3 { background-color: var(--bg-secondary); }
 
-        /* УМЕНЬШИЛИ ВЕРХНЮЮ ПАНЕЛЬ */
         .course-tabs {
             display: flex;
-            padding: 10px 20px; /* Было 15px, стало 10px */
+            padding: 10px 20px; 
             background-color: var(--bg-color);
             gap: 10px;
             border-bottom: 1px solid var(--border-color);
@@ -214,11 +216,11 @@
 
         .tab-btn {
             flex: 1;
-            padding: 10px; /* Было 12px, стало 10px */
+            padding: 10px; 
             border-radius: 12px;
             border: 2px solid var(--border-color);
             background: var(--bg-color);
-            font-size: 15px; /* Чуть уменьшили шрифт */
+            font-size: 15px; 
             font-weight: 700;
             color: var(--text-muted);
             cursor: pointer;
@@ -266,22 +268,21 @@
         .level-title { font-size: 20px; font-weight: 800; margin-bottom: 5px; }
         .level-desc { font-size: 14px; color: var(--text-muted); }
 
-        /* УЛУЧШИЛИ НИЖНЮЮ ПАНЕЛЬ */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 8px 20px; /* Уменьшили отступы */
-            padding-bottom: max(8px, env(safe-area-inset-bottom)); /* ВАЖНО: добавляет отступ для iPhone (под виртуальный Home Bar) */
+            padding: 8px 20px;
+            padding-bottom: max(8px, env(safe-area-inset-bottom));
             background-color: var(--nav-bg);
             border-top: 2px solid var(--border-color);
             flex-shrink: 0; 
-            min-height: 60px; /* Минимальная высота, чтобы не сжималась */
+            min-height: 60px;
         }
 
         .nav-btn {
             background: none; border: none; color: var(--text-muted); cursor: pointer;
-            padding: 8px; /* Сделали кнопки чуть меньше, чтобы влезали */
+            padding: 8px;
             display: flex; align-items: center; justify-content: center;
         }
 
