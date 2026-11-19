@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Comingo - Обучение</title>
+    <title>Comingo - Словарь</title>
     <style>
         /* Базовые стили и переменные для тем */
         :root {
@@ -15,6 +15,12 @@
             --border-color: #e5e7eb;
             --primary-blue: #1c7ed6;
             --nav-bg: #ffffff;
+            
+            /* Цвета для словаря */
+            --dict-header-bg: #f1f5f9;
+            --dict-card-bg: #ffffff;
+            --difficult-bg: #fef3c7;
+            --difficult-text: #d97706;
         }
 
         body.dark-theme {
@@ -26,6 +32,11 @@
             --border-color: #374151;
             --primary-blue: #3b82f6;
             --nav-bg: #121212;
+
+            --dict-header-bg: #1e1e1e;
+            --dict-card-bg: #2d2d2d;
+            --difficult-bg: #78350f;
+            --difficult-text: #fcd34d;
         }
 
         * {
@@ -37,7 +48,6 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        /* Прижимаем приложение к верху */
         body {
             background-color: var(--bg-color);
             display: flex;
@@ -86,54 +96,18 @@
         }
 
         .content-1 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 2vh; 
-            width: 100%;
-            flex-grow: 1; 
-            justify-content: center; 
+            display: flex; flex-direction: column; align-items: center;
+            margin-top: 2vh; width: 100%; flex-grow: 1; justify-content: center; 
         }
 
-        /* Фото Сороки */
-        .mascot-photo { 
-            width: 240px; 
-            height: auto; 
-            object-fit: contain; 
-            margin-bottom: 15px; 
-            display: block; 
-        }
-        
-        /* Логотип */
-        .logo-img { 
-            width: 100%; 
-            max-width: 260px; 
-            height: auto; 
-            object-fit: contain; 
-            margin-bottom: 20px; 
-            display: block;
-            border-radius: 12px; /* Скругление, так как фон у JPG белый */
-        }
-        
-        .subtitle { 
-            font-size: 18px; 
-            color: var(--text-muted); 
-            line-height: 1.5; 
-            max-width: 280px; 
-        }
+        .mascot-photo { width: 240px; height: auto; object-fit: contain; margin-bottom: 15px; display: block; }
+        .logo-img { width: 100%; max-width: 260px; height: auto; object-fit: contain; margin-bottom: 20px; display: block; border-radius: 12px; }
+        .subtitle { font-size: 18px; color: var(--text-muted); line-height: 1.5; max-width: 280px; }
 
         .start-btn {
-            width: 100%;
-            padding: 20px;
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 16px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(28, 126, 214, 0.2);
-            flex-shrink: 0;
+            width: 100%; padding: 20px; background-color: var(--primary-blue); color: white;
+            border: none; border-radius: 16px; font-size: 18px; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(28, 126, 214, 0.2); flex-shrink: 0;
         }
 
         /* =========================================
@@ -148,60 +122,26 @@
         .main-content-2 { padding: 0 20px; flex-grow: 1; overflow-y: auto; }
 
         .character-block { display: flex; align-items: center; margin-bottom: 30px; }
-        
-        /* Фото Пахомовой */
-        .character-photo { 
-            width: 130px; 
-            height: auto; 
-            object-fit: contain; 
-            margin-right: 10px; 
-            z-index: 2; 
-            border-radius: 12px; /* Легкое скругление, если JPG */
-        }
+        .character-photo { width: 130px; height: auto; object-fit: contain; margin-right: 10px; z-index: 2; border-radius: 12px; }
 
         .speech-bubble {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 20px;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-main);
-            position: relative;
-            flex-grow: 1; 
+            background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 20px;
+            padding: 20px; font-size: 20px; font-weight: 700; color: var(--text-main); position: relative; flex-grow: 1; 
         }
 
         .speech-bubble::before {
-            content: '';
-            position: absolute;
-            left: -12px;
-            top: 50%; 
-            transform: translateY(-50%) rotate(45deg);
-            width: 20px; height: 20px;
-            background: var(--card-bg);
-            border-left: 2px solid var(--border-color);
-            border-bottom: 2px solid var(--border-color);
+            content: ''; position: absolute; left: -12px; top: 50%; transform: translateY(-50%) rotate(45deg);
+            width: 20px; height: 20px; background: var(--card-bg);
+            border-left: 2px solid var(--border-color); border-bottom: 2px solid var(--border-color);
         }
 
         .option-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 20px; padding: 15px 20px;
+            display: flex; align-items: center; margin-bottom: 15px; cursor: pointer; transition: all 0.2s ease;
         }
 
-        .option-card.selected {
-            border-color: var(--primary-blue);
-            background-color: rgba(28, 126, 214, 0.05);
-        }
-        body.dark-theme .option-card.selected {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
+        .option-card.selected { border-color: var(--primary-blue); background-color: rgba(28, 126, 214, 0.05); }
+        body.dark-theme .option-card.selected { background-color: rgba(59, 130, 246, 0.1); }
 
         .icon-box { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
         .icon-purple { background-color: #9b51e0; }
@@ -209,25 +149,17 @@
 
         .option-title { font-size: 18px; font-weight: 800; color: var(--text-main); }
 
-        .bottom-bar {
-            padding: 20px;
-            background-color: var(--bg-color);
-            border-top: 2px solid var(--border-color);
-            flex-shrink: 0;
-        }
+        .bottom-bar { padding: 20px; background-color: var(--bg-color); border-top: 2px solid var(--border-color); flex-shrink: 0; }
 
         .continue-btn {
-            width: 100%; padding: 20px;
-            background-color: var(--border-color); color: var(--text-muted);
-            border: none; border-radius: 16px;
-            font-size: 18px; font-weight: 700;
-            cursor: not-allowed; text-transform: uppercase;
-            transition: all 0.3s ease;
+            width: 100%; padding: 20px; background-color: var(--border-color); color: var(--text-muted);
+            border: none; border-radius: 16px; font-size: 18px; font-weight: 700;
+            cursor: not-allowed; text-transform: uppercase; transition: all 0.3s ease;
         }
 
         .continue-btn.active {
-            background-color: var(--primary-blue); color: white;
-            cursor: pointer; box-shadow: 0 4px 10px rgba(28, 126, 214, 0.2);
+            background-color: var(--primary-blue); color: white; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(28, 126, 214, 0.2);
         }
 
         /* =========================================
@@ -236,41 +168,22 @@
         #screen-3 { background-color: var(--bg-secondary); }
 
         .course-tabs {
-            display: flex;
-            padding: 5px 20px 10px 20px; 
-            background-color: var(--bg-color);
-            gap: 10px;
-            border-bottom: 1px solid var(--border-color);
-            flex-shrink: 0;
+            display: flex; padding: 10px 20px; background-color: var(--bg-color);
+            gap: 10px; border-bottom: 1px solid var(--border-color); flex-shrink: 0;
         }
 
         .tab-btn {
-            flex: 1;
-            padding: 10px; 
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-            background: var(--bg-color);
-            font-size: 15px; 
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
+            flex: 1; padding: 10px; border-radius: 12px; border: 2px solid var(--border-color);
+            background: var(--bg-color); font-size: 15px; font-weight: 700; color: var(--text-muted); cursor: pointer;
         }
 
-        .tab-btn.active {
-            background-color: var(--primary-blue); color: white; border-color: var(--primary-blue);
-        }
+        .tab-btn.active { background-color: var(--primary-blue); color: white; border-color: var(--primary-blue); }
 
         .main-content-3 { padding: 15px 20px; flex-grow: 1; overflow-y: auto; }
 
         .module-banner {
-            background-color: var(--primary-blue);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            margin-bottom: 20px;
+            background-color: var(--primary-blue); border-radius: 16px; padding: 20px;
+            display: flex; justify-content: space-between; align-items: center; color: white; margin-bottom: 20px;
         }
 
         .module-text h3 { font-size: 12px; text-transform: uppercase; opacity: 0.8; margin-bottom: 5px; }
@@ -279,7 +192,9 @@
         .vocab-btn {
             display: flex; flex-direction: column; align-items: center; background: rgba(255, 255, 255, 0.15);
             padding: 10px; border-radius: 12px; border: none; color: white; cursor: pointer;
+            transition: background-color 0.2s;
         }
+        .vocab-btn:active { background: rgba(255, 255, 255, 0.25); }
         .vocab-btn svg { margin-bottom: 4px; }
         .vocab-btn span { font-size: 12px; font-weight: 700; }
 
@@ -298,26 +213,138 @@
         .level-title { font-size: 20px; font-weight: 800; margin-bottom: 5px; }
         .level-desc { font-size: 14px; color: var(--text-muted); }
 
-        .bottom-nav {
+        /* =========================================
+           ЭКРАН 4 (Словарь)
+           ========================================= */
+        #screen-4 { background-color: var(--bg-secondary); }
+
+        .dict-content {
+            padding: 15px 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .category-header {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 20px 0 10px 5px;
+        }
+
+        .term-card {
+            background: var(--dict-card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 15px;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            padding-bottom: 25px; 
-            background-color: var(--nav-bg);
-            border-top: 2px solid var(--border-color);
-            flex-shrink: 0; 
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .term-card:active { transform: scale(0.98); }
+
+        .term-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-right: 15px;
+        }
+
+        .term-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .tag-difficult {
+            display: inline-block;
+            background-color: var(--difficult-bg);
+            color: var(--difficult-text);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-top: 6px;
+        }
+
+        /* Маленький прогресс-бар в карточке */
+        .mini-progress-bg {
+            width: 60px;
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            background-color: var(--primary-blue);
+            border-radius: 4px;
+            width: 10%; /* Разный процент для разных карточек */
+        }
+
+        /* Для пустого прогресса */
+        .mini-progress-fill.empty { width: 0%; }
+
+        /* Нижнее меню навигации (общее для экранов 3 и 4) */
+        .bottom-nav {
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 10px 20px; padding-bottom: 25px; 
+            background-color: var(--nav-bg); border-top: 2px solid var(--border-color); flex-shrink: 0; 
         }
 
         .nav-btn {
             background: none; border: none; color: var(--text-muted); cursor: pointer;
-            padding: 8px;
-            display: flex; align-items: center; justify-content: center;
+            padding: 8px; display: flex; align-items: center; justify-content: center;
         }
 
         .nav-btn.active-home {
             background-color: rgba(28, 126, 214, 0.1); color: var(--primary-blue);
             border: 2px solid var(--primary-blue); border-radius: 12px;
+        }
+
+        /* =========================================
+           МОДАЛЬНОЕ ОКНО ДЛЯ ОПРЕДЕЛЕНИЙ (В словаре)
+           ========================================= */
+        .definition-modal {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding: 20px;
+        }
+        
+        .definition-modal.show { display: flex; opacity: 1; }
+
+        .definition-box {
+            background: var(--card-bg);
+            width: 100%;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        .definition-modal.show .definition-box { transform: translateY(0); }
+
+        .def-term { font-size: 22px; font-weight: 800; color: var(--primary-blue); margin-bottom: 15px; }
+        .def-text { font-size: 16px; line-height: 1.5; color: var(--text-main); margin-bottom: 25px; }
+        
+        .def-close-btn {
+            width: 100%; padding: 15px; background: var(--bg-secondary);
+            border: 2px solid var(--border-color); border-radius: 12px;
+            font-size: 16px; font-weight: 700; color: var(--text-main); cursor: pointer;
         }
 
         /* =========================================
@@ -370,12 +397,8 @@
         <!-- ЭКРАН 1: Стартовый -->
         <div id="screen-1" class="screen active">
             <div class="content-1">
-                <!-- ВСТАВКА ФОТО "Сорока.jpg" -->
                 <img src="Сорока.jpg" alt="Сорока" class="mascot-photo" onerror="this.src='https://via.placeholder.com/240x240?text=Фото+Сорока'">
-                
-                <!-- ВСТАВКА ЛОГОТИПА "Логотип.jpg" -->
                 <img src="Логотип.jpg" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/280x90?text=Логотип'">
-                
                 <p class="subtitle">Выучи все определения шаг за<br>шагом</p>
             </div>
             <button class="start-btn" onclick="goToScreen('screen-2')">НАЧАТЬ</button>
@@ -390,9 +413,7 @@
             </div>
             <div class="main-content-2">
                 <div class="character-block">
-                    <!-- ВСТАВКА ФОТО "Пахомова.jpg" -->
                     <img src="Пахомова.jpg" alt="Пахомова" class="character-photo" onerror="this.src='https://via.placeholder.com/120x150?text=Пахомова'">
-                    
                     <div class="speech-bubble">Что вы хотите<br>изучать?</div>
                 </div>
                 
@@ -429,7 +450,8 @@
                         <h3>Методология</h3>
                         <h2>Определения</h2>
                     </div>
-                    <button class="vocab-btn">
+                    <!-- Кнопка "Словарь" ведет на экран 4 -->
+                    <button class="vocab-btn" onclick="goToScreen('screen-4')">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
                         <span>Словарь</span>
                     </button>
@@ -461,7 +483,7 @@
                 <button class="nav-btn" onclick="goToScreen('screen-2')">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 </button>
-                <button class="nav-btn active-home">
+                <button class="nav-btn active-home" onclick="goToScreen('screen-3')">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                 </button>
                 <button class="nav-btn" onclick="toggleSettings(true)">
@@ -470,110 +492,63 @@
             </div>
         </div>
 
-        <!-- МОДАЛЬНОЕ ОКНО НАСТРОЕК -->
-        <div class="settings-overlay" id="settings-modal" onclick="overlayClick(event)">
-            <div class="settings-sheet">
-                <div class="settings-header">
-                    <h2>Настройки</h2>
-                    <button class="close-settings-btn" onclick="toggleSettings(false)">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                    </button>
-                </div>
-                <div class="section-title">Тема</div>
-                <div class="theme-options">
-                    <div class="theme-card active" id="theme-light" onclick="setTheme('light')">
-                        <div class="theme-preview light"></div>
-                        <div class="theme-name">Светлая</div>
-                    </div>
-                    <div class="theme-card" id="theme-dark" onclick="setTheme('dark')">
-                        <div class="theme-preview dark"></div>
-                        <div class="theme-name">Тёмная</div>
-                    </div>
-                </div>
-                <div class="settings-footer">
-                    замечания и предложения - @wild_abobus
-                </div>
+        <!-- =========================================
+             ЭКРАН 4: СЛОВАРЬ
+             ========================================= -->
+        <div id="screen-4" class="screen">
+            <div class="course-tabs">
+                <button class="tab-btn active" onclick="switchCourse(this)">Курс 1</button>
+                <button class="tab-btn" onclick="switchCourse(this)">Курс 2</button>
             </div>
-        </div>
 
-    </div>
+            <div class="dict-content">
+                <!-- Блок прогресса -->
+                <div class="progress-card" style="margin-top: 10px;">
+                    <div class="progress-header">
+                        <span>Освоено терминов</span>
+                        <span>0 из 40</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 5%;"></div>
+                    </div>
+                </div>
 
-    <script>
-        let selectedTopic = null;
+                <!-- Категория 1: Основы -->
+                <div class="category-header">Основы методологии</div>
 
-        function goToScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
-            document.getElementById(screenId).classList.add('active');
-        }
+                <div class="term-card" onclick="showDefinition('Методология', 'Учение о системе принципов и способов организации теоретической и практической научной деятельности.')">
+                    <div class="term-info"><span class="term-title">Методология</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill" style="width: 10%;"></div></div>
+                </div>
 
-        function selectOption(cardElement) {
-            document.querySelectorAll('.option-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            cardElement.classList.add('selected');
-            selectedTopic = cardElement.id;
+                <div class="term-card" onclick="showDefinition('Метод', 'Совокупность приемов и операций теоретического или практического освоения действительности, а также человеческой деятельности, организованной определенным образом.')">
+                    <div class="term-info"><span class="term-title">Метод</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill" style="width: 10%;"></div></div>
+                </div>
 
-            const btn = document.getElementById('continue-btn');
-            btn.classList.add('active');
-            btn.disabled = false;
-        }
+                <div class="term-card" onclick="showDefinition('Техника', 'Совокупность приемов для использования метода.')">
+                    <div class="term-info"><span class="term-title">Техника</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
 
-        function proceedToTasks() {
-            if (selectedTopic) {
-                goToScreen('screen-3');
-            }
-        }
+                <div class="term-card" onclick="showDefinition('Методика', 'Общая система действий и последовательность операций.')">
+                    <div class="term-info"><span class="term-title">Методика</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
 
-        function resetAndGoBack() {
-            document.querySelectorAll('.option-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            selectedTopic = null;
-            const btn = document.getElementById('continue-btn');
-            btn.classList.remove('active');
-            
-            goToScreen('screen-1');
-        }
+                <div class="term-card" onclick="showDefinition('Процедура', 'Технические приемы, связанные с методом, и их последовательность.')">
+                    <div class="term-info"><span class="term-title">Процедура</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
 
-        function switchCourse(btn) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
+                <!-- Категория 2: Информация -->
+                <div class="category-header">Информация и данные</div>
 
-        function toggleSettings(show) {
-            const modal = document.getElementById('settings-modal');
-            if (show) {
-                modal.style.display = 'flex';
-                setTimeout(() => modal.classList.add('show'), 10);
-            } else {
-                modal.classList.remove('show');
-                setTimeout(() => modal.style.display = 'none', 300);
-            }
-        }
+                <div class="term-card" onclick="showDefinition('Социальная информация', 'Это информация, полученная в результате социального исследования, совокупность знаний, сведений, данных, получаемых исследователем из различных источников как объективного, так и субъективного характера.')">
+                    <div class="term-info"><span class="term-title">Социальная информация</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill" style="width: 10%;"></div></div>
+                </div>
 
-        function overlayClick(event) {
-            if (event.target === document.getElementById('settings-modal')) {
-                toggleSettings(false);
-            }
-        }
-
-        function setTheme(theme) {
-            const body = document.body;
-            const lightCard = document.getElementById('theme-light');
-            const darkCard = document.getElementById('theme-dark');
-
-            if (theme === 'light') {
-                body.classList.remove('dark-theme');
-                lightCard.classList.add('active');
-                darkCard.classList.remove('active');
-            } else {
-                body.classList.add('dark-theme');
-                darkCard.classList.add('active');
-                lightCard.classList.remove('active');
-            }
-        }
-    </script>
-</body>
-</html>
+                <div class="term-card" onclick="showDefinition('Объективность', 'Стремление воспроизвести и объяснить явление/процесс, отвлекаясь от ценностной точки зрения исследователя, его теоретической предубежденности, отказ от субъективности.')">
+                    <div class="term-info"><span class="term-title">Объективность</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill" style="width:
