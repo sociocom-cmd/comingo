@@ -371,6 +371,7 @@
                 <img src="Логотип.jpg" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/280x90?text=Логотип'">
                 <p class="subtitle">Выучи все определения шаг за<br>шагом</p>
             </div>
+            <!-- Кнопка работает, так как теперь есть скрипт -->
             <button class="start-btn" onclick="goToScreen('screen-2')">НАЧАТЬ</button>
         </div>
 
@@ -528,4 +529,232 @@
                     <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
                 </div>
 
-                <div class="term-card" onclick="showDefinition('Надежность', 'Уверенность в том, что исследователь имеет дело с подлинными фактами, сгруппированными по правилу, а не собранными случайно
+                <div class="term-card" onclick="showDefinition('Надежность', 'Уверенность в том, что исследователь имеет дело с подлинными фактами, сгруппированными по правилу, а не собранными случайно.')">
+                    <div class="term-info"><span class="term-title">Надежность</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Репрезентативность', 'Свойство достаточно точно отражать выборкой генеральную совокупность по заданному составу признаков объекта.')">
+                    <div class="term-info"><span class="term-title">Репрезентативность</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <!-- Категория 3: Исследования -->
+                <div class="category-header">Виды исследований</div>
+
+                <div class="term-card" onclick="showDefinition('Социологическое исследование', 'Система логически последовательных методологических и организационных процедур, связанных единой целью.')">
+                    <div class="term-info"><span class="term-title">Социологическое исследование</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Эксперимент', 'Вид исследования, с помощью которого путем управления условиями изучаемой ситуации проверяются гипотезы о причинно-следственных связях.')">
+                    <div class="term-info"><span class="term-title">Эксперимент</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Разведывательное исследование', 'Оперативный сбор предварительной информации и апробация инструментария.')">
+                    <div class="term-info"><span class="term-title">Разведывательное</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Описательное исследование', 'Получение эмпирических данных для целостного представления о структуре объекта.')">
+                    <div class="term-info"><span class="term-title">Описательное</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Аналитическое исследование', 'Выявление факторов и причин, обусловивших развитие явления.')">
+                    <div class="term-info"><span class="term-title">Аналитическое</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Монографическое исследование', 'Детальное изучение одного случая (case-study).')">
+                    <div class="term-info"><span class="term-title">Монографическое</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <!-- Категория 4: Программа и этапы -->
+                <div class="category-header">Программа и этапы</div>
+
+                <div class="term-card" onclick="showDefinition('Программа СИ', 'Научный документ, в котором содержатся методологические, методические и процедурные основы изучения социальной проблемы.')">
+                    <div class="term-info"><span class="term-title">Программа СИ</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Проблема', 'Теоретический или практический вопрос, который требует изучения и разрешения.')">
+                    <div class="term-info"><span class="term-title">Проблема</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Гипотеза', 'Научное предположение для объяснения фактов. Необходима для проверки теоретических догадок через эмпирические данные.')">
+                    <div class="term-info"><span class="term-title">Гипотеза</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+                <div class="term-card" onclick="showDefinition('Этап исследования', 'Стадия реализации целей и задач исследования, которая характеризуется относительной независимостью и логической последовательностью.')">
+                    <div class="term-info"><span class="term-title">Этап исследования</span></div>
+                    <div class="mini-progress-bg"><div class="mini-progress-fill empty"></div></div>
+                </div>
+
+            </div>
+
+            <!-- Нижнее меню (копия для 4-го экрана) -->
+            <div class="bottom-nav">
+                <button class="nav-btn" onclick="goToScreen('screen-3')">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </button>
+                <button class="nav-btn" onclick="goToScreen('screen-3')">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </button>
+                <button class="nav-btn" onclick="toggleSettings(true)">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- МОДАЛЬНОЕ ОКНО С ОПРЕДЕЛЕНИЕМ -->
+        <div class="definition-modal" id="def-modal" onclick="closeDefinition(event)">
+            <div class="definition-box">
+                <div class="def-term" id="def-term-title">Термин</div>
+                <div class="def-text" id="def-term-text">Определение...</div>
+                <button class="def-close-btn" onclick="closeDefinition(event, true)">Понятно</button>
+            </div>
+        </div>
+
+        <!-- МОДАЛЬНОЕ ОКНО НАСТРОЕК -->
+        <div class="settings-overlay" id="settings-modal" onclick="overlayClick(event)">
+            <div class="settings-sheet">
+                <div class="settings-header">
+                    <h2>Настройки</h2>
+                    <button class="close-settings-btn" onclick="toggleSettings(false)">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div class="section-title">Тема</div>
+                <div class="theme-options">
+                    <div class="theme-card active" id="theme-light" onclick="setTheme('light')">
+                        <div class="theme-preview light"></div>
+                        <div class="theme-name">Светлая</div>
+                    </div>
+                    <div class="theme-card" id="theme-dark" onclick="setTheme('dark')">
+                        <div class="theme-preview dark"></div>
+                        <div class="theme-name">Тёмная</div>
+                    </div>
+                </div>
+                <div class="settings-footer">
+                    замечания и предложения - @wild_abobus
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =========================================
+         JAVASCRIPT (Вся логика работы приложения)
+         ========================================= -->
+    <script>
+        let selectedTopic = null;
+
+        // Переключение между экранами
+        function goToScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // Выбор карточки (Методология / Статистика)
+        function selectOption(cardElement) {
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            cardElement.classList.add('selected');
+            selectedTopic = cardElement.id;
+
+            const btn = document.getElementById('continue-btn');
+            btn.classList.add('active');
+            btn.disabled = false;
+        }
+
+        // Переход на экран заданий
+        function proceedToTasks() {
+            if (selectedTopic) {
+                goToScreen('screen-3');
+            }
+        }
+
+        // Сброс выбора и возврат на старт
+        function resetAndGoBack() {
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            selectedTopic = null;
+            const btn = document.getElementById('continue-btn');
+            btn.classList.remove('active');
+            
+            goToScreen('screen-1');
+        }
+
+        // Переключение вкладок "Курс 1 / Курс 2"
+        function switchCourse(btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // Открытие/закрытие настроек
+        function toggleSettings(show) {
+            const modal = document.getElementById('settings-modal');
+            if (show) {
+                modal.style.display = 'flex';
+                setTimeout(() => modal.classList.add('show'), 10);
+            } else {
+                modal.classList.remove('show');
+                setTimeout(() => modal.style.display = 'none', 300);
+            }
+        }
+
+        // Закрытие настроек по клику на фон
+        function overlayClick(event) {
+            if (event.target === document.getElementById('settings-modal')) {
+                toggleSettings(false);
+            }
+        }
+
+        // Переключение темы
+        function setTheme(theme) {
+            const body = document.body;
+            const lightCard = document.getElementById('theme-light');
+            const darkCard = document.getElementById('theme-dark');
+
+            if (theme === 'light') {
+                body.classList.remove('dark-theme');
+                lightCard.classList.add('active');
+                darkCard.classList.remove('active');
+            } else {
+                body.classList.add('dark-theme');
+                darkCard.classList.add('active');
+                lightCard.classList.remove('active');
+            }
+        }
+
+        // Показ определения в словаре
+        function showDefinition(term, definition) {
+            document.getElementById('def-term-title').textContent = term;
+            document.getElementById('def-term-text').textContent = definition;
+            
+            const modal = document.getElementById('def-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        // Закрытие окна с определением
+        function closeDefinition(event, forceClose = false) {
+            const modal = document.getElementById('def-modal');
+            // Закрываем, если кликнули по кнопке или по фону (не по самой карточке)
+            if (forceClose || event.target === modal) {
+                modal.classList.remove('show');
+                setTimeout(() => modal.style.display = 'none', 300);
+            }
+        }
+    </script>
+</body>
+</html>
