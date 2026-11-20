@@ -31,7 +31,8 @@ h1, h2, h3, h4, .subtitle, .start-btn, .option-title, .continue-btn, .tab-btn, .
 .check-btn, .error-feedback-title, .result-title, .result-sub, .gameover-title, .settings-header h2, .section-title,
 .theme-name, .course2-title, .nav-btn, .level-circle, .result-emoji, .mistake-list-title, .builder-bubble,
 .speech-bubble, .task-bubble, .term-status, .answer-number, .pair-item, .builder-word, .word-chip,
-.dict-tab, .btn-primary-blue, .restart-btn, .back-btn, .reset-btn, .dict-card-title, .dict-card-sub, .dict-card-label {
+.dict-tab, .btn-primary-blue, .restart-btn, .back-btn, .reset-btn, .dict-card-title, .dict-card-sub, .dict-card-label,
+.feedback-review-heading, .review-term-name, .review-pill {
   font-family: 'Rubik', sans-serif;
 }
 
@@ -71,7 +72,6 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 .tab-btn{flex:1;padding:10px;border-radius:12px;border:2px solid var(--border-color);background:var(--bg-color);font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;transition:background-color .12s,color .12s,border-color .12s;}
 .tab-btn.active{background:var(--primary-blue);color:#fff;border-color:var(--primary-blue);}
 
-/* ИСПРАВЛЕННЫЕ ВКЛАДКИ ДИКТАНТЫ / ЗАДАЧИ */
 .dict-tabs { 
   display: flex; 
   padding: 0; 
@@ -119,14 +119,12 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 .progress-bar-bg{width:100%;height:12px;background:var(--border-color);border-radius:6px;overflow:hidden;}
 .progress-bar-fill{width:0%;height:100%;background:var(--primary-blue);border-radius:6px;transition:width .4s ease;}
 
-/* ОБЩИЙ КОНТЕЙНЕР ДЛЯ ДИКТАНТОВ (длинный скролл) */
 #dictants-scroll-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* КАРТОЧКА ДИКТАНТА (баннер-заголовок) */
 .dictant-card {
   background: var(--primary-blue);
   border-radius: 18px;
@@ -203,7 +201,6 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
   transition: width 0.3s;
 }
 
-/* БЛОК УРОВНЕЙ ПОД КАЖДЫМ ДИКТАНТОМ */
 .levels-group {
   display: flex;
   flex-direction: column;
@@ -212,7 +209,6 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
   padding-top: 4px;
 }
 
-/* УРОВНИ */
 .level-item{display:flex;flex-direction:column;align-items:center;margin-bottom:26px;text-align:center;cursor:pointer;}
 .level-circle{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;margin-bottom:10px;background:var(--border-color);color:var(--text-muted);border:5px solid var(--bg-secondary);box-shadow:0 0 0 3px var(--border-color);transition:transform .15s;}
 .level-item:active .level-circle{transform:scale(.94);}
@@ -274,7 +270,6 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 .word-chip.correct-fragment{background:var(--success-bg);color:var(--success-border);font-weight:700;}
 .word-chip.wrong-fragment{background:var(--error-bg);color:var(--error-border);text-decoration:line-through;}
 
-/* БЛОК С КАРТИНКОЙ И ЗАДАНИЕМ */
 .task-question-block { display: flex; align-items: center; margin-bottom: 20px; width: 100%; gap: 12px; }
 .task-character { width: 84px; height: auto; object-fit: contain; border-radius: 12px; flex-shrink: 0; }
 .task-bubble { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 18px; padding: 16px; font-size: 17px; font-weight: 700; flex-grow: 1; line-height: 1.4; }
@@ -335,7 +330,7 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 
 /* ЭКРАН 6: GAME OVER */
 #screen-6{background:var(--bg-secondary);justify-content:flex-start;align-items:center;padding:24px 20px 20px;}
-.gameover-mascot{width:140px;height:auto;object-fit:contain;margin-bottom:12px;border-radius:14px;}
+.gameover-mascot{width:155px;height:auto;max-height:185px;object-fit:contain;margin-bottom:12px;border-radius:14px;display:block;}
 .gameover-title{font-size:26px;font-weight:800;margin-bottom:8px;text-align:center;}
 .gameover-sub{font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:20px;line-height:1.45;font-weight:600;}
 .mistake-list-title{font-size:12px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;width:100%;text-align:left;}
@@ -348,18 +343,25 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 .back-btn{padding:16px;background:var(--card-bg);color:var(--primary-blue);border:2px solid var(--border-color);border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;}
 
 /* ЭКРАН 7: УРОВЕНЬ ПРОЙДЕН */
-#screen-7{background:var(--bg-secondary);justify-content:center;align-items:center;padding:24px 20px;}
-.result-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:24px;padding:28px 22px;width:100%;text-align:center;}
-.result-emoji{font-size:58px;margin-bottom:10px;}
-.result-title{font-size:25px;font-weight:800;margin-bottom:8px;}
-.result-sub{font-size:15px;color:var(--text-muted);margin-bottom:20px;line-height:1.45;font-weight:600;}
-.stars-row{display:flex;justify-content:center;gap:10px;margin-bottom:20px;}
+#screen-7{background:var(--bg-color);justify-content:flex-start;align-items:stretch;padding:0;overflow:hidden;}
+.result-scroll{flex-grow:1;overflow-y:auto;padding:24px 20px 20px;display:flex;flex-direction:column;align-items:center;}
+.result-hero-img{width:155px;height:auto;max-height:185px;object-fit:contain;margin-bottom:12px;border-radius:14px;display:block;}
+.result-title{font-size:28px;font-weight:800;margin-bottom:10px;text-align:center;color:var(--text-main);}
+.stars-row{display:flex;justify-content:center;gap:10px;margin-bottom:14px;}
 .star{font-size:38px;opacity:.25;transition:all .3s;}
-.star.filled{opacity:1;transform:scale(1.1);color:var(--warning-border);}
-.result-stats{background:var(--bg-secondary);border-radius:14px;padding:14px;margin-bottom:22px;text-align:left;font-size:14px;font-weight:600;}
-.result-stats div{margin-bottom:6px;}
-.result-stats div:last-child{margin-bottom:0;}
-.result-actions{display:flex;flex-direction:column;gap:10px;}
+.star.filled{opacity:1;transform:scale(1.08);color:var(--warning-border);}
+.result-summary-line{font-size:14px;color:var(--text-muted);text-align:center;line-height:1.45;font-weight:600;margin-bottom:22px;}
+.feedback-review-block{width:100%;text-align:left;}
+.feedback-review-heading{font-size:12px;font-weight:800;letter-spacing:0.6px;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+.feedback-review-sub{font-size:13px;color:var(--text-muted);line-height:1.45;font-weight:600;margin-bottom:14px;}
+.review-term-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.review-term-name{font-size:15px;font-weight:700;color:var(--text-main);line-height:1.3;flex-grow:1;}
+.review-pills{display:flex;gap:6px;flex-shrink:0;}
+.review-pill{padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700;border:1.5px solid var(--border-color);background:var(--bg-color);color:var(--text-muted);cursor:pointer;transition:all .15s;}
+.review-pill.active-easy{border-color:var(--success-border);background:var(--success-bg);color:var(--success-border);}
+.review-pill.active-hard{border-color:var(--warning-border);background:var(--warning-bg);color:#b45309;}
+body.dark-theme .review-pill.active-hard{color:#fbbf24;}
+.result-footer-actions{padding:14px 20px 24px;background:var(--bg-color);border-top:1px solid var(--border-color);display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
 
 /* НИЖНЕЕ МЕНЮ */
 .bottom-nav{display:flex;justify-content:space-around;align-items:center;padding:10px 20px 22px;background:var(--nav-bg);border-top:2px solid var(--border-color);flex-shrink:0;}
@@ -519,7 +521,7 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 
   <!-- ЭКРАН 6: GAME OVER -->
   <div id="screen-6" class="screen">
-    <img src="Сорока.png" alt="Сорока" class="gameover-mascot" onerror="this.style.display='none'">
+    <img id="gameover-fail-img" src="stata_fail.png" alt="" class="gameover-mascot" onerror="this.style.display='none'">
     <div class="gameover-title">Сердца закончились!</div>
     <div class="gameover-sub">Повтори термины, в которых возникли ошибки, и попробуй снова.</div>
     <div class="mistake-list-title">Ошибки в попытке</div>
@@ -532,18 +534,22 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 
   <!-- ЭКРАН 7: УРОВЕНЬ ПРОЙДЕН -->
   <div id="screen-7" class="screen">
-    <div class="result-card">
-      <div class="result-emoji" id="result-emoji">🎉</div>
-      <div class="result-title" id="result-title">Уровень пройден!</div>
-      <div class="result-sub" id="result-sub">Отличная работа над определениями.</div>
+    <div class="result-scroll">
+      <img id="result-ok-img" src="stata_ok.png" alt="" class="result-hero-img" onerror="this.style.display='none'">
+      <div class="result-title" id="result-title">Уровень пройден</div>
       <div class="stars-row" id="result-stars">
         <span class="star">★</span><span class="star">★</span><span class="star">★</span>
       </div>
-      <div class="result-stats" id="result-stats"></div>
-      <div class="result-actions">
-        <button class="restart-btn" onclick="restartCurrentLevel()">ПЕРЕПРОЙТИ</button>
-        <button class="back-btn" onclick="exitTask()">К СПИСКУ УРОВНЕЙ</button>
+      <div class="result-summary-line" id="result-summary-line"></div>
+      <div class="feedback-review-block">
+        <div class="feedback-review-heading">КАК ЗАШЛИ ТЕРМИНЫ?</div>
+        <div class="feedback-review-sub">Трудные вернутся в уроки раньше, лёгкие появятся через пару дней. Я уже расставил отметки по ошибкам, поправь, если не согласен.</div>
+        <div id="result-terms-review"></div>
       </div>
+    </div>
+    <div class="result-footer-actions">
+      <button class="restart-btn" onclick="restartCurrentLevel()">ПЕРЕПРОЙТИ</button>
+      <button class="back-btn" onclick="exitTask()">К СПИСКУ УРОВНЕЙ</button>
     </div>
   </div>
 
@@ -886,7 +892,7 @@ const LEVELS = [
   { id: 'level-8', num: 8, mode: 'manual', optionsCount: 0, title: 'Ввод ответа', desc: 'Напиши термин по его определению' }
 ];
 
-const STORAGE_KEY = 'comingo_app_state_v10';
+const STORAGE_KEY = 'comingo_app_state_v11';
 
 let state = {
   selectedOption: null,
@@ -914,10 +920,19 @@ let session = {
   selectedAnswer: null,
   checked: false,
   mistakes: [],
+  sessionTerms: [],
   correctCount: 0,
   builderSelected: [],
   pairsState: { left: null, right: null, matched: [] }
 };
+
+function trackSessionTerms(termsArr) {
+  termsArr.forEach(t => {
+    if (t && !session.sessionTerms.some(existing => existing.id === t.id)) {
+      session.sessionTerms.push(t);
+    }
+  });
+}
 
 function getActiveDictantId(sectionOverride) {
   const sec = sectionOverride || state.activeSection;
@@ -1056,12 +1071,6 @@ function switchCourse(btnEl, courseKey) {
   }
 }
 
-function returnFromCourse2() {
-  state.activeCourse = 'course1';
-  const target = state.activeSection === 'statistics' ? 'screen-statistics' : 'screen-3';
-  goToScreen(target);
-}
-
 function switchStatSubtab(subtab) {
   document.getElementById('tab-dictants').classList.toggle('active', subtab === 'dictants');
   document.getElementById('tab-tasks').classList.toggle('active', subtab === 'tasks');
@@ -1069,7 +1078,6 @@ function switchStatSubtab(subtab) {
   document.getElementById('stat-tasks-view').style.display = subtab === 'tasks' ? 'block' : 'none';
 }
 
-// === РЕНДЕР: ДИКТАНТ + ЕГО УРОВНИ В ОДНОМ БЛОКЕ ===
 function renderDictantBlock(dId) {
   const dict = DICTANTS[dId];
   const terms = dict.terms;
@@ -1231,6 +1239,7 @@ function buildQuestionsForLevel(level, dictantId) {
 
   if (level.mode === 'normal' || level.mode === 'recognition' || level.mode === 'traps') {
     return baseTerms.map(target => {
+      trackSessionTerms([target]);
       const distractors = pickRandomTerms(dictantId, level.optionsCount - 1, [target.id]);
       const options = shuffleArray([target, ...distractors]);
       return {
@@ -1244,6 +1253,7 @@ function buildQuestionsForLevel(level, dictantId) {
 
   if (level.mode === 'truefalse') {
     return baseTerms.map((target, idx) => {
+      trackSessionTerms([target]);
       const isTrue = idx % 2 === 0;
       const shownDef = isTrue ? target.def : pickRandomTerms(dictantId, 1, [target.id])[0].def;
       return {
@@ -1257,6 +1267,7 @@ function buildQuestionsForLevel(level, dictantId) {
 
   if (level.mode === 'find-error') {
     return baseTerms.map(target => {
+      trackSessionTerms([target]);
       const wrongSource = pickRandomTerms(dictantId, 1, [target.id])[0];
       const origWords = target.def.replace(/\.$/, '').split(/\s+/);
       const wrongWords = wrongSource.def.replace(/\.$/, '').split(/\s+/);
@@ -1279,6 +1290,7 @@ function buildQuestionsForLevel(level, dictantId) {
 
   if (level.mode === 'builder') {
     return baseTerms.slice(0, 4).map(target => {
+      trackSessionTerms([target]);
       const words = target.def.replace(/\.$/, '').split(/\s+/).filter(w => w.length > 0);
       const extraWords = pickRandomTerms(dictantId, 2, [target.id]).flatMap(t => t.def.replace(/\.$/, '').split(/\s+/).slice(0, 1));
       const pool = shuffleArray([...words, ...extraWords].map((w, idx) => ({ uid: `${target.id}-${idx}-${w}`, text: w })));
@@ -1297,6 +1309,7 @@ function buildQuestionsForLevel(level, dictantId) {
     for (let i = 0; i < 3; i++) {
       const three = shuffled.slice(i * 3, i * 3 + 3);
       if (three.length === 3) {
+        trackSessionTerms(three);
         rounds.push({
           type: 'pairs',
           items: three,
@@ -1308,10 +1321,13 @@ function buildQuestionsForLevel(level, dictantId) {
     return rounds;
   }
 
-  return baseTerms.map(target => ({
-    type: 'manual',
-    term: target
-  }));
+  return baseTerms.map(target => {
+    trackSessionTerms([target]);
+    return {
+      type: 'manual',
+      term: target
+    };
+  });
 }
 
 function startTaskLevel(levelId, dictantIdOverride) {
@@ -1333,16 +1349,19 @@ function startTaskLevel(levelId, dictantIdOverride) {
   session = {
     dictantId: dId,
     level,
-    questions: buildQuestionsForLevel(level, dId),
+    questions: [],
     currentIndex: 0,
     hearts: 3,
     selectedAnswer: null,
     checked: false,
     mistakes: [],
+    sessionTerms: [],
     correctCount: 0,
     builderSelected: [],
     pairsState: { left: null, right: null, matched: [] }
   };
+
+  session.questions = buildQuestionsForLevel(level, dId);
 
   goToScreen('screen-5');
   renderQuestion();
@@ -1396,12 +1415,17 @@ function showFeedback(isCorrect, title, text) {
   document.getElementById('feedback-text').textContent = text;
 }
 
-// === ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ КАРТИНКИ ===
 function getMascotImage(isCorrect) {
   const section = DICTANTS[session.dictantId].section;
   const prefix = section === 'methodology' ? 'metoda' : 'stata';
   const stateText = isCorrect === null ? 'neutral' : (isCorrect ? 'ok' : 'fail');
   return `${prefix}_${stateText}.png`;
+}
+
+function getFailMascotImage(dictantId) {
+  const dId = dictantId || session.dictantId || getActiveDictantId();
+  const section = DICTANTS[dId] ? DICTANTS[dId].section : state.activeSection;
+  return section === 'methodology' ? 'metoda_fail.png' : 'stata_fail.png';
 }
 
 function updateMascot(isCorrect) {
@@ -1709,6 +1733,12 @@ function handleCheckOrNext() {
 }
 
 function finishWithGameOver() {
+  const failImgEl = document.getElementById('gameover-fail-img');
+  if (failImgEl) {
+    failImgEl.style.display = 'block';
+    failImgEl.src = getFailMascotImage(session.dictantId);
+  }
+
   const listEl = document.getElementById('mistake-list');
   const uniqueMistakes = [];
   const seen = new Set();
@@ -1728,6 +1758,46 @@ function finishWithGameOver() {
   goToScreen('screen-6');
 }
 
+function setTermDifficultyRating(termId, rating) {
+  const dId = session.dictantId;
+  state.progress[dId][termId] = rating === 'easy' ? 2 : -1;
+  saveState();
+  renderResultTermsReview();
+  renderResultSummaryLine();
+}
+
+function renderResultSummaryLine() {
+  const dId = session.dictantId;
+  const dict = DICTANTS[dId];
+  const lostHearts = Math.max(0, 3 - session.hearts);
+  const masteredCount = dict.terms.filter(t => (state.progress[dId][t.id] || 0) >= 2).length;
+  const totalCount = dict.terms.length;
+  document.getElementById('result-summary-line').innerHTML =
+    `${session.level.title}. Потеряно сердец: ${lostHearts}.<br>Освоено терминов: ${masteredCount} из ${totalCount}.`;
+}
+
+function renderResultTermsReview() {
+  const dId = session.dictantId;
+  const mistakeIds = new Set(session.mistakes.map(m => m.id));
+  const container = document.getElementById('result-terms-review');
+
+  container.innerHTML = session.sessionTerms.map(t => {
+    const pts = state.progress[dId][t.id] || 0;
+    const isHard = pts < 0 || (pts < 2 && mistakeIds.has(t.id));
+    const isEasy = !isHard && pts >= 2;
+
+    return `
+      <div class="review-term-card">
+        <div class="review-term-name">${t.term}</div>
+        <div class="review-pills">
+          <button type="button" class="review-pill ${isEasy ? 'active-easy' : ''}" onclick="setTermDifficultyRating(${t.id}, 'easy')">Легко</button>
+          <button type="button" class="review-pill ${isHard ? 'active-hard' : ''}" onclick="setTermDifficultyRating(${t.id}, 'hard')">Трудно</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
 function finishLevelSuccess() {
   document.getElementById('task-progress-fill').style.width = '100%';
   const starsEarned = session.hearts === 3 ? 3 : (session.hearts === 2 ? 2 : 1);
@@ -1738,17 +1808,18 @@ function finishLevelSuccess() {
     saveState();
   }
 
-  document.getElementById('result-emoji').textContent = starsEarned === 3 ? '🏆' : '🎉';
-  document.getElementById('result-title').textContent = `Уровень ${session.level.num} пройден!`;
-  document.getElementById('result-sub').textContent = `Режим «${session.level.title}» выполнен.`;
+  const okImgEl = document.getElementById('result-ok-img');
+  const section = DICTANTS[dId].section;
+  okImgEl.style.display = 'block';
+  okImgEl.src = section === 'methodology' ? 'metoda_ok.png' : 'stata_ok.png';
+
+  document.getElementById('result-title').textContent = 'Уровень пройден';
 
   const starEls = document.querySelectorAll('#result-stars .star');
   starEls.forEach((s, idx) => s.classList.toggle('filled', idx < starsEarned));
 
-  document.getElementById('result-stats').innerHTML = `
-    <div><b>Верных ответов:</b> ${session.correctCount} из ${session.questions.length}</div>
-    <div><b>Осталось сердец:</b> ${session.hearts} из 3</div>
-  `;
+  renderResultSummaryLine();
+  renderResultTermsReview();
 
   goToScreen('screen-7');
 }
