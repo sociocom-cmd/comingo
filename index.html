@@ -960,7 +960,6 @@ function renderDictantBlock(dId) {
 function renderMethodologyHub() {
   const container = document.getElementById('meth-dictants-scroll');
   if (!container) return;
-  // Для методологии показываем только диктанты раздела methodology
   const available = Object.keys(DICTANTS).filter(id => DICTANTS[id].section === 'methodology');
   container.innerHTML = available.map(id => renderDictantBlock(id)).join('');
 }
@@ -968,7 +967,6 @@ function renderMethodologyHub() {
 function renderStatisticsHub() {
   const container = document.getElementById('stat-dictants-scroll');
   if (!container) return;
-  // Для статистики показываем ВСЕ диктанты раздела statistics (включая stat3)
   const available = Object.keys(DICTANTS).filter(id => DICTANTS[id].section === 'statistics');
   container.innerHTML = available.map(id => renderDictantBlock(id)).join('');
 }
@@ -1216,15 +1214,16 @@ function showFeedback(isCorrect, title, text) {
 // === ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ КАРТИНКИ ===
 function getMascotImage(isCorrect) {
   const section = DICTANTS[session.dictantId].section;
-  const prefix = section === 'methodology' ? 'метода' : 'стата';
-  const stateText = isCorrect === null ? 'нейтрал' : (isCorrect ? 'з' : 'ч');
-  return `${prefix} ${stateText}.png`;
+  const prefix = section === 'methodology' ? 'metoda' : 'stata';
+  const stateText = isCorrect === null ? 'neutral' : (isCorrect ? 'ok' : 'fail');
+  return `${prefix}_${stateText}.png`;
 }
 
 function updateMascot(isCorrect) {
   const imgEl = document.getElementById('task-mascot');
   if (imgEl) {
     imgEl.src = getMascotImage(isCorrect);
+    // Никаких изменений ширины/высоты — картинка берёт размеры из CSS
   }
 }
 
