@@ -471,7 +471,7 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
     <div class="main-content-3" id="stat-tasks-view" style="display:none;">
       <div class="tasks-placeholder">
         <h3>Раздел «Задачи»</h3>
-        <p>Практические задачи по статистике для модуля «Совокупности, шкалы и инструменты» будут добавлены сюда.</p>
+        <p id="stat-tasks-desc">Практические задачи по статистике для модуля «Совокупности, шкалы и инструменты» будут добавлены сюда.</p>
       </div>
     </div>
 
@@ -547,7 +547,7 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
     </div>
   </div>
 
-  <!-- ЭКРАН ЗАГЛУШКА КУРС 2 -->
+  <!-- ЭКРАН ЗАГЛУШКА КУРС 2 (для Методологии) -->
   <div id="screen-course2" class="screen">
     <div class="course-tabs">
       <button class="tab-btn" onclick="switchCourse(this, 'course1', 'screen-course2')">Курс 1</button>
@@ -597,6 +597,8 @@ const DICTANTS = {
   meth1: {
     id: 'meth1',
     section: 'methodology',
+    course: 'course1',
+    num: 1,
     title: 'Диктант 1',
     subtitle: 'Определения методологии',
     terms: [
@@ -653,6 +655,8 @@ const DICTANTS = {
   stat1: {
     id: 'stat1',
     section: 'statistics',
+    course: 'course1',
+    num: 1,
     title: 'Диктант 1',
     subtitle: 'Совокупности и шкалы',
     terms: [
@@ -688,6 +692,8 @@ const DICTANTS = {
   stat2: {
     id: 'stat2',
     section: 'statistics',
+    course: 'course1',
+    num: 2,
     title: 'Диктант 2',
     subtitle: 'Частоты и группировки',
     terms: [
@@ -720,6 +726,8 @@ const DICTANTS = {
   stat3: {
     id: 'stat3',
     section: 'statistics',
+    course: 'course1',
+    num: 3,
     title: 'Диктант 3',
     subtitle: 'Меры центральной тенденции и разброса',
     terms: [
@@ -741,6 +749,96 @@ const DICTANTS = {
       { id: 216, category: "Стандартизация", term: "Стандартизация (для чего проводится)", def: "Процесс преобразования данных из различных источников в согласованный формат." },
       { id: 217, category: "Стандартизация", term: "Z-оценки", def: "Даёт представление о том, насколько значение далеко от среднего значения." }
     ]
+  },
+  stat4: {
+    id: 'stat4',
+    section: 'statistics',
+    course: 'course1',
+    num: 4,
+    title: 'Диктант 4',
+    subtitle: 'Статистический вывод',
+    terms: [
+      { id: 301, category: "Статистический вывод", term: "Статистический вывод", def: "1) Область статистики, позволяющая делать выводы о неизвестных характеристиках и свойствах ГС на основании результатов выборочного исследования. 2) Некое утверждение об изучаемых параметрах ГМ на основании изучения выборочных статистик." },
+      { id: 302, category: "Статистический вывод", term: "Случайная величина", def: "Функция X, принимающая некоторое численное значение на каждом элементе ГС." },
+      { id: 303, category: "Статистический вывод", term: "Выборочное пространство", def: "Полное множество значений СВ, обозначается S. Может быть дискретным или непрерывным, иными словами выборочное пространство — множество точек, которые могут соответствовать людям, числам, шарам и т.д." },
+      { id: 304, category: "Статистический вывод", term: "Случайное событие", def: "Любое подмножество значений СВ для дискретной СВ. СС — отдельное значение или некоторый набор значений для непрерывной СВ." },
+      { id: 305, category: "Вероятности и распределения", term: "Вероятность случайного события P", def: "Доля элементов СВ, принадлежащая данному событию, относительная частота выражается в долях от 1." },
+      { id: 306, category: "Вероятности и распределения", term: "Аддитивность вероятности", def: "Важнейшее свойство вероятности, если СС не пересекаются, то вероятность того, что случайная величина принадлежит хотя бы одному из этих событий, равна сумме их вероятностей." },
+      { id: 307, category: "Вероятности и распределения", term: "Теорема Байеса", def: "Предельный случай свойства аддитивности. Если СС не пересекаются и покрывают всё выборочное пространство, то вероятность того, что СВ принадлежит хотя бы одному из этих событий, равна нулю." },
+      { id: 308, category: "Вероятности и распределения", term: "Функция распределения случайной величины", def: "Для СВ X и действительного числа альфа (а) функция распределения определяется как вероятность того, что значение X не превышает по своей величине альфа." },
+      { id: 309, category: "Вероятности и распределения", term: "Теоретическое распределение", def: "Распределение вероятностей некой случайной величины, выбранное для описания закона, которому подчиняется фактическое распределение." },
+      { id: 310, category: "Распределения", term: "Статистические таблицы", def: "Таблицы, которые содержат результаты интегрирования функции плотности распределения для большого количества действительных чисел." },
+      { id: 311, category: "Распределения", term: "Нормальное распределение Гаусса", def: "Непрерывная случайная величина распределена по нормальному закону: N(мю; сигма), имеет форму симметричного колокола на действительной оси, параметр сигма определяет форму распределения (ширина и высота)." },
+      { id: 312, category: "Распределения", term: "Стандартное нормальное распределение", def: "Z(0;1) U(мю, математическое ожидание) = 0, сигма = 1." },
+      { id: 313, category: "Распределения", term: "Распределение хи квадрат", def: "Асимметричный колокол с длинным правым хвостом, расположен в положительной части действительной оси, форма определяется числом степеней свободы." },
+      { id: 314, category: "Распределения", term: "t-распределение Стьюдента", def: "Симметричный относительно 0 колокол, форма определяется числами степеней свободы, более тяжёлые хвосты, чем у нормального распределения." },
+      { id: 315, category: "Распределения", term: "F-распределение Фишера", def: "Асимметричный колокол с длинным правым хвостом, в положительной части действительной оси, форма определяется двумя параметрами свободы, соблюдается свойство." }
+    ]
+  },
+  stat_c2_1: {
+    id: 'stat_c2_1',
+    section: 'statistics',
+    course: 'course2',
+    num: 1,
+    title: 'Диктант 1',
+    subtitle: 'Оценивание параметров и проверка гипотез',
+    terms: [
+      { id: 401, category: "Оценивание параметров ГС", term: "Параметр генеральной совокупности", def: "Это числовая характеристика всей генеральной совокупности." },
+      { id: 402, category: "Оценивание параметров ГС", term: "Точечная оценка параметра ГС", def: "Любое число, рассчитанное по выборке и характеризующее параметр, функция от выборки, позволяющая примерно оценить значение параметра." },
+      { id: 403, category: "Оценивание параметров ГС", term: "Несмещённость оценки параметра ГС", def: "Свойство точечной оценки, согласно которому оценка является несмещённой, если её математическое ожидание равно величине параметра." },
+      { id: 404, category: "Оценивание параметров ГС", term: "Состоятельность оценки параметра ГС", def: "Свойство точечной оценки, согласно которому оценка состоятельна, если сходится по вероятности к истинному значению параметра при большом количестве наблюдений." },
+      { id: 405, category: "Оценивание параметров ГС", term: "Эффективность оценки параметра ГС", def: "Свойство точечной оценки, согласно которому эффективнее оценка, у которой ниже дисперсия." },
+      { id: 406, category: "Интервальное оценивание и ошибки выборки", term: "Интервальное оценивание параметра ГС", def: "Построение некоторого интервала, в который параметр ГС попадает с некоторой вероятностью." },
+      { id: 407, category: "Интервальное оценивание и ошибки выборки", term: "Доверительная вероятность", def: "Вероятность, с которой параметр попадает в данный интервал." },
+      { id: 408, category: "Интервальное оценивание и ошибки выборки", term: "Доверительный интервал для параметра ГС", def: "Интервал, в котором с определённой вероятностью лежит параметр." },
+      { id: 409, category: "Интервальное оценивание и ошибки выборки", term: "Репрезентативность выборки", def: "Способность выборки отображать процессы в ГС; выборка репрезентативна, если мы с определённой вероятностью можем контролировать её случайную ошибку." },
+      { id: 410, category: "Интервальное оценивание и ошибки выборки", term: "Ошибка выборки", def: "Разность между значением показателя по выборке и генеральным параметром, то есть насколько найденный параметр отличается от реального." },
+      { id: 411, category: "Интервальное оценивание и ошибки выборки", term: "Случайная ошибка выборки", def: "Ошибка, которая неизбежно возникает в выборочном исследовании." },
+      { id: 412, category: "Интервальное оценивание и ошибки выборки", term: "Систематическая ошибка", def: "Возникает из-за ошибок планирования выборочного исследования." },
+      { id: 413, category: "Интервальное оценивание и ошибки выборки", term: "Доверительный интервал для ошибки выборки", def: "Интервал, в который ошибка попадает с заданной вероятностью." },
+      { id: 414, category: "Проверка статистических гипотез", term: "Статистическая гипотеза", def: "Утверждение относительно параметров ГС, подлежащее проверке и сформулированное по определённым правилам." },
+      { id: 415, category: "Проверка статистических гипотез", term: "Нулевая гипотеза", def: "Постулирует отсутствие различия между частями ГС или связи между переменными." },
+      { id: 416, category: "Проверка статистических гипотез", term: "Альтернативная гипотеза", def: "Постулирует наличие определённых различий между частями ГС или наличие связи." },
+      { id: 417, category: "Проверка статистических гипотез", term: "Статистический критерий", def: "Математическая функция, с помощью которой принимаются решения о принятии или отвержении нулевой гипотезы." },
+      { id: 418, category: "Проверка статистических гипотез", term: "Статистика критерия", def: "Некоторое число, вычисленное по формуле статистического критерия на основании данных по выборке." },
+      { id: 419, category: "Критерии и ошибки вывода", term: "Ошибка первого рода", def: "Отклонить нулевую гипотезу, которая на самом деле верна." },
+      { id: 420, category: "Критерии и ошибки вывода", term: "Ошибка второго рода", def: "Принять нулевую гипотезу, которая не верна." },
+      { id: 421, category: "Критерии и ошибки вывода", term: "Критическая область", def: "Область значений статистики критерия, при которых отвергается нулевая гипотеза." },
+      { id: 422, category: "Критерии и ошибки вывода", term: "Уровень значимости", def: "Процентная вероятность случайного ошибочного вывода." },
+      { id: 423, category: "Критерии и ошибки вывода", term: "Мощность критерия", def: "Это его способность выявлять различия, если они есть." },
+      { id: 424, category: "Критерии и ошибки вывода", term: "Критическое значение", def: "Это предельное значение, используемое для обозначения начала области, в которой тестовая статистика, полученная в ходе теоретического теста, вряд ли даст сбой." }
+    ]
+  },
+  stat_c2_3: {
+    id: 'stat_c2_3',
+    section: 'statistics',
+    course: 'course2',
+    num: 3,
+    title: 'Диктант 3',
+    subtitle: 'Корреляция, регрессия и дисперсионный анализ',
+    terms: [
+      { id: 501, category: "Корреляция и связи", term: "Диаграмма рассеяния", def: "Двумерный график (по X — одна переменная, по Y — вторая переменная), где объекты изображаются в виде точек с координатами, равными значениям переменных данного объекта." },
+      { id: 502, category: "Корреляция и связи", term: "Ковариация", def: "Систематическая связь между двумя переменными, при которой изменение одной переменной вызывает изменение другой переменной (двумерный аналог дисперсии)." },
+      { id: 503, category: "Корреляция и связи", term: "Коэффициент линейной корреляции Пирсона", def: "Нормированное деление на среднее квадратическое отклонение по X и Y." },
+      { id: 504, category: "Корреляция и связи", term: "Матрица корреляций", def: "Это квадратная таблица размерности k*k, столбцы и строки которой образуют k переменных, а на пересечении строк и столбцов указываются соответствующие этой паре переменных коэффициенты корреляции. Матрица симметрична относительно главной диагонали, поэтому допускается заполнение либо верхней, либо нижней её части." },
+      { id: 505, category: "Регрессионный анализ", term: "Регрессионный анализ", def: "Группа методов статистического анализа данных, предназначенная для исследования причинных связей между количественной зависимой переменной и одной или несколькими независимыми переменными." },
+      { id: 506, category: "Регрессионный анализ", term: "Парная регрессия", def: "Метод установления математической (в форме уравнения) зависимости между двумя переменными: зависимой и независимой." },
+      { id: 507, category: "Регрессионный анализ", term: "Парная линейная регрессия", def: "Это регрессионная модель линейной связи с одной зависимой и одной независимой переменной. Используется для описания линейной функциональной связи двух переменных." },
+      { id: 508, category: "Регрессионный анализ", term: "Коэффициент регрессии", def: "Коэффициент, который показывает, насколько в среднем увеличивается или уменьшается значение переменной Y при увеличении независимой переменной X на 1." },
+      { id: 509, category: "Регрессионный анализ", term: "Свободный член уравнения регрессии", def: "Называется коэффициент b0, и в большинстве задач он не интерпретируется." },
+      { id: 510, category: "Регрессионный анализ", term: "Уравнение парной линейной регрессии", def: "Уравнение регрессии, описывающее линейную зависимость результирующего признака от одного признака-фактора." },
+      { id: 511, category: "Регрессионный анализ", term: "Коэффициент детерминации", def: "Коэффициент, который показывает, какая доля дисперсии зависимой переменной Y объясняется независимой переменной X." },
+      { id: 512, category: "Эксперимент и дисперсионный анализ", term: "Научный факторный эксперимент", def: "1. Гипотезы до исследования. 2. Специально отобранные группы объектов. 3. Переменные: факторы (X), зависимая переменная (Y). 4. Трёхстадийный план эксперимента: 1) формирование или отбор групп «наблюдаемых»; 2) проведение эксперимента; 3) оценивание результатов." },
+      { id: 513, category: "Эксперимент и дисперсионный анализ", term: "Дисперсионный анализ", def: "Метод, используемый для изучения влияния различных одновременно действующих и независимых признаков-факторов на изменчивость одного или нескольких зависимых признаков." },
+      { id: 514, category: "Эксперимент и дисперсионный анализ", term: "Зависимая переменная в дисперсионном анализе", def: "Это количественная или квазиколичественная переменная." },
+      { id: 515, category: "Эксперимент и дисперсионный анализ", term: "Факторы в дисперсионном анализе", def: "Называются независимые переменные X." },
+      { id: 516, category: "Вариация и гипотезы ANOVA", term: "Разделение дисперсии зависимой переменной", def: "Полная вариация = внутригрупповая вариация + межгрупповая вариация." },
+      { id: 517, category: "Вариация и гипотезы ANOVA", term: "Общая сумма квадратов", def: "Вместо дисперсии как таковой в дисперсионном анализе используется только её числитель." },
+      { id: 518, category: "Вариация и гипотезы ANOVA", term: "Внутригрупповая вариация", def: "Порождается вариабельностью зависимой переменной внутри группы." },
+      { id: 519, category: "Вариация и гипотезы ANOVA", term: "Межгрупповая вариация", def: "Это разброс между средними значениями каждой группы." },
+      { id: 520, category: "Вариация и гипотезы ANOVA", term: "Корреляционное отношение", def: "Эффект влияния X (независимых) на Y (зависимых), вычисляемый как отношение суммы квадратов межгрупповых на общую сумму. Коэффициент показывает, какую долю вариации зависимой переменной Y можно объяснить с помощью независимого фактора X." },
+      { id: 521, category: "Вариация и гипотезы ANOVA", term: "Гипотеза однофакторного дисперсионного анализа", def: "Пусть фактор имеет k значений или образует k групп, тогда H0: во всех k группах средние значения зависимых переменных равны; H1: хотя бы для некоторых групп, образованных уровнями фактора, средние значения не равны." }
+    ]
   }
 };
 
@@ -755,19 +853,21 @@ const LEVELS = [
   { id: 'level-8', num: 8, mode: 'manual', optionsCount: 0, title: 'Ввод ответа', desc: 'Напиши термин по его определению' }
 ];
 
-const STORAGE_KEY = 'comingo_app_state_v6';
+const STORAGE_KEY = 'comingo_app_state_v9';
 
 let state = {
   selectedOption: null,
   activeSection: 'methodology',
+  activeCourse: 'course1',
   lastHubScreen: 'screen-3',
   currentMethDictantId: 'meth1',
   currentStatDictantId: 'stat1',
+  currentStatCourse2DictantId: 'stat_c2_1',
   progress: {
-    meth1: {}, stat1: {}, stat2: {}, stat3: {}
+    meth1: {}, stat1: {}, stat2: {}, stat3: {}, stat4: {}, stat_c2_1: {}, stat_c2_3: {}
   },
   stars: {
-    meth1: {}, stat1: {}, stat2: {}, stat3: {}
+    meth1: {}, stat1: {}, stat2: {}, stat3: {}, stat4: {}, stat_c2_1: {}, stat_c2_3: {}
   },
   theme: 'light'
 };
@@ -788,7 +888,17 @@ let session = {
 
 function getActiveDictantId(sectionOverride) {
   const sec = sectionOverride || state.activeSection;
-  return sec === 'statistics' ? state.currentStatDictantId : state.currentMethDictantId;
+  if (sec === 'statistics') {
+    if (state.activeCourse === 'course2') {
+      return DICTANTS[state.currentStatCourse2DictantId] && DICTANTS[state.currentStatCourse2DictantId].course === 'course2'
+        ? state.currentStatCourse2DictantId
+        : 'stat_c2_1';
+    }
+    return DICTANTS[state.currentStatDictantId] && DICTANTS[state.currentStatDictantId].course === 'course1'
+      ? state.currentStatDictantId
+      : 'stat1';
+  }
+  return state.currentMethDictantId;
 }
 
 function getCurrentTerms(dictantId) {
@@ -807,6 +917,8 @@ function loadState() {
 
   if (!DICTANTS[state.currentMethDictantId]) state.currentMethDictantId = 'meth1';
   if (!DICTANTS[state.currentStatDictantId]) state.currentStatDictantId = 'stat1';
+  if (!DICTANTS[state.currentStatCourse2DictantId]) state.currentStatCourse2DictantId = 'stat_c2_1';
+  if (!state.activeCourse) state.activeCourse = 'course1';
 
   Object.keys(DICTANTS).forEach(dId => {
     if (!state.progress[dId]) state.progress[dId] = {};
@@ -846,8 +958,11 @@ function goToScreen(screenId) {
 
   if (screenId === 'screen-course2') {
     syncCourseTabs('course2');
-  } else if (screenId === 'screen-3' || screenId === 'screen-statistics') {
+  } else if (screenId === 'screen-3') {
+    state.activeCourse = 'course1';
     syncCourseTabs('course1');
+  } else if (screenId === 'screen-statistics') {
+    syncCourseTabs(state.activeCourse || 'course1');
   }
 
   if (screenId === 'screen-3') {
@@ -884,6 +999,7 @@ function selectOption(cardEl, optionKey) {
 function proceedToTasks() {
   if (!state.selectedOption) return;
   state.activeSection = state.selectedOption;
+  state.activeCourse = 'course1';
   const target = state.selectedOption === 'statistics' ? 'screen-statistics' : 'screen-3';
   state.lastHubScreen = target;
   saveState();
@@ -891,17 +1007,24 @@ function proceedToTasks() {
 }
 
 function switchCourse(btnEl, courseKey) {
+  state.activeCourse = courseKey;
   syncCourseTabs(courseKey);
 
-  if (courseKey === 'course2') {
-    goToScreen('screen-course2');
+  if (state.activeSection === 'statistics') {
+    saveState();
+    goToScreen('screen-statistics');
   } else {
-    const target = state.activeSection === 'statistics' ? 'screen-statistics' : 'screen-3';
-    goToScreen(target);
+    saveState();
+    if (courseKey === 'course2') {
+      goToScreen('screen-course2');
+    } else {
+      goToScreen('screen-3');
+    }
   }
 }
 
 function returnFromCourse2() {
+  state.activeCourse = 'course1';
   const target = state.activeSection === 'statistics' ? 'screen-statistics' : 'screen-3';
   goToScreen(target);
 }
@@ -913,7 +1036,7 @@ function switchStatSubtab(subtab) {
   document.getElementById('stat-tasks-view').style.display = subtab === 'tasks' ? 'block' : 'none';
 }
 
-// === НОВЫЙ РЕНДЕР: ДИКТАНТ + ЕГО УРОВНИ В ОДНОМ БЛОКЕ ===
+// === РЕНДЕР: ДИКТАНТ + ЕГО УРОВНИ В ОДНОМ БЛОКЕ ===
 function renderDictantBlock(dId) {
   const dict = DICTANTS[dId];
   const terms = dict.terms;
@@ -935,11 +1058,13 @@ function renderDictantBlock(dId) {
     `;
   });
 
+  const dictNum = dict.num || dId.replace(/\D/g, '');
+
   return `
     <div class="dictant-block" style="margin-bottom:16px;">
       <div class="dictant-card">
         <div class="dict-card-info">
-          <div class="dict-card-label">ДИКТАНТ ${dId.endsWith('1') ? '1' : (dId.endsWith('2') ? '2' : '3')}</div>
+          <div class="dict-card-label">ДИКТАНТ ${dictNum}</div>
           <div class="dict-card-sub">${dict.subtitle}</div>
           <div class="dictant-progress-container">
             <div class="dictant-progress-fill" style="width: ${pct}%"></div>
@@ -960,15 +1085,27 @@ function renderDictantBlock(dId) {
 function renderMethodologyHub() {
   const container = document.getElementById('meth-dictants-scroll');
   if (!container) return;
-  const available = Object.keys(DICTANTS).filter(id => DICTANTS[id].section === 'methodology');
+  const available = Object.keys(DICTANTS)
+    .filter(id => DICTANTS[id].section === 'methodology')
+    .sort((a, b) => (DICTANTS[a].num || 0) - (DICTANTS[b].num || 0));
   container.innerHTML = available.map(id => renderDictantBlock(id)).join('');
 }
 
 function renderStatisticsHub() {
   const container = document.getElementById('stat-dictants-scroll');
   if (!container) return;
-  const available = Object.keys(DICTANTS).filter(id => DICTANTS[id].section === 'statistics');
+  const course = state.activeCourse || 'course1';
+  const available = Object.keys(DICTANTS)
+    .filter(id => DICTANTS[id].section === 'statistics' && DICTANTS[id].course === course)
+    .sort((a, b) => (DICTANTS[a].num || 0) - (DICTANTS[b].num || 0));
   container.innerHTML = available.map(id => renderDictantBlock(id)).join('');
+
+  const tasksDesc = document.getElementById('stat-tasks-desc');
+  if (tasksDesc) {
+    tasksDesc.textContent = course === 'course2'
+      ? 'Практические задачи по статистике для 2-го курса будут добавлены сюда.'
+      : 'Практические задачи по статистике для модуля «Совокупности, шкалы и инструменты» будут добавлены сюда.';
+  }
 }
 
 function renderHubs() {
@@ -983,9 +1120,16 @@ function openDictionary(sectionOverride) {
 }
 
 function openDictionaryById(dId) {
-  state.activeSection = DICTANTS[dId].section;
-  state.currentMethDictantId = DICTANTS[dId].section === 'methodology' ? dId : state.currentMethDictantId;
-  state.currentStatDictantId = DICTANTS[dId].section === 'statistics' ? dId : state.currentStatDictantId;
+  const dict = DICTANTS[dId];
+  state.activeSection = dict.section;
+  state.activeCourse = dict.course || 'course1';
+  if (dict.section === 'methodology') {
+    state.currentMethDictantId = dId;
+  } else if (dict.course === 'course2') {
+    state.currentStatCourse2DictantId = dId;
+  } else {
+    state.currentStatDictantId = dId;
+  }
   saveState();
   renderDictionary(dId);
   goToScreen('screen-4');
@@ -1001,7 +1145,8 @@ function renderDictionary(dIdParam) {
   const listEl = document.getElementById('dict-list');
   const dict = DICTANTS[dId];
   const sectionLabel = dict.section === 'statistics' ? 'Статистика' : 'Методология';
-  document.getElementById('dict-header-title').textContent = `Словарь · ${sectionLabel} (${dict.title})`;
+  const courseLabel = dict.course === 'course2' ? 'Курс 2 · ' : '';
+  document.getElementById('dict-header-title').textContent = `Словарь · ${sectionLabel} (${courseLabel}${dict.title})`;
 
   const categories = [...new Set(dict.terms.map(t => t.category))];
   let html = '';
@@ -1141,8 +1286,15 @@ function startTaskLevel(levelId, dictantIdOverride) {
   if (!level) return;
 
   const dId = dictantIdOverride || getActiveDictantId();
-  state.currentMethDictantId = DICTANTS[dId].section === 'methodology' ? dId : state.currentMethDictantId;
-  state.currentStatDictantId = DICTANTS[dId].section === 'statistics' ? dId : state.currentStatDictantId;
+  const dict = DICTANTS[dId];
+  state.activeCourse = dict.course || 'course1';
+  if (dict.section === 'methodology') {
+    state.currentMethDictantId = dId;
+  } else if (dict.course === 'course2') {
+    state.currentStatCourse2DictantId = dId;
+  } else {
+    state.currentStatDictantId = dId;
+  }
   saveState();
 
   session = {
@@ -1223,7 +1375,6 @@ function updateMascot(isCorrect) {
   const imgEl = document.getElementById('task-mascot');
   if (imgEl) {
     imgEl.src = getMascotImage(isCorrect);
-    // Никаких изменений ширины/высоты — картинка берёт размеры из CSS
   }
 }
 
@@ -1243,7 +1394,6 @@ function renderQuestion() {
   const q = session.questions[session.currentIndex];
   const content = document.getElementById('task-content');
 
-  // Получаем нейтральную картинку для текущего раздела
   const neutralImg = getMascotImage(null);
 
   if (q.type === 'choice') {
@@ -1497,7 +1647,6 @@ function handleCheckOrNext() {
   session.checked = true;
   const dId = session.dictantId;
 
-  // Меняем картинку в зависимости от правильности ответа
   updateMascot(isCorrect);
 
   if (isCorrect) {
@@ -1600,7 +1749,8 @@ function setTheme(theme, save = true) {
 
 function resetProgress() {
   const dId = getActiveDictantId();
-  if (!confirm(`Сбросить весь прогресс для диктанта «${DICTANTS[dId].title}»?`)) return;
+  const courseLabel = DICTANTS[dId].course === 'course2' ? ' (Курс 2)' : '';
+  if (!confirm(`Сбросить весь прогресс для диктанта «${DICTANTS[dId].title}»${courseLabel}?`)) return;
   DICTANTS[dId].terms.forEach(t => {
     state.progress[dId][t.id] = 0;
   });
