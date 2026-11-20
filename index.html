@@ -20,300 +20,376 @@ body.dark-theme {
   --success-bg:#064e3b; --success-border:#10b981; --error-bg:#7f1d1d; --error-border:#ef4444;
   --warning-bg:#78350f; --warning-border:#f59e0b;
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Nunito', sans-serif;transition:background-color .3s,color .3s,border-color .3s;-webkit-tap-highlight-color:transparent;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Nunito', sans-serif;transition:background-color .25s,color .25s,border-color .25s;-webkit-tap-highlight-color:transparent;}
 body{background:var(--bg-color);display:flex;justify-content:center;align-items:flex-start;min-height:100vh;color:var(--text-main);overflow:hidden;}
-.app-container{width:100%;max-width:400px;height:100vh;height:100dvh;max-height:900px;background:var(--bg-color);position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.app-container{width:100%;max-width:420px;height:100vh;height:100dvh;max-height:920px;background:var(--bg-color);position:relative;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 30px rgba(0,0,0,.06);}
 .screen{display:none;flex-direction:column;height:100%;width:100%;overflow:hidden;}
 .screen.active{display:flex;}
 
-/* Шрифты для акцентных элементов */
 h1, h2, h3, h4, .subtitle, .start-btn, .option-title, .continue-btn, .tab-btn, .module-text h2, .module-text h3,
 .vocab-btn span, .progress-header, .level-title, .category-header, .term-title, .truefalse-title, .truefalse-term,
 .check-btn, .error-feedback-title, .result-title, .result-sub, .gameover-title, .settings-header h2, .section-title,
 .theme-name, .course2-title, .nav-btn, .level-circle, .result-emoji, .mistake-list-title, .builder-bubble,
-.speech-bubble, .task-bubble, .term-status, .answer-number, .pair-item, .builder-word, .word-chip {
+.speech-bubble, .task-bubble, .term-status, .answer-number, .pair-item, .builder-word, .word-chip,
+.dict-tab, .btn-primary-blue, .restart-btn, .back-btn, .reset-btn, .dict-card-title, .dict-card-sub, .dict-card-label {
   font-family: 'Rubik', sans-serif;
 }
 
-/* Основной текст (уже наследуется от body, но зафиксируем для полей и текстов) */
-p, .def-text, .term-points, .level-desc, .find-error-instruction, .find-error-text, .truefalse-def,
-.answer-option, .task-bubble, .keyboard-input, .blank-input, .error-feedback-text, .mistake-def,
-.settings-footer, .theme-preview, .keyboard-instruction {
-  font-family: 'Nunito', sans-serif;
-}
-
 /* ЭКРАН 1 */
-#screen-1{justify-content:space-between;align-items:center;padding:10px 20px 30px;text-align:center;}
-.content-1{display:flex;flex-direction:column;align-items:center;margin-top:2vh;width:100%;flex-grow:1;justify-content:center;}
-.mascot-photo{width:240px;height:auto;object-fit:contain;margin-bottom:15px;display:block;}
-.logo-img{width:100%;max-width:260px;height:auto;object-fit:contain;margin-bottom:20px;display:block;border-radius:12px;}
-.subtitle{font-size:18px;color:var(--text-muted);line-height:1.5;max-width:280px;font-family:'Rubik',sans-serif;font-weight:600;}
-.start-btn{width:100%;padding:20px;background:var(--primary-blue);color:#fff;border:none;border-radius:16px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 10px rgba(28,126,214,.2);}
+#screen-1{justify-content:space-between;align-items:center;padding:18px 20px 28px;text-align:center;}
+.content-1{display:flex;flex-direction:column;align-items:center;width:100%;flex-grow:1;justify-content:center;}
+.mascot-photo{width:220px;height:auto;object-fit:contain;margin-bottom:14px;display:block;border-radius:16px;}
+.logo-img{width:100%;max-width:250px;height:auto;object-fit:contain;margin-bottom:18px;display:block;border-radius:12px;}
+.subtitle{font-size:18px;color:var(--text-muted);line-height:1.5;max-width:290px;font-weight:600;}
+.start-btn{width:100%;padding:18px;background:var(--primary-blue);color:#fff;border:none;border-radius:16px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #1565c0;}
+.start-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #1565c0;}
 
 /* ЭКРАН 2 */
 #screen-2{background:var(--bg-color);}
-.top-bar{padding:5px 20px 15px;display:flex;justify-content:flex-start;}
-.close-btn{background:none;border:none;cursor:pointer;color:var(--text-muted);}
+.top-bar{padding:12px 20px;display:flex;justify-content:flex-start;}
+.close-btn{background:none;border:none;cursor:pointer;color:var(--text-muted);padding:4px;}
 .close-btn svg{width:28px;height:28px;}
 .main-content-2{padding:0 20px;flex-grow:1;overflow-y:auto;}
-.character-block{display:flex;align-items:center;margin-bottom:30px;}
-.character-photo{width:130px;height:auto;object-fit:contain;margin-right:10px;z-index:2;border-radius:12px;}
-.speech-bubble{background:var(--card-bg);border:2px solid var(--border-color);border-radius:20px;padding:20px;font-size:20px;font-weight:700;color:var(--text-main);position:relative;flex-grow:1;}
-.speech-bubble::before{content:'';position:absolute;left:-12px;top:50%;transform:translateY(-50%) rotate(45deg);width:20px;height:20px;background:var(--card-bg);border-left:2px solid var(--border-color);border-bottom:2px solid var(--border-color);}
-.option-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:20px;padding:15px 20px;display:flex;align-items:center;margin-bottom:15px;cursor:pointer;transition:all .2s;}
-.option-card.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.05);}
-body.dark-theme .option-card.selected{background:rgba(59,130,246,.1);}
-.icon-box{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-right:15px;}
+.character-block{display:flex;align-items:center;margin-bottom:28px;margin-top:8px;}
+.character-photo{width:118px;height:auto;object-fit:contain;margin-right:14px;z-index:2;border-radius:14px;flex-shrink:0;}
+.speech-bubble{background:var(--card-bg);border:2px solid var(--border-color);border-radius:20px;padding:18px;font-size:19px;font-weight:700;color:var(--text-main);position:relative;flex-grow:1;}
+.speech-bubble::before{content:'';position:absolute;left:-11px;top:50%;transform:translateY(-50%) rotate(45deg);width:18px;height:18px;background:var(--card-bg);border-left:2px solid var(--border-color);border-bottom:2px solid var(--border-color);}
+.option-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:20px;padding:16px 20px;display:flex;align-items:center;margin-bottom:14px;cursor:pointer;transition:all .2s;}
+.option-card.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.06);}
+body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
+.icon-box{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-right:15px;flex-shrink:0;}
 .icon-purple{background:#9b51e0;} .icon-blue{background:#2d9cdb;}
 .option-title{font-size:18px;font-weight:800;}
-.bottom-bar{padding:20px;background:var(--bg-color);border-top:2px solid var(--border-color);}
-.continue-btn{width:100%;padding:20px;background:var(--border-color);color:var(--text-muted);border:none;border-radius:16px;font-size:18px;font-weight:700;cursor:not-allowed;text-transform:uppercase;transition:all .3s;}
-.continue-btn.active{background:var(--primary-blue);color:#fff;cursor:pointer;box-shadow:0 4px 10px rgba(28,126,214,.2);}
+.bottom-bar{padding:16px 20px 24px;background:var(--bg-color);border-top:2px solid var(--border-color);}
+.continue-btn{width:100%;padding:18px;background:var(--border-color);color:var(--text-muted);border:none;border-radius:16px;font-size:18px;font-weight:700;cursor:not-allowed;text-transform:uppercase;}
+.continue-btn.active{background:var(--primary-blue);color:#fff;cursor:pointer;box-shadow:0 4px 0 #1565c0;}
+.continue-btn.active:active{transform:translateY(2px);box-shadow:0 2px 0 #1565c0;}
 
-/* ЭКРАН 3 */
-#screen-3{background:var(--bg-secondary);}
-.course-tabs{display:flex;padding:10px 20px;background:var(--bg-color);gap:10px;border-bottom:1px solid var(--border-color);}
-.tab-btn{flex:1;padding:10px;border-radius:12px;border:2px solid var(--border-color);background:var(--bg-color);font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;}
+/* ЭКРАН 3 / СТАТИСТИКА */
+#screen-3, #screen-statistics { background: var(--bg-secondary); }
+.course-tabs{display:flex;padding:12px 20px;background:var(--bg-color);gap:10px;border-bottom:1px solid var(--border-color);}
+.tab-btn{flex:1;padding:10px;border-radius:12px;border:2px solid var(--border-color);background:var(--bg-color);font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;transition:background-color .12s,color .12s,border-color .12s;}
 .tab-btn.active{background:var(--primary-blue);color:#fff;border-color:var(--primary-blue);}
-.main-content-3{padding:15px 20px;flex-grow:1;overflow-y:auto;}
-.module-banner{background:var(--primary-blue);border-radius:16px;padding:20px;display:flex;justify-content:space-between;align-items:center;color:#fff;margin-bottom:20px;}
-.module-text h3{font-size:12px;text-transform:uppercase;opacity:.8;margin-bottom:5px;}
-.module-text h2{font-size:22px;font-weight:800;}
-.vocab-btn{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.15);padding:10px 15px;border-radius:12px;border:none;color:#fff;cursor:pointer;}
+
+/* ИСПРАВЛЕННЫЕ ВКЛАДКИ ДИКТАНТЫ / ЗАДАЧИ */
+.dict-tabs { 
+  display: flex; 
+  padding: 0; 
+  gap: 0; 
+  background: var(--bg-color); 
+  border-bottom: 1px solid var(--border-color); 
+}
+.dict-tab { 
+  flex: 1; 
+  background: none; 
+  border: none; 
+  font-size: 16px; 
+  font-weight: 700; 
+  color: var(--text-muted); 
+  cursor: pointer; 
+  padding: 14px 0; 
+  position: relative; 
+  text-align: center; 
+}
+.dict-tab.active { 
+  color: var(--primary-blue); 
+}
+.dict-tab.active::after { 
+  content: ''; 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  height: 3px; 
+  background: var(--primary-blue); 
+  border-radius: 3px 3px 0 0; 
+}
+
+.main-content-3{padding:16px 20px 24px;flex-grow:1;overflow-y:auto;}
+
+.module-banner{background:var(--primary-blue);border-radius:18px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;color:#fff;margin-bottom:16px;gap:12px;box-shadow:0 4px 0 #1565c0;}
+.module-text h3{font-size:12px;text-transform:uppercase;opacity:.85;margin-bottom:4px;letter-spacing:.5px;}
+.module-text h2{font-size:19px;font-weight:800;line-height:1.25;}
+.vocab-btn{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.18);padding:10px 14px;border-radius:14px;border:none;color:#fff;cursor:pointer;flex-shrink:0;}
+.vocab-btn:active{background:rgba(255,255,255,.28);}
 .vocab-btn svg{margin-bottom:4px;} .vocab-btn span{font-size:12px;font-weight:700;}
-.progress-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;}
-.progress-header{display:flex;justify-content:space-between;font-weight:700;font-size:14px;color:var(--text-muted);margin-bottom:15px;}
+
+.progress-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:16px 18px;margin-bottom:24px;}
+.progress-header{display:flex;justify-content:space-between;font-weight:700;font-size:14px;color:var(--text-muted);margin-bottom:10px;}
 .progress-bar-bg{width:100%;height:12px;background:var(--border-color);border-radius:6px;overflow:hidden;}
-.progress-bar-fill{width:0%;height:100%;background:var(--primary-blue);border-radius:6px;transition:width .4s;}
-.level-item{display:flex;flex-direction:column;align-items:center;margin-bottom:25px;text-align:center;cursor:pointer;}
-.level-circle{width:90px;height:90px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;margin-bottom:12px;background:var(--border-color);color:var(--text-muted);border:6px solid var(--bg-secondary);box-shadow:0 0 0 4px var(--border-color);transition:transform .2s;}
-.level-item:active .level-circle{transform:scale(.95);}
-.level-circle.unlocked{background:var(--primary-blue);color:#fff;box-shadow:0 0 0 4px rgba(28,126,214,.3);}
-.level-title{font-size:20px;font-weight:800;margin-bottom:5px;}
-.level-desc{font-size:14px;color:var(--text-muted);}
+.progress-bar-fill{width:0%;height:100%;background:var(--primary-blue);border-radius:6px;transition:width .4s ease;}
 
-/* Звёзды на карте уровней */
-.level-stars {
+/* ОБЩИЙ КОНТЕЙНЕР ДЛЯ ДИКТАНТОВ (длинный скролл) */
+#dictants-scroll-container {
   display: flex;
-  justify-content: center;
-  gap: 4px;
-  margin-top: 8px;
-}
-.level-stars .star {
-  font-size: 20px;
-  opacity: 0.25;
-  transition: all 0.3s;
-}
-.level-stars .star.filled {
-  opacity: 1;
-  color: var(--warning-border);
-  transform: scale(1.1);
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* ЭКРАН 4 */
+/* КАРТОЧКА ДИКТАНТА (баннер-заголовок) */
+.dictant-card {
+  background: var(--primary-blue);
+  border-radius: 18px;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 4px 0 #1565c0;
+  border: none;
+  margin-bottom: 12px;
+}
+
+.dict-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.dict-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.8;
+  letter-spacing: 0.6px;
+}
+
+.dict-card-sub {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.dict-card-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.dict-card-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.dict-card-btn span {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.dictant-progress-container {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  height: 8px;
+  margin-top: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dictant-progress-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 10px;
+  width: 0%;
+  transition: width 0.3s;
+}
+
+/* БЛОК УРОВНЕЙ ПОД КАЖДЫМ ДИКТАНТОМ */
+.levels-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 28px;
+  padding-top: 4px;
+}
+
+/* УРОВНИ */
+.level-item{display:flex;flex-direction:column;align-items:center;margin-bottom:26px;text-align:center;cursor:pointer;}
+.level-circle{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;margin-bottom:10px;background:var(--border-color);color:var(--text-muted);border:5px solid var(--bg-secondary);box-shadow:0 0 0 3px var(--border-color);transition:transform .15s;}
+.level-item:active .level-circle{transform:scale(.94);}
+.level-circle.unlocked{background:var(--primary-blue);color:#fff;box-shadow:0 0 0 4px rgba(28,126,214,.28);}
+.level-title{font-size:19px;font-weight:800;margin-bottom:4px;}
+.level-desc{font-size:14px;color:var(--text-muted);margin-bottom:6px;font-weight:600;}
+
+.level-stars { display: flex; justify-content: center; gap: 4px; }
+.level-stars .star { font-size: 20px; opacity: 0.25; transition: all 0.3s; }
+.level-stars .star.filled { opacity: 1; color: var(--warning-border); transform: scale(1.1); }
+
+.tasks-placeholder{background:var(--card-bg);border:2px solid var(--border-color);border-radius:20px;padding:28px 20px;text-align:center;margin-top:10px;}
+.tasks-placeholder h3{font-size:20px;font-weight:800;margin-bottom:8px;}
+.tasks-placeholder p{font-size:15px;color:var(--text-muted);line-height:1.5;font-weight:600;}
+
+/* ЭКРАН 4: СЛОВАРЬ */
 #screen-4{background:var(--bg-secondary);}
-.dict-content{padding:15px 20px;flex-grow:1;overflow-y:auto;}
-.category-header{font-size:13px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin:25px 0 10px 5px;}
-.term-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;margin-bottom:10px;cursor:pointer;overflow:hidden;transition:all .3s;}
-.term-header{padding:15px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
-.term-title{font-size:16px;font-weight:800;}
-.term-status{font-size:11px;font-weight:800;padding:3px 8px;border-radius:8px;flex-shrink:0;}
+.dict-header-bar{display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--bg-color);border-bottom:1px solid var(--border-color);}
+.dict-header-title{font-size:18px;font-weight:800;}
+.dict-content{padding:12px 20px 28px;flex-grow:1;overflow-y:auto;}
+.category-header{font-size:12px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin:18px 0 10px 4px;letter-spacing:.6px;}
+.term-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;margin-bottom:10px;cursor:pointer;overflow:hidden;transition:border-color .2s;}
+.term-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.term-title{font-size:15px;font-weight:800;line-height:1.3;}
+.term-status{font-size:11px;font-weight:800;padding:4px 8px;border-radius:8px;flex-shrink:0;text-transform:uppercase;}
 .status-hard{background:var(--error-bg);color:var(--error-border);}
 .status-easy{background:var(--success-bg);color:var(--success-border);}
-.status-new{background:var(--bg-secondary);color:var(--text-muted);}
-.term-body{max-height:0;opacity:0;padding:0 15px;transition:all .3s;overflow:hidden;}
+.status-new{background:var(--bg-secondary);color:var(--text-muted);border:1px solid var(--border-color);}
+.term-body{max-height:0;opacity:0;padding:0 16px;transition:all .25s ease;overflow:hidden;}
 .term-card.active{border-color:var(--primary-blue);}
-.term-card.active .term-body{max-height:800px;opacity:1;padding:0 15px 15px;}
-.def-text{font-size:15px;line-height:1.5;font-family:'Nunito',sans-serif;font-weight:600;}
-.term-points{font-size:11px;color:var(--text-muted);margin-top:6px;font-weight:700;font-family:'Nunito',sans-serif;}
+.term-card.active .term-body{max-height:500px;opacity:1;padding:0 16px 14px;}
+.def-text{font-size:14px;line-height:1.5;font-weight:600;color:var(--text-main);}
+.term-points{font-size:12px;color:var(--text-muted);margin-top:8px;font-weight:700;}
 
-/* ЭКРАН 5 */
+/* ЭКРАН 5: ИГРОВОЙ ПРОЦЕСС */
 #screen-5{background:var(--bg-secondary);}
-.task-top-bar{display:flex;align-items:center;padding:15px 20px;background:var(--bg-color);border-bottom:1px solid var(--border-color);}
-.task-close-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;margin-right:15px;display:flex;align-items:center;}
-.task-progress-bg{flex-grow:1;height:10px;background:var(--border-color);border-radius:5px;overflow:hidden;margin-right:15px;}
-.task-progress-fill{width:0%;height:100%;background:var(--primary-blue);border-radius:5px;transition:width .3s;}
-.task-hearts{display:flex;gap:3px;color:var(--heart-color);}
+.task-top-bar{display:flex;align-items:center;padding:14px 20px;background:var(--bg-color);border-bottom:1px solid var(--border-color);}
+.task-close-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;margin-right:14px;display:flex;align-items:center;padding:2px;}
+.task-progress-bg{flex-grow:1;height:12px;background:var(--border-color);border-radius:6px;overflow:hidden;margin-right:14px;}
+.task-progress-fill{width:0%;height:100%;background:var(--primary-blue);border-radius:6px;transition:width .3s;}
+.task-hearts{display:flex;align-items:center;gap:4px;color:var(--heart-color);font-weight:800;font-size:15px;}
 .task-content{padding:20px;flex-grow:1;overflow-y:auto;display:flex;flex-direction:column;}
 
-/* Общие стили заданий */
-.truefalse-title{font-size:14px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:15px;}
-.truefalse-term{font-size:20px;font-weight:800;margin-bottom:15px;}
-.truefalse-def{font-size:16px;line-height:1.5;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;font-weight:600;}
-.truefalse-buttons{display:flex;gap:15px;margin-top:auto;}
-.tf-btn{flex:1;padding:20px;border-radius:16px;font-size:18px;font-weight:800;border:2px solid var(--border-color);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Rubik',sans-serif;}
-.tf-btn.true-btn{background:var(--card-bg);color:var(--text-main);}
-.tf-btn.false-btn{background:var(--card-bg);color:var(--text-main);}
-.tf-btn.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.05);color:var(--primary-blue);}
+.truefalse-title{font-size:13px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;letter-spacing:.5px;}
+.truefalse-term{font-size:21px;font-weight:800;margin-bottom:14px;color:var(--primary-blue);}
+.truefalse-def{font-size:16px;line-height:1.55;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:18px;margin-bottom:20px;font-weight:600;}
+.truefalse-buttons{display:flex;gap:14px;margin-top:auto;}
+.tf-btn{flex:1;padding:18px 12px;border-radius:16px;font-size:16px;font-weight:800;border:2px solid var(--border-color);cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--card-bg);color:var(--text-main);}
+.tf-btn.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.08);color:var(--primary-blue);}
 .tf-btn.correct{border-color:var(--success-border);background:var(--success-bg);color:var(--success-border);}
 .tf-btn.wrong{border-color:var(--error-border);background:var(--error-bg);color:var(--error-border);}
-.tf-btn.partial{border-color:var(--warning-border);background:var(--warning-bg);color:var(--warning-border);}
 
-/* Найди ошибку */
-.find-error-instruction{font-size:15px;color:var(--text-muted);margin-bottom:15px;font-weight:600;}
-.find-error-text{font-size:18px;line-height:1.6;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:6px;font-weight:600;}
-.word-chip{padding:4px 6px;border-radius:6px;cursor:pointer;transition:background .2s,color .2s;}
-.word-chip:hover{background:rgba(28,126,214,.1);}
-.word-chip.selected{background:var(--primary-blue);color:white;}
+.find-error-instruction{font-size:15px;color:var(--text-muted);margin-bottom:14px;font-weight:600;}
+.find-error-term{font-size:18px;font-weight:800;margin-bottom:10px;color:var(--primary-blue);}
+.find-error-text{font-size:17px;line-height:1.65;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:18px;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:6px;font-weight:600;}
+.word-chip{padding:4px 7px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;}
+.word-chip:hover{background:rgba(28,126,214,.12);}
+.word-chip.selected{background:var(--primary-blue);color:#fff;}
 .word-chip.correct-fragment{background:var(--success-bg);color:var(--success-border);font-weight:700;}
 .word-chip.wrong-fragment{background:var(--error-bg);color:var(--error-border);text-decoration:line-through;}
 
-/* Маскот в вопросе */
-.task-question-block { display: flex; align-items: center; margin-bottom: 25px; width: 100%; }
-.task-character { width: 100px; max-width: 100px; height: auto; object-fit: contain; margin-right: -10px; z-index: 2; flex-shrink: 0; }
-.task-bubble { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 20px; padding: 20px; font-size: 18px; font-weight: 700; position: relative; flex-grow: 1; word-wrap: break-word; }
+.task-question-block { display: flex; align-items: center; margin-bottom: 20px; width: 100%; gap: 12px; }
+.task-character { width: 84px; height: auto; object-fit: contain; border-radius: 12px; flex-shrink: 0; }
+.task-bubble { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 18px; padding: 16px; font-size: 17px; font-weight: 700; flex-grow: 1; line-height: 1.4; }
 
-/* КОНСТРУКТОР */
-.builder-header{display:flex;align-items:flex-end;margin-bottom:25px;}
-.builder-mascot{width:90px;max-width:90px;height:auto;object-fit:contain;margin-right:-10px;z-index:2;margin-bottom:-10px;flex-shrink:0;}
-.builder-bubble{background:var(--card-bg);border:2px solid var(--border-color);border-radius:20px;padding:15px 20px;font-size:18px;font-weight:700;position:relative;flex-grow:1;margin-bottom:10px;word-wrap:break-word;}
-.builder-bubble::before{content:'';position:absolute;left:-12px;top:50%;transform:translateY(-50%) rotate(45deg);width:20px;height:20px;background:var(--card-bg);border-left:2px solid var(--border-color);border-bottom:2px solid var(--border-color);}
-.builder-answer-box{min-height:140px;display:flex;flex-direction:column;justify-content:flex-end;margin-bottom:30px;}
-.builder-line{border-bottom:2px solid var(--border-color);min-height:50px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;padding-bottom:5px;}
-.builder-pool{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;margin-bottom:20px;}
-.builder-word{background:var(--card-bg);border:2px solid var(--border-color);border-radius:12px;padding:12px 18px;font-size:16px;font-weight:600;color:var(--text-main);cursor:pointer;box-shadow:0 2px 0 var(--border-color);transition:transform .1s, background .2s;font-family:'Nunito',sans-serif;}
-.builder-word:active{transform:translateY(2px);box-shadow:none;}
-.builder-word.in-answer{background:var(--primary-blue);color:white;border-color:var(--primary-blue);box-shadow:none;margin-bottom:5px;}
+.builder-header{display:flex;align-items:center;margin-bottom:18px;gap:12px;}
+.builder-mascot{width:76px;height:auto;object-fit:contain;border-radius:12px;flex-shrink:0;}
+.builder-bubble{background:var(--card-bg);border:2px solid var(--border-color);border-radius:18px;padding:14px 16px;font-size:16px;font-weight:700;flex-grow:1;line-height:1.35;}
+.builder-answer-box{min-height:110px;display:flex;flex-direction:column;justify-content:flex-end;margin-bottom:20px;}
+.builder-line{border-bottom:2px solid var(--border-color);min-height:54px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;padding-bottom:8px;}
+.builder-pool{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;margin-bottom:16px;}
+.builder-word{background:var(--card-bg);border:2px solid var(--border-color);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:700;color:var(--text-main);cursor:pointer;box-shadow:0 2px 0 var(--border-color);}
+.builder-word.in-answer{background:var(--primary-blue);color:#fff;border-color:var(--primary-blue);box-shadow:none;}
 .builder-word.hidden{display:none;}
 
-/* Пары */
-.pairs-container{display:flex;flex-direction:column;gap:15px;margin-bottom:20px;}
-.pair-column{display:flex;flex-direction:column;gap:10px;}
-.pair-item{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:15px;font-size:15px;line-height:1.4;cursor:pointer;transition:all .2s;position:relative;font-weight:600;}
-.pair-item.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.05);}
-.pair-item.matched{border-color:var(--success-border);background:var(--success-bg);opacity:0.7;pointer-events:none;}
-.pair-item.correct-pair{border-color:var(--success-border);background:var(--success-bg);}
-.pair-item.wrong-pair{border-color:var(--error-border);background:var(--error-bg);}
+.pairs-sub{font-size:14px;color:var(--text-muted);font-weight:600;margin-bottom:14px;}
+.pairs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.pair-col{display:flex;flex-direction:column;gap:10px;}
+.pair-item{background:var(--card-bg);border:2px solid var(--border-color);border-radius:14px;padding:12px;font-size:13px;line-height:1.35;cursor:pointer;transition:all .15s;font-weight:700;min-height:68px;display:flex;align-items:center;}
+.pair-item.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.08);}
+.pair-item.matched{border-color:var(--success-border);background:var(--success-bg);color:var(--success-border);cursor:default;}
+.pair-item.wrong-pair{border-color:var(--error-border);background:var(--error-bg);color:var(--error-border);}
 
-/* Пропуски */
-.fill-blank-text{font-size:16px;line-height:1.6;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;font-family:'Nunito',sans-serif;font-weight:600;}
-.blank-input{border:2px solid var(--border-color);border-radius:10px;background:var(--bg-color);font-size:16px;padding:10px 12px;min-width:140px;color:var(--text-main);outline:none;font-family:'Nunito',sans-serif;width:100%;font-weight:600;}
-.blank-input:focus{border-color:var(--primary-blue);background:rgba(28,126,214,.05);}
-.blank-input.correct{border-color:var(--success-border);color:var(--success-border);font-weight:700;}
-.blank-input.wrong{border-color:var(--error-border);color:var(--error-border);}
-.blank-input.partial{border-color:var(--warning-border);color:var(--warning-border);}
-
-/* Ввод с клавиатуры */
-.keyboard-input-wrap{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:20px;}
-.keyboard-instruction{font-size:15px;color:var(--text-muted);margin-bottom:10px;font-family:'Nunito',sans-serif;font-weight:600;}
-.keyboard-input{width:100%;padding:15px;border:2px solid var(--border-color);border-radius:12px;font-size:16px;background:var(--bg-color);color:var(--text-main);outline:none;font-family:'Nunito',sans-serif;resize:vertical;min-height:100px;font-weight:600;}
+.keyboard-input-wrap{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:18px;margin-bottom:16px;}
+.keyboard-instruction{font-size:14px;color:var(--text-muted);margin-bottom:10px;font-weight:600;}
+.keyboard-input{width:100%;padding:14px;border:2px solid var(--border-color);border-radius:12px;font-size:15px;background:var(--bg-color);color:var(--text-main);outline:none;resize:vertical;min-height:110px;font-weight:600;line-height:1.45;}
 .keyboard-input:focus{border-color:var(--primary-blue);}
 .keyboard-input.correct{border-color:var(--success-border);background:var(--success-bg);}
 .keyboard-input.wrong{border-color:var(--error-border);background:var(--error-bg);}
-.keyboard-input.partial{border-color:var(--warning-border);background:var(--warning-bg);}
 
-/* Нижняя панель при ОШИБКЕ */
 .error-feedback-panel{
   background: var(--error-bg);
-  border-top: 1px solid var(--error-border);
-  padding: 20px;
+  border-top: 2px solid var(--error-border);
+  padding: 16px 20px;
   display: none;
   flex-direction: column;
-  animation: slideUp 0.3s ease;
   flex-shrink: 0;
 }
 .error-feedback-panel.show{ display: flex; }
-.error-feedback-panel.partial{ background: var(--warning-bg); border-top-color: var(--warning-border); }
-.error-feedback-panel.partial .error-feedback-title{ color: var(--warning-border); }
-@keyframes slideUp { from{opacity:0; transform: translateY(10px);} to{opacity:1; transform: translateY(0);} }
-.error-feedback-title{font-size:20px;font-weight:800;color:var(--error-border);margin-bottom:10px;}
-.error-feedback-text{font-size:15px;color:var(--text-main);line-height:1.4;margin-bottom:15px;font-family:'Nunito',sans-serif;font-weight:600;}
-.error-feedback-text b{color:var(--text-main);}
+.error-feedback-panel.success-panel{ background: var(--success-bg); border-top-color: var(--success-border); }
+.error-feedback-title{font-size:18px;font-weight:800;color:var(--error-border);margin-bottom:6px;}
+.error-feedback-panel.success-panel .error-feedback-title{color:var(--success-border);}
+.error-feedback-text{font-size:14px;color:var(--text-main);line-height:1.45;font-weight:600;}
 
-/* Общие стили ответов */
-.answer-option{display:flex;align-items:center;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:15px;margin-bottom:15px;cursor:pointer;font-size:16px;line-height:1.4;transition:all .2s;font-family:'Nunito',sans-serif;font-weight:600;}
-.answer-option:active{background:var(--bg-secondary);}
-.answer-number{width:30px;height:30px;border-radius:8px;border:2px solid var(--border-color);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--text-muted);margin-right:15px;flex-shrink:0;}
-.answer-option.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.05);}
+.answer-option{display:flex;align-items:center;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:14px 16px;margin-bottom:12px;cursor:pointer;font-size:15px;line-height:1.4;transition:all .15s;font-weight:600;}
+.answer-number{width:28px;height:28px;border-radius:8px;border:2px solid var(--border-color);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--text-muted);margin-right:14px;flex-shrink:0;}
+.answer-option.selected{border-color:var(--primary-blue);background:rgba(28,126,214,.06);}
 .answer-option.selected .answer-number{border-color:var(--primary-blue);color:var(--primary-blue);}
 .answer-option.correct{border-color:var(--success-border);background:var(--success-bg);}
 .answer-option.correct .answer-number{border-color:var(--success-border);color:var(--success-border);}
 .answer-option.wrong{border-color:var(--error-border);background:var(--error-bg);}
 .answer-option.wrong .answer-number{border-color:var(--error-border);color:var(--error-border);}
 
-.task-bottom-bar{padding:20px;background:var(--bg-color);border-top:2px solid var(--border-color);}
-.check-btn{width:100%;padding:20px;background:var(--border-color);color:var(--text-muted);border:none;border-radius:16px;font-size:18px;font-weight:700;cursor:not-allowed;text-transform:uppercase;transition:all .3s;}
-.check-btn.active{background:var(--primary-blue);color:#fff;cursor:pointer;}
+.task-bottom-bar{padding:16px 20px 24px;background:var(--bg-color);border-top:2px solid var(--border-color);flex-shrink:0;}
+.check-btn{width:100%;padding:18px;background:var(--border-color);color:var(--text-muted);border:none;border-radius:16px;font-size:17px;font-weight:700;cursor:not-allowed;text-transform:uppercase;}
+.check-btn.active{background:var(--primary-blue);color:#fff;cursor:pointer;box-shadow:0 4px 0 #1565c0;}
 .check-btn.success{background:var(--success-border);color:#fff;cursor:pointer;}
-.check-btn.partial{background:var(--warning-border);color:#fff;cursor:pointer;}
 .check-btn.error{background:var(--error-border);color:#fff;cursor:pointer;}
 
 /* ЭКРАН 6: GAME OVER */
-#screen-6{background:var(--bg-secondary);justify-content:flex-start;align-items:center;padding:30px 20px 20px;}
-.gameover-mascot{width:160px;height:auto;object-fit:contain;margin-bottom:15px;}
-.gameover-title{font-size:28px;font-weight:900;margin-bottom:10px;text-align:center;color:var(--text-main);}
-.gameover-sub{font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:25px;line-height:1.5;font-family:'Nunito',sans-serif;font-weight:600;}
-.mistake-list-title{font-size:13px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;width:100%;text-align:left;}
-.mistake-list{width:100%;flex-grow:1;overflow-y:auto;margin-bottom:20px;}
-.mistake-card{background:var(--card-bg);border:1px solid var(--border-color);border-radius:16px;padding:20px;margin-bottom:12px;}
-.mistake-term{font-size:16px;font-weight:800;margin-bottom:8px;}
-.mistake-def{font-size:14px;line-height:1.5;color:var(--text-muted);font-family:'Nunito',sans-serif;font-weight:600;}
-.gameover-actions{width:100%;display:flex;flex-direction:column;gap:12px;padding-bottom:10px;}
-.restart-btn{padding:18px;background:var(--primary-blue);color:#fff;border:none;border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Rubik',sans-serif;}
-.back-btn{padding:18px;background:var(--card-bg);color:var(--primary-blue);border:2px solid var(--border-color);border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Rubik',sans-serif;}
+#screen-6{background:var(--bg-secondary);justify-content:flex-start;align-items:center;padding:24px 20px 20px;}
+.gameover-mascot{width:140px;height:auto;object-fit:contain;margin-bottom:12px;border-radius:14px;}
+.gameover-title{font-size:26px;font-weight:800;margin-bottom:8px;text-align:center;}
+.gameover-sub{font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:20px;line-height:1.45;font-weight:600;}
+.mistake-list-title{font-size:12px;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:10px;width:100%;text-align:left;}
+.mistake-list{width:100%;flex-grow:1;overflow-y:auto;margin-bottom:16px;}
+.mistake-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:16px;margin-bottom:10px;}
+.mistake-term{font-size:15px;font-weight:800;margin-bottom:6px;color:var(--primary-blue);}
+.mistake-def{font-size:14px;line-height:1.45;color:var(--text-main);font-weight:600;}
+.gameover-actions{width:100%;display:flex;flex-direction:column;gap:10px;}
+.restart-btn{padding:16px;background:var(--primary-blue);color:#fff;border:none;border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;}
+.back-btn{padding:16px;background:var(--card-bg);color:var(--primary-blue);border:2px solid var(--border-color);border-radius:16px;font-size:16px;font-weight:700;cursor:pointer;}
 
 /* ЭКРАН 7: УРОВЕНЬ ПРОЙДЕН */
-#screen-7{background:var(--bg-secondary);justify-content:center;align-items:center;padding:30px 20px;}
-.result-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:24px;padding:30px 25px;width:100%;text-align:center;}
-.result-emoji{font-size:64px;margin-bottom:15px;}
-.result-title{font-size:26px;font-weight:800;margin-bottom:10px;}
-.result-sub{font-size:15px;color:var(--text-muted);margin-bottom:25px;line-height:1.5;font-family:'Nunito',sans-serif;font-weight:600;}
-.stars-row{display:flex;justify-content:center;gap:10px;margin-bottom:25px;}
-.star{font-size:40px;opacity:.25;transition:all .3s;}
+#screen-7{background:var(--bg-secondary);justify-content:center;align-items:center;padding:24px 20px;}
+.result-card{background:var(--card-bg);border:2px solid var(--border-color);border-radius:24px;padding:28px 22px;width:100%;text-align:center;}
+.result-emoji{font-size:58px;margin-bottom:10px;}
+.result-title{font-size:25px;font-weight:800;margin-bottom:8px;}
+.result-sub{font-size:15px;color:var(--text-muted);margin-bottom:20px;line-height:1.45;font-weight:600;}
+.stars-row{display:flex;justify-content:center;gap:10px;margin-bottom:20px;}
+.star{font-size:38px;opacity:.25;transition:all .3s;}
 .star.filled{opacity:1;transform:scale(1.1);color:var(--warning-border);}
-.result-stats{background:var(--bg-secondary);border-radius:12px;padding:15px;margin-bottom:25px;text-align:left;font-size:14px;font-family:'Nunito',sans-serif;font-weight:600;}
+.result-stats{background:var(--bg-secondary);border-radius:14px;padding:14px;margin-bottom:22px;text-align:left;font-size:14px;font-weight:600;}
 .result-stats div{margin-bottom:6px;}
 .result-stats div:last-child{margin-bottom:0;}
 .result-actions{display:flex;flex-direction:column;gap:10px;}
 
 /* НИЖНЕЕ МЕНЮ */
-.bottom-nav{display:flex;justify-content:space-around;align-items:center;padding:10px 20px 25px;background:var(--nav-bg);border-top:2px solid var(--border-color);}
-.nav-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;padding:8px;display:flex;align-items:center;justify-content:center;}
-.nav-btn.active-home{background:rgba(28,126,214,.1);color:var(--primary-blue);border:2px solid var(--primary-blue);border-radius:12px;}
+.bottom-nav{display:flex;justify-content:space-around;align-items:center;padding:10px 20px 22px;background:var(--nav-bg);border-top:2px solid var(--border-color);flex-shrink:0;}
+.nav-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;padding:10px 14px;display:flex;align-items:center;justify-content:center;border-radius:14px;}
+.nav-btn.active-home{background:rgba(28,126,214,.12);color:var(--primary-blue);border:2px solid var(--primary-blue);}
 
 /* НАСТРОЙКИ */
-.settings-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);display:none;align-items:flex-end;z-index:100;opacity:0;transition:opacity .3s;}
+.settings-overlay{position:absolute;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;z-index:100;opacity:0;transition:opacity .25s;}
 .settings-overlay.show{display:flex;opacity:1;}
-.settings-sheet{background:var(--bg-secondary);width:100%;border-radius:24px 24px 0 0;padding:25px 20px 30px;transform:translateY(100%);transition:transform .3s cubic-bezier(.175,.885,.32,1);}
+.settings-sheet{background:var(--bg-secondary);width:100%;border-radius:24px 24px 0 0;padding:24px 20px 30px;transform:translateY(100%);transition:transform .28s ease;}
 .settings-overlay.show .settings-sheet{transform:translateY(0);}
-.settings-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;}
-.settings-header h2{font-size:26px;font-weight:800;}
-.close-settings-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;padding:5px;}
-.section-title{font-size:12px;font-weight:800;text-transform:uppercase;color:var(--text-muted);letter-spacing:1px;margin-bottom:15px;}
-.theme-options{display:flex;gap:15px;margin-bottom:30px;}
-.theme-card{flex:1;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:15px;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .2s;}
-.theme-card.active{border-color:var(--primary-blue);background:rgba(28,126,214,.05);}
-body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
-.theme-preview{width:50px;height:60px;border-radius:8px;margin-bottom:10px;border:2px solid var(--border-color);position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;}
+.settings-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.settings-header h2{font-size:24px;font-weight:800;}
+.close-settings-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;padding:4px;}
+.section-title{font-size:12px;font-weight:800;text-transform:uppercase;color:var(--text-muted);letter-spacing:1px;margin-bottom:12px;}
+.theme-options{display:flex;gap:14px;margin-bottom:18px;}
+.theme-card{flex:1;background:var(--card-bg);border:2px solid var(--border-color);border-radius:16px;padding:14px;display:flex;flex-direction:column;align-items:center;cursor:pointer;}
+.theme-card.active{border-color:var(--primary-blue);background:rgba(28,126,214,.06);}
+.theme-preview{width:48px;height:56px;border-radius:8px;margin-bottom:8px;border:2px solid var(--border-color);position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;}
 .theme-preview.light{background:#fff;} .theme-preview.dark{background:#121212;border-color:#374151;}
-.theme-preview::after{content:'';width:25px;height:6px;background:#10b981;border-radius:3px;}
-.theme-name{font-size:16px;font-weight:700;}
-.settings-footer{text-align:center;font-size:13px;color:#9ca3af;margin-top:10px;font-family:'Nunito',sans-serif;}
-.reset-btn{width:100%;padding:14px;background:var(--error-bg);color:var(--error-border);border:2px solid var(--error-border);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:15px;font-family:'Rubik',sans-serif;}
+.theme-preview::after{content:'';width:24px;height:6px;background:#10b981;border-radius:3px;}
+.theme-name{font-size:15px;font-weight:700;}
+.reset-btn{width:100%;padding:14px;background:var(--error-bg);color:var(--error-border);border:2px solid var(--error-border);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;}
+.settings-footer{text-align:center;font-size:12px;color:var(--text-muted);margin-top:14px;font-weight:600;}
 
-/* ЭКРАН ЗАГЛУШКА КУРС 2 */
+/* ЗАГЛУШКА КУРС 2 */
 #screen-course2 { background: var(--bg-color); }
-.course2-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  text-align: center;
-}
-.course2-mascot {
-  width: 240px;
-  max-width: 80%;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 20px;
-}
-.course2-title {
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--text-main);
-}
+.course2-content { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+.course2-mascot { width: 210px; max-width: 80%; height: auto; object-fit: contain; margin-bottom: 18px; border-radius: 16px; }
+.course2-title { font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
+.course2-sub { font-size: 15px; color: var(--text-muted); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -322,8 +398,8 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
   <!-- ЭКРАН 1 -->
   <div id="screen-1" class="screen active">
     <div class="content-1">
-      <img src="Сорока.png" alt="Сорока" class="mascot-photo" onerror="this.src='https://via.placeholder.com/240x240?text=Сорока'">
-      <img src="Лого.png" alt="Логотип" class="logo-img" onerror="this.src='https://via.placeholder.com/280x90?text=Лого'">
+      <img src="Сорока.png" alt="Сорока" class="mascot-photo" onerror="this.src='https://via.placeholder.com/220x220/1c7ed6/ffffff?text=Comingo'">
+      <img src="Лого.png" alt="Логотип" class="logo-img" onerror="this.style.display='none'">
       <p class="subtitle">Выучи все определения шаг за<br>шагом</p>
     </div>
     <button class="start-btn" onclick="goToScreen('screen-2')">НАЧАТЬ</button>
@@ -333,23 +409,23 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
   <div id="screen-2" class="screen">
     <div class="top-bar">
       <button class="close-btn" onclick="resetAndGoBack()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
     <div class="main-content-2">
       <div class="character-block">
-        <img src="Пахомова.png" alt="Пахомова" class="character-photo" onerror="this.src='https://via.placeholder.com/120x150?text=Пахомова'">
+        <img src="Пахомова.png" alt="Пахомова" class="character-photo" onerror="this.src='https://via.placeholder.com/120x150/1c7ed6/ffffff?text=Гид'">
         <div class="speech-bubble">Что вы хотите<br>изучать?</div>
       </div>
-      <div class="option-card" id="card-methodology" onclick="selectOption(this)">
+      <div class="option-card" id="card-methodology" onclick="selectOption(this, 'methodology')">
         <div class="icon-box icon-purple">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         </div>
         <div class="option-title">Методология</div>
       </div>
-      <div class="option-card" id="card-statistics" onclick="selectOption(this)">
+      <div class="option-card" id="card-statistics" onclick="selectOption(this, 'statistics')">
         <div class="icon-box icon-blue">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
         <div class="option-title">Статистика</div>
       </div>
@@ -359,1479 +435,1160 @@ body.dark-theme .theme-card.active{background:rgba(59,130,246,.1);}
     </div>
   </div>
 
-  <!-- ЭКРАН 3 -->
+  <!-- ЭКРАН 3: МЕТОДОЛОГИЯ -->
   <div id="screen-3" class="screen">
     <div class="course-tabs">
-      <button class="tab-btn active" onclick="switchCourse(this, 'course1')">Курс 1</button>
-      <button class="tab-btn" onclick="switchCourse(this, 'course2')">Курс 2</button>
+      <button class="tab-btn active" onclick="switchCourse(this, 'course1', 'screen-3')">Курс 1</button>
+      <button class="tab-btn" onclick="switchCourse(this, 'course2', 'screen-3')">Курс 2</button>
     </div>
     <div class="main-content-3">
-      <div class="module-banner">
-        <div class="module-text"><h3>Методология</h3><h2>Определения</h2></div>
-        <button class="vocab-btn" onclick="goToScreen('screen-4')">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          <span>Словарь</span>
-        </button>
-      </div>
-      <div class="progress-card">
-        <div class="progress-header"><span>Освоено терминов</span><span id="mastery-counter">0 из 0</span></div>
-        <div class="progress-bar-bg"><div class="progress-bar-fill" id="mastery-fill"></div></div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('normal', 3, 'level-1')">
-        <div class="level-circle unlocked">1</div>
-        <div class="level-title">Знакомство</div>
-        <div class="level-desc">3 варианта, выбери верный</div>
-        <div class="level-stars" id="stars-level-1">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('recognition', 4, 'level-2')">
-        <div class="level-circle unlocked">2</div>
-        <div class="level-title">Узнавание</div>
-        <div class="level-desc">4 варианта, похожие по смыслу</div>
-        <div class="level-stars" id="stars-level-2">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('truefalse', 4, 'level-3')">
-        <div class="level-circle unlocked">3</div>
-        <div class="level-title">Верно или нет</div>
-        <div class="level-desc">Найди подмену в определении</div>
-        <div class="level-stars" id="stars-level-3">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('find-error', 3, 'level-4')">
-        <div class="level-circle unlocked">4</div>
-        <div class="level-title">Найди ошибку</div>
-        <div class="level-desc">Нажми на неверный фрагмент</div>
-        <div class="level-stars" id="stars-level-4">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('builder', 3, 'level-5')">
-        <div class="level-circle unlocked">5</div>
-        <div class="level-title">Конструктор</div>
-        <div class="level-desc">Собери определение из слов</div>
-        <div class="level-stars" id="stars-level-5">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('pairs', 3, 'level-6')">
-        <div class="level-circle unlocked">6</div>
-        <div class="level-title">Пары</div>
-        <div class="level-desc">Соедини термин со смыслом</div>
-        <div class="level-stars" id="stars-level-6">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('traps', 3, 'level-7')">
-        <div class="level-circle unlocked">7</div>
-        <div class="level-title">Ловушки</div>
-        <div class="level-desc">5 похожих определений</div>
-        <div class="level-stars" id="stars-level-7">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('manual', 3, 'level-8')">
-        <div class="level-circle unlocked">8</div>
-        <div class="level-title">Вручную</div>
-        <div class="level-desc">Впиши определение с клавиатуры</div>
-        <div class="level-stars" id="stars-level-8">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
-
-      <div class="level-item" onclick="startTaskLevel('exam', 3, 'level-9')">
-        <div class="level-circle unlocked">9</div>
-        <div class="level-title">Экзамен</div>
-        <div class="level-desc">Всё сразу: сборка, ввод, пары</div>
-        <div class="level-stars" id="stars-level-9">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-      </div>
+      <div id="meth-dictants-scroll"></div>
     </div>
     <div class="bottom-nav">
-      <button class="nav-btn" onclick="goToScreen('screen-2')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
-      <button class="nav-btn active-home" onclick="goToScreen('screen-3')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
-      <button class="nav-btn" onclick="toggleSettings(true)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+      <button class="nav-btn" onclick="goToScreen('screen-2')" title="Выбор раздела"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+      <button class="nav-btn active-home" onclick="goToScreen('screen-3')" title="Главная"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+      <button class="nav-btn" onclick="openSettings()" title="Настройки"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ЭКРАН СТАТИСТИКА -->
+  <div id="screen-statistics" class="screen">
+    <div class="course-tabs">
+      <button class="tab-btn active" onclick="switchCourse(this, 'course1', 'screen-statistics')">Курс 1</button>
+      <button class="tab-btn" onclick="switchCourse(this, 'course2', 'screen-statistics')">Курс 2</button>
+    </div>
+    <div class="dict-tabs">
+      <button class="dict-tab active" id="tab-dictants" onclick="switchStatSubtab('dictants')">Диктанты</button>
+      <button class="dict-tab" id="tab-tasks" onclick="switchStatSubtab('tasks')">Задачи</button>
+    </div>
+
+    <div class="main-content-3" id="stat-dictants-view">
+      <div id="stat-dictants-scroll"></div>
+    </div>
+
+    <div class="main-content-3" id="stat-tasks-view" style="display:none;">
+      <div class="tasks-placeholder">
+        <h3>Раздел «Задачи»</h3>
+        <p>Практические задачи по статистике для модуля «Совокупности, шкалы и инструменты» будут добавлены сюда.</p>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <button class="nav-btn" onclick="goToScreen('screen-2')" title="Выбор раздела"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+      <button class="nav-btn active-home" onclick="goToScreen('screen-statistics')" title="Главная"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button>
+      <button class="nav-btn" onclick="openSettings()" title="Настройки"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
     </div>
   </div>
 
   <!-- ЭКРАН 4: СЛОВАРЬ -->
   <div id="screen-4" class="screen">
-    <div class="course-tabs">
-      <button class="tab-btn active" onclick="switchCourse(this, 'course1')">Курс 1</button>
-      <button class="tab-btn" onclick="switchCourse(this, 'course2')">Курс 2</button>
+    <div class="dict-header-bar">
+      <button class="task-close-btn" onclick="goBackFromDict()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      </button>
+      <div class="dict-header-title" id="dict-header-title">Словарь</div>
     </div>
-    <div class="dict-content" id="dict-content"></div>
-    <div class="bottom-nav">
-      <button class="nav-btn" onclick="goToScreen('screen-3')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
-      <button class="nav-btn" onclick="goToScreen('screen-3')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
-      <button class="nav-btn" onclick="toggleSettings(true)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
-    </div>
+    <div class="dict-content" id="dict-list"></div>
   </div>
 
-  <!-- ЭКРАН 5: ЗАДАНИЕ -->
+  <!-- ЭКРАН 5: ИГРОВОЙ ЭКРАН -->
   <div id="screen-5" class="screen">
     <div class="task-top-bar">
-      <button class="task-close-btn" onclick="quitTask()">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <button class="task-close-btn" onclick="exitTask()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-      <div class="task-progress-bg"><div class="task-progress-fill" id="task-progress"></div></div>
+      <div class="task-progress-bg">
+        <div class="task-progress-fill" id="task-progress-fill"></div>
+      </div>
       <div class="task-hearts" id="task-hearts"></div>
     </div>
 
-    <div class="task-content" id="task-content-area"></div>
+    <div class="task-content" id="task-content"></div>
 
-    <div class="error-feedback-panel" id="error-feedback">
-      <div class="error-feedback-title">Неверно</div>
-      <div class="error-feedback-text" id="error-feedback-text"></div>
+    <div class="error-feedback-panel" id="feedback-panel">
+      <div class="error-feedback-title" id="feedback-title"></div>
+      <div class="error-feedback-text" id="feedback-text"></div>
     </div>
 
     <div class="task-bottom-bar">
-      <button class="check-btn" id="task-check-btn" onclick="checkAnswer()">ПРОВЕРИТЬ</button>
+      <button class="check-btn" id="check-btn" disabled onclick="handleCheckOrNext()">ПРОВЕРИТЬ</button>
     </div>
   </div>
 
   <!-- ЭКРАН 6: GAME OVER -->
   <div id="screen-6" class="screen">
-    <img src="метода ч.png" alt="Маскот" class="gameover-mascot" onerror="this.src='https://via.placeholder.com/160x200?text=Грустный+Маскот'">
-    <h2 class="gameover-title">Сердца закончились</h2>
-    <p class="gameover-sub">Ничего страшного. Перечитай<br>определения ниже и попробуй ещё раз:<br>задания будут другими.</p>
-
-    <div class="mistake-list-title">ПОВТОРИ ЭТИ ТЕРМИНЫ</div>
+    <img src="Сорока.png" alt="Сорока" class="gameover-mascot" onerror="this.style.display='none'">
+    <div class="gameover-title">Сердца закончились!</div>
+    <div class="gameover-sub">Повтори термины, в которых возникли ошибки, и попробуй снова.</div>
+    <div class="mistake-list-title">Ошибки в попытке</div>
     <div class="mistake-list" id="mistake-list"></div>
-
     <div class="gameover-actions">
-      <button class="restart-btn" onclick="restartLevel()">ПОПРОБОВАТЬ СНОВА</button>
-      <button class="back-btn" onclick="goToScreen('screen-3')">НА КАРТУ</button>
+      <button class="restart-btn" onclick="restartCurrentLevel()">ПОПРОБОВАТЬ СНОВА</button>
+      <button class="back-btn" onclick="exitTask()">ВЕРНУТЬСЯ К УРОВНЯМ</button>
     </div>
   </div>
 
   <!-- ЭКРАН 7: УРОВЕНЬ ПРОЙДЕН -->
   <div id="screen-7" class="screen">
     <div class="result-card">
-      <div class="result-emoji" id="result-emoji">🏆</div>
+      <div class="result-emoji" id="result-emoji">🎉</div>
       <div class="result-title" id="result-title">Уровень пройден!</div>
-      <div class="result-sub" id="result-sub">Отличная работа</div>
-      <div class="stars-row" id="stars-row">
-        <span class="star">★</span>
-        <span class="star">★</span>
-        <span class="star">★</span>
+      <div class="result-sub" id="result-sub">Отличная работа над определениями.</div>
+      <div class="stars-row" id="result-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span>
       </div>
       <div class="result-stats" id="result-stats"></div>
       <div class="result-actions">
-        <button class="restart-btn" onclick="restartLevel()">ЕЩЁ РАЗ</button>
-        <button class="back-btn" onclick="goToScreen('screen-3')">НА КАРТУ</button>
+        <button class="restart-btn" onclick="restartCurrentLevel()">ПЕРЕПРОЙТИ</button>
+        <button class="back-btn" onclick="exitTask()">К СПИСКУ УРОВНЕЙ</button>
       </div>
     </div>
   </div>
 
-  <!-- ЭКРАН: ЗАГЛУШКА КУРС 2 -->
+  <!-- ЭКРАН ЗАГЛУШКА КУРС 2 -->
   <div id="screen-course2" class="screen">
     <div class="course-tabs">
-      <button class="tab-btn" onclick="switchCourse(this, 'course1')">Курс 1</button>
-      <button class="tab-btn active" onclick="switchCourse(this, 'course2')">Курс 2</button>
+      <button class="tab-btn" onclick="switchCourse(this, 'course1', 'screen-course2')">Курс 1</button>
+      <button class="tab-btn active" onclick="switchCourse(this, 'course2', 'screen-course2')">Курс 2</button>
     </div>
     <div class="course2-content">
-      <img src="Бурина.png" alt="Бурина" class="course2-mascot" onerror="this.src='https://via.placeholder.com/240x240?text=Бурина'">
-      <h2 class="course2-title">Скоро</h2>
-    </div>
-    <div class="bottom-nav">
-      <button class="nav-btn" onclick="goToScreen('screen-2')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
-      <button class="nav-btn" onclick="goToScreen('screen-3')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
-      <button class="nav-btn" onclick="toggleSettings(true)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+      <img src="Бурина.png" alt="Бурина" class="course2-mascot" onerror="this.style.display='none'">
+      <div class="course2-title">Курс 2 скоро откроется</div>
+      <div class="course2-sub">Пока доступен «Курс 1»</div>
     </div>
   </div>
 
-  <!-- НАСТРОЙКИ -->
-  <div class="settings-overlay" id="settings-modal" onclick="overlayClick(event)">
+  <!-- МОДАЛЬНОЕ ОКНО НАСТРОЕК -->
+  <div class="settings-overlay" id="settings-overlay" onclick="closeSettingsOnBackdrop(event)">
     <div class="settings-sheet">
       <div class="settings-header">
         <h2>Настройки</h2>
-        <button class="close-settings-btn" onclick="toggleSettings(false)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        <button class="close-settings-btn" onclick="closeSettings()">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
-      <div class="section-title">Тема</div>
+      <div class="section-title">Тема оформления</div>
       <div class="theme-options">
-        <div class="theme-card active" id="theme-light" onclick="setTheme('light')"><div class="theme-preview light"></div><div class="theme-name">Светлая</div></div>
-        <div class="theme-card" id="theme-dark" onclick="setTheme('dark')"><div class="theme-preview dark"></div><div class="theme-name">Тёмная</div></div>
+        <div class="theme-card active" id="theme-light" onclick="setTheme('light')">
+          <div class="theme-preview light"></div>
+          <div class="theme-name">Светлая</div>
+        </div>
+        <div class="theme-card" id="theme-dark" onclick="setTheme('dark')">
+          <div class="theme-preview dark"></div>
+          <div class="theme-name">Тёмная</div>
+        </div>
       </div>
-      <div class="section-title">Данные</div>
-      <button class="reset-btn" onclick="resetProgress()">Сбросить весь прогресс</button>
-      <div class="settings-footer">замечания и предложения - @wild_abobus</div>
+      <button class="reset-btn" onclick="resetProgress()">Сбросить прогресс текущего диктанта</button>
+      <div class="settings-footer">Comingo · Методология и Статистика</div>
     </div>
   </div>
 
 </div>
 
 <script>
-/* ============================================================
-   БАЗА ДАННЫХ ТЕРМИНОВ
-   ============================================================ */
-const TERMS = [
-  { id:'methodology', category:'Основы методологии', term:'Методология', correct:'Учение о системе принципов и способов организации теоретической и практической научной деятельности.' },
-  { id:'method', category:'Основы методологии', term:'Метод', correct:'Совокупность приёмов и операций теоретического или практического освоения действительности, а также человеческой деятельности, организованной определённым образом.' },
-  { id:'technique', category:'Основы методологии', term:'Техника', correct:'Совокупность приёмов для использования метода.' },
-  { id:'methodics', category:'Основы методологии', term:'Методика', correct:'Общая система действий и последовательность операций.' },
-  { id:'procedure', category:'Основы методологии', term:'Процедура', correct:'Технические приёмы, связанные с методом, и их последовательность.' },
-  { id:'methodology-role', category:'Основы методологии', term:'Роль методологии', correct:'Выступает фундаментом исследования, определяя логику научного поиска и правила организации познавательной деятельности.' },
-  { id:'req-researcher', category:'Требования', term:'Требования к исследователю', correct:'Объективность и беспристрастность; теоретическая эрудиция; совершенное владение методологией и методами СИ.' },
-  { id:'req-info', category:'Требования', term:'Требования к социальной информации', correct:'Объективность; достоверность; обоснованность; надёжность; репрезентативность; валидность.' },
-  { id:'objectivity', category:'Качества информации', term:'Объективность', correct:'Стремление воспроизвести и объяснить явление/процесс, отвлекаясь от ценностной точки зрения исследователя, его теоретической предубеждённости, отказ от субъективности.' },
-  { id:'reliability', category:'Качества информации', term:'Достоверность', correct:'Истинность знания об объективной действительности, которая должна быть обеспечена на всех этапах СИ: подготовительном, полевом, адекватных способов обработки и анализа информации.' },
-  { id:'certainty', category:'Качества информации', term:'Надёжность', correct:'Уверенность в том, что исследователь имеет дело с подлинными, а не иллюзорными фактами, что эти факты сгруппированы по определённому правилу, а не собраны случайно и бессистемно.' },
-  { id:'representativeness', category:'Качества информации', term:'Репрезентативность', correct:'Свойство достаточно точно отражать выборкой генеральную совокупность по заданному составу признаков объекта и состоянию репрезентируемых качеств.' },
-  { id:'social-info', category:'Исследование', term:'Социальная информация', correct:'Информация, полученная в результате социального исследования, совокупность знаний, сведений, данных, получаемых исследователем из различных источников как объективного, так и субъективного характера.' },
-  { id:'sociological-research', category:'Исследование', term:'Понятие социологического исследования', correct:'Система логически последовательных методологических и организационных процедур, связанных между собой единой целью: получить достоверные данные об изучаемом явлении или процессе, о тенденциях и противоречиях их развития, чтобы эти данные могли быть использованы в практике управления общественной деятельностью.' },
-  { id:'social-research', category:'Исследование', term:'Социальное исследование (СИ)', correct:'Система логически последовательных процедур, связанных единой целью получить достоверные данные об изучаемом явлении для их использования в практике управления.' },
-  { id:'experiment', category:'Исследование', term:'Эксперимент', correct:'Вид исследования, с помощью которого путём управления условиями изучаемой ситуации проверяются гипотезы о причинно-следственных связях.' },
-  { id:'social-monitoring', category:'Исследование', term:'Социальный мониторинг', correct:'Целостный комплекс действий по получению и хранению первичных сведений об изучаемом объекте, явлении, процессе в динамике.' },
-  { id:'research-stage', category:'Исследование', term:'Этап исследования', correct:'Стадия реализации целей и задач исследования, которая характеризуется относительной независимостью, логической последовательностью, а также содержательной преемственностью.' },
-  { id:'program', category:'Исследование', term:'Программа СИ', correct:'Научный документ, в котором содержатся методологические, методические и процедурные основы изучения социальной проблемы.' },
-  { id:'problem', category:'Исследование', term:'Проблема', correct:'Теоретический или практический вопрос, который требует изучения и разрешения.' },
-  { id:'problem-situation', category:'Исследование', term:'Проблемная ситуация', correct:'Такие сложные обстоятельства в социальной жизни, которые требуют теоретического обдумывания и/или практического разрешения.' },
-  { id:'functions-si', category:'Виды исследований', term:'Функции СИ', correct:'Исследовательская (изучение реального состояния ситуации), управленческая (выявление тенденций для принятия решений), информационная (сбор достоверных сведений).' },
-  { id:'exploratory', category:'Виды исследований', term:'Разведывательное исследование', correct:'Оперативный сбор предварительной информации и апробация инструментария.' },
-  { id:'descriptive', category:'Виды исследований', term:'Описательное исследование', correct:'Получение эмпирических данных для целостного представления о структуре объекта.' },
-  { id:'analytical', category:'Виды исследований', term:'Аналитическое исследование', correct:'Выявление факторов и причин, обусловивших развитие явления.' },
-  { id:'point', category:'Виды исследований', term:'Разовые (точечные) исследования', correct:'Изучают структуру предмета в статике в конкретный момент времени.' },
-  { id:'repeated', category:'Виды исследований', term:'Повторные исследования', correct:'Изучают объект в динамике и развитии. Делятся на трендовые, когортные, панельные и лонгитюдные.' },
-  { id:'monographic', category:'Виды исследований', term:'Монографическое исследование', correct:'Детальное изучение одного случая (case-study).' },
-  { id:'continuous', category:'Виды исследований', term:'Сплошное исследование', correct:'Охват всех единиц наблюдения (обычно при объёме ГС до 500–700 человек).' },
-  { id:'sampling', category:'Виды исследований', term:'Выборочное исследование', correct:'Изучение части объекта для выводов о целом.' },
-  { id:'stages', category:'Этапы и структура', term:'Этапы исследования', correct:'Подготовительный (программирование), полевой (сбор данных), этап обработки и анализа, и итоговый (представление результатов). Все этапы логически взаимосвязаны, ошибки на подготовительном этапе ведут к недостоверности итогов.' },
-  { id:'program-functions', category:'Этапы и структура', term:'Функции программы исследования', correct:'Методологическая, методическая, организационная.' },
-  { id:'program-elements', category:'Этапы и структура', term:'Элементы программы исследования', correct:'Методологический раздел (проблема, объект, предмет, цель, задачи, гипотезы, понятия) и методико-процедурный раздел (выборка, методы, план).' },
-  { id:'ontological', category:'Этапы и структура', term:'Онтологическая сторона проблемной ситуации', correct:'Реальное противоречие в социальной действительности.' },
-  { id:'epistemological', category:'Этапы и структура', term:'Гносеологическая сторона проблемной ситуации', correct:'Отсутствие или недостаточность знаний для решения социальной проблемы.' },
-  { id:'object', category:'Этапы и структура', term:'Объект', correct:'Носитель социальной проблемы (группы, общности), на который направлен интерес.' },
-  { id:'preliminary-analysis', category:'Этапы и структура', term:'Предварительный анализ', correct:'Системный и факторный анализ, необходимый для обоснования выборки и понимания структуры объекта.' },
-  { id:'subject', category:'Этапы и структура', term:'Предмет', correct:'Наиболее существенные свойства и отношения объекта, подлежащие изучению.' },
-  { id:'goal', category:'Этапы и структура', term:'Цель', correct:'Общая направленность на ожидаемый конечный результат.' },
-  { id:'tasks', category:'Этапы и структура', term:'Задачи', correct:'Детализация цели, требования к анализу проблемы.' },
-  { id:'task-types', category:'Этапы и структура', term:'Виды задач', correct:'Основные (решение проблемы в целом) и неосновные (отдельные стороны).' },
-  { id:'hypothesis', category:'Этапы и структура', term:'Гипотеза', correct:'Научное предположение для объяснения фактов. Она необходима для проверки теоретических догадок через эмпирические данные.' },
-  { id:'hypothesis-req', category:'Этапы и структура', term:'Требования к гипотезам', correct:'Должны быть проверяемыми, логически непротиворечивыми и направленными на поиск алгоритмов решения социальных проблем.' },
-  { id:'random-sampling', category:'Выборка', term:'Методы случайной выборки', correct:'Случайный, стратифицированный (районированный), гнездовой (кластерный).' },
-  { id:'targeted-sampling', category:'Выборка', term:'Методы целенаправленной выборки', correct:'Квотный отбор, «снежный ком», стихийная выборка, основной массив, отбор типичных представителей.' },
-  { id:'population', category:'Совокупности и выборка', term:'Генеральная совокупность', correct:'Вся совокупность объектов, из которых производится выборка.' },
-  { id:'stats-population', category:'Совокупности и выборка', term:'Статистическая совокупность', correct:'Совокупность объектов или явлений общественной жизни, отобранных для изучения определённого свойства.' },
-  { id:'sample', category:'Совокупности и выборка', term:'Выборочная совокупность (выборка)', correct:'Часть элементов генеральной совокупности, отбираемая исследователем для изучения.' }
-];
-
-/* ============================================================
-   КОНСТАНТЫ ПРОГРЕССА
-   ============================================================ */
-const MAX_POINTS = 8;
-const MASTERY_THRESHOLD = 6;
-const WRONG_PENALTY = 1.5;
-
-const POINTS_WEIGHT = {
-  choice: 1,
-  'find-error': 1.75,
-  tf: 0.75,
-  pairs: 1.25,
-  'pairs-perfect': 1.25,
-  'pairs-partial': 0.25,
-  blank: 1.5,
-  builder: 2,
-  manual: 2.5
+// --- БАЗА ДАННЫХ ДИКТАНТОВ ---
+const DICTANTS = {
+  meth1: {
+    id: 'meth1',
+    section: 'methodology',
+    title: 'Диктант 1',
+    subtitle: 'Определения методологии',
+    terms: [
+      { id: 1001, category: "Основы методологии", term: "Методология", def: "Учение о системе принципов и способов организации теоретической и практической научной деятельности." },
+      { id: 1002, category: "Основы методологии", term: "Метод", def: "Совокупность приёмов и операций теоретического или практического освоения действительности, а также человеческой деятельности, организованной определённым образом." },
+      { id: 1003, category: "Основы методологии", term: "Техника", def: "Совокупность приёмов для использования метода." },
+      { id: 1004, category: "Основы методологии", term: "Методика", def: "Общая система действий и последовательность операций." },
+      { id: 1005, category: "Основы методологии", term: "Процедура", def: "Технические приёмы, связанные с методом, и их последовательность." },
+      { id: 1006, category: "Основы методологии", term: "Роль методологии", def: "Выступает фундаментом исследования, определяя логику научного поиска и правила организации познавательной деятельности." },
+      { id: 1007, category: "Требования", term: "Требования к исследователю", def: "Объективность и беспристрастность; теоретическая эрудиция; совершенное владение методологией и методами СИ." },
+      { id: 1008, category: "Требования", term: "Требования к социальной информации", def: "Объективность; достоверность; обоснованность; надёжность; репрезентативность; валидность." },
+      { id: 1009, category: "Качества информации", term: "Объективность", def: "Стремление воспроизвести и объяснить явление/процесс, отвлекаясь от ценностной точки зрения исследователя, его теоретической предубеждённости, отказ от субъективности." },
+      { id: 1010, category: "Качества информации", term: "Достоверность", def: "Истинность знания об объективной действительности, которая должна быть обеспечена на всех этапах СИ: подготовительном, полевом, адекватных способов обработки и анализа информации." },
+      { id: 1011, category: "Качества информации", term: "Надёжность", def: "Уверенность в том, что исследователь имеет дело с подлинными, а не иллюзорными фактами, что эти факты сгруппированы по определённому правилу, а не собраны случайно и бессистемно." },
+      { id: 1012, category: "Качества информации", term: "Репрезентативность", def: "Свойство достаточно точно отражать выборкой генеральную совокупность по заданному составу признаков объекта и состоянию репрезентируемых качеств." },
+      { id: 1013, category: "Исследование", term: "Социальная информация", def: "Информация, полученная в результате социального исследования, совокупность знаний, сведений, данных, получаемых исследователем из различных источников как объективного, так и субъективного характера." },
+      { id: 1014, category: "Исследование", term: "Понятие социологического исследования", def: "Система логически последовательных методологических и организационных процедур, связанных между собой единой целью: получить достоверные данные об изучаемом явлении или процессе, о тенденциях и противоречиях их развития, чтобы эти данные могли быть использованы в практике управления общественной деятельностью." },
+      { id: 1015, category: "Исследование", term: "Социальное исследование (СИ)", def: "Система логически последовательных процедур, связанных единой целью получить достоверные данные об изучаемом явлении для их использования в практике управления." },
+      { id: 1016, category: "Исследование", term: "Эксперимент", def: "Вид исследования, с помощью которого путём управления условиями изучаемой ситуации проверяются гипотезы о причинно-следственных связях." },
+      { id: 1017, category: "Исследование", term: "Социальный мониторинг", def: "Целостный комплекс действий по получению и хранению первичных сведений об изучаемом объекте, явлении, процессе в динамике." },
+      { id: 1018, category: "Исследование", term: "Этап исследования", def: "Стадия реализации целей и задач исследования, которая характеризуется относительной независимостью, логической последовательностью, а также содержательной преемственностью." },
+      { id: 1019, category: "Исследование", term: "Программа СИ", def: "Научный документ, в котором содержатся методологические, методические и процедурные основы изучения социальной проблемы." },
+      { id: 1020, category: "Исследование", term: "Проблема", def: "Теоретический или практический вопрос, который требует изучения и разрешения." },
+      { id: 1021, category: "Исследование", term: "Проблемная ситуация", def: "Такие сложные обстоятельства в социальной жизни, которые требуют теоретического обдумывания и/или практического разрешения." },
+      { id: 1022, category: "Виды исследований", term: "Функции СИ", def: "Исследовательская (изучение реального состояния ситуации), управленческая (выявление тенденций для принятия решений), информационная (сбор достоверных сведений)." },
+      { id: 1023, category: "Виды исследований", term: "Разведывательное исследование", def: "Оперативный сбор предварительной информации и апробация инструментария." },
+      { id: 1024, category: "Виды исследований", term: "Описательное исследование", def: "Получение эмпирических данных для целостного представления о структуре объекта." },
+      { id: 1025, category: "Виды исследований", term: "Аналитическое исследование", def: "Выявление факторов и причин, обусловивших развитие явления." },
+      { id: 1026, category: "Виды исследований", term: "Разовые (точечные) исследования", def: "Изучают структуру предмета в статике в конкретный момент времени." },
+      { id: 1027, category: "Виды исследований", term: "Повторные исследования", def: "Изучают объект в динамике и развитии. Делятся на трендовые, когортные, панельные и лонгитюдные." },
+      { id: 1028, category: "Виды исследований", term: "Монографическое исследование", def: "Детальное изучение одного случая (case-study)." },
+      { id: 1029, category: "Виды исследований", term: "Сплошное исследование", def: "Охват всех единиц наблюдения (обычно при объёме ГС до 500–700 человек)." },
+      { id: 1030, category: "Виды исследований", term: "Выборочное исследование", def: "Изучение части объекта для выводов о целом." },
+      { id: 1031, category: "Этапы и структура", term: "Этапы исследования", def: "Подготовительный (программирование), полевой (сбор данных), этап обработки и анализа, и итоговый (представление результатов). Все этапы логически взаимосвязаны, ошибки на подготовительном этапе ведут к недостоверности итогов." },
+      { id: 1032, category: "Этапы и структура", term: "Функции программы исследования", def: "Методологическая, методическая, организационная." },
+      { id: 1033, category: "Этапы и структура", term: "Элементы программы исследования", def: "Методологический раздел (проблема, объект, предмет, цель, задачи, гипотезы, понятия) и методико-процедурный раздел (выборка, методы, план)." },
+      { id: 1034, category: "Этапы и структура", term: "Онтологическая сторона проблемной ситуации", def: "Реальное противоречие в социальной действительности." },
+      { id: 1035, category: "Этапы и структура", term: "Гносеологическая сторона проблемной ситуации", def: "Отсутствие или недостаточность знаний для решения социальной проблемы." },
+      { id: 1036, category: "Этапы и структура", term: "Объект", def: "Носитель социальной проблемы (группы, общности), на который направлен интерес." },
+      { id: 1037, category: "Этапы и структура", term: "Предварительный анализ", def: "Системный и факторный анализ, необходимый для обоснования выборки и понимания структуры объекта." },
+      { id: 1038, category: "Этапы и структура", term: "Предмет", def: "Наиболее существенные свойства и отношения объекта, подлежащие изучению." },
+      { id: 1039, category: "Этапы и структура", term: "Цель", def: "Общая направленность на ожидаемый конечный результат." },
+      { id: 1040, category: "Этапы и структура", term: "Задачи", def: "Детализация цели, требования к анализу проблемы." },
+      { id: 1041, category: "Этапы и структура", term: "Виды задач", def: "Основные (решение проблемы в целом) и неосновные (отдельные стороны)." },
+      { id: 1042, category: "Этапы и структура", term: "Гипотеза", def: "Научное предположение для объяснения фактов. Она необходима для проверки теоретических догадок через эмпирические данные." },
+      { id: 1043, category: "Этапы и структура", term: "Требования к гипотезам", def: "Должны быть проверяемыми, логически непротиворечивыми и направленными на поиск алгоритмов решения социальных проблем." },
+      { id: 1044, category: "Выборка", term: "Методы случайной выборки", def: "Случайный, стратифицированный (районированный), гнездовой (кластерный)." },
+      { id: 1045, category: "Выборка", term: "Методы целенаправленной выборки", def: "Квотный отбор, «снежный ком», стихийная выборка, основной массив, отбор типичных представителей." },
+      { id: 1046, category: "Совокупности и выборка", term: "Генеральная совокупность", def: "Вся совокупность объектов, из которых производится выборка." },
+      { id: 1047, category: "Совокупности и выборка", term: "Статистическая совокупность", def: "Совокупность объектов или явлений общественной жизни, отобранных для изучения определённого свойства." },
+      { id: 1048, category: "Совокупности и выборка", term: "Выборочная совокупность (выборка)", def: "Часть элементов генеральной совокупности, отбираемая исследователем для изучения." }
+    ]
+  },
+  stat1: {
+    id: 'stat1',
+    section: 'statistics',
+    title: 'Диктант 1',
+    subtitle: 'Совокупности и шкалы',
+    terms: [
+      { id: 1, category: "Совокупности и выборка", term: "Статистическая совокупность", def: "Совокупность объектов или явлений общественной жизни, отобранных для изучения определённого свойства." },
+      { id: 2, category: "Совокупности и выборка", term: "Генеральная совокупность", def: "Полная совокупность объектов, явлений или индивидов, относящихся к изучаемой проблеме." },
+      { id: 3, category: "Совокупности и выборка", term: "Выборочная совокупность (выборка)", def: "Часть элементов генеральной совокупности, отбираемая исследователем для изучения." },
+      { id: 4, category: "Совокупности и выборка", term: "Элемент статистической совокупности", def: "Отдельная единица наблюдения — носитель признаков, подлежащих изучению (человек, домохозяйство, текст и т.д.)." },
+      { id: 5, category: "Совокупности и выборка", term: "Репрезентативность выборки", def: "Способность выборки передавать свойства, процессы и явления генеральной совокупности." },
+      { id: 6, category: "Измерения и шкалы", term: "Измерение", def: "Наблюдение объекта и присвоение ему символов по определённым правилам." },
+      { id: 7, category: "Измерения и шкалы", term: "Измерительная шкала", def: "Правила (алгоритм) присвоения объектам символов, отражающих характеристики объекта." },
+      { id: 8, category: "Измерения и шкалы", term: "Номинальная шкала", def: "Шкала, разбивающая объекты на непересекающиеся классы без порядка." },
+      { id: 9, category: "Измерения и шкалы", term: "Дихотомическая шкала", def: "Частный случай номинальной шкалы с двумя категориями (ДА/НЕТ)." },
+      { id: 10, category: "Измерения и шкалы", term: "Шкала порядка (ординальная)", def: "Шкала, позволяющая упорядочивать объекты по степени выраженности признака." },
+      { id: 11, category: "Измерения и шкалы", term: "Шкала оценок", def: "Порядковая шкала, выражающая степень выраженности свойства в баллах." },
+      { id: 12, category: "Измерения и шкалы", term: "Ранговая шкала", def: "Шкала, в которой объектам присваиваются ранги без равных интервалов между ними." },
+      { id: 13, category: "Измерения и шкалы", term: "Интервальная шкала", def: "Количественная шкала, не имеющая абсолютного нуля; позволяет измерять разницу между значениями." },
+      { id: 14, category: "Измерения и шкалы", term: "Шкала отношений", def: "Количественная шкала с абсолютным нулём; позволяет сравнивать значения как отношения." },
+      { id: 15, category: "Измерения и шкалы", term: "Непрерывная шкала", def: "Шкала, допускающая любые значения в диапазоне измерения." },
+      { id: 16, category: "Измерения и шкалы", term: "Дискретная шкала", def: "Шкала, допускающая только целые значения, измеряемые счётом." },
+      { id: 17, category: "Инструменты, вопросы и методы", term: "Измерительный инструментарий", def: "Набор инструментов и методов, используемых для измерения характеристик объекта." },
+      { id: 18, category: "Инструменты, вопросы и методы", term: "Альтернативный вопрос", def: "Закрытый вопрос, предполагающий выбор одного варианта из двух." },
+      { id: 19, category: "Инструменты, вопросы и методы", term: "Неальтернативный вопрос", def: "Вопрос, допускающий несколько вариантов ответа или открытый ответ." },
+      { id: 20, category: "Инструменты, вопросы и методы", term: "Реактивные методы", def: "Методы, при которых субъект осознаёт участие в исследовании и может менять поведение." },
+      { id: 21, category: "Инструменты, вопросы и методы", term: "Нереактивные методы", def: "Методы, при которых объект не осознаёт участия в исследовании." },
+      { id: 22, category: "Показатели и свойства инструмента", term: "Индикатор", def: "Первичный измеряемый признак, отражающий наблюдаемую характеристику объекта." },
+      { id: 23, category: "Показатели и свойства инструмента", term: "Индекс", def: "Вторичный показатель, полученный путём комбинации нескольких индикаторов." },
+      { id: 24, category: "Показатели и свойства инструмента", term: "Валидность инструмента", def: "Способность инструмента измерять именно то свойство, которое предполагается исследовать." },
+      { id: 25, category: "Показатели и свойства инструмента", term: "Точность инструмента", def: "Степень совпадения измерения с реальным значением признака." },
+      { id: 26, category: "Показатели и свойства инструмента", term: "Надёжность инструмента", def: "Способность инструмента давать устойчивые, воспроизводимые результаты." },
+      { id: 27, category: "Показатели и свойства инструмента", term: "Чувствительность инструмента", def: "Способность инструмента фиксировать малые различия в выраженности признака." }
+    ]
+  },
+  stat2: {
+    id: 'stat2',
+    section: 'statistics',
+    title: 'Диктант 2',
+    subtitle: 'Частоты и группировки',
+    terms: [
+      { id: 101, category: "Частоты и таблицы", term: "Переменная", def: "Свойство объектов из ГС, которое может измеряться для разных объектов." },
+      { id: 102, category: "Частоты и таблицы", term: "Значение переменной", def: "Символ, фиксирующее значение переменной." },
+      { id: 103, category: "Частоты и таблицы", term: "Частота значения переменной", def: "Количество объектов в выборке или в ГС, обладающих данным значением." },
+      { id: 104, category: "Частоты и таблицы", term: "Абсолютная частота", def: "Количество объектов, обладающих значением fi." },
+      { id: 105, category: "Частоты и таблицы", term: "Относительная частота", def: "Процент или доля от единицы. fi:n." },
+      { id: 106, category: "Частоты и таблицы", term: "Накопленная частота", def: "Количество, процент или доля объектов, имеющих значение не превосходящих текущее значение." },
+      { id: 107, category: "Частоты и таблицы", term: "Таблица частот", def: "Таблица, содержащая количество переменных и их частот." },
+      { id: 108, category: "Группировки", term: "Группировка (в общем смысле)", def: "Процесс систематизации данных по заданным признакам." },
+      { id: 109, category: "Группировки", term: "Группировка количественной переменной", def: "Процедура разделения её шкалы на интервалы." },
+      { id: 110, category: "Группировки", term: "Группировка объектов", def: "Распределение объектов из выборки по классам, образованных значениями дискретных или интервалами непрерывных переменных." },
+      { id: 111, category: "Группировки", term: "Типологическая группировка", def: "Разделение шкалы на небольшое количество интервалов, имеющих содержательную интерпретацию." },
+      { id: 112, category: "Группировки", term: "Аналитическая группировка", def: "Специальная методика деления массива данных на небольшое количество мелких, равных между собой интервалов." },
+      { id: 113, category: "Группировки", term: "Квантильная (процентильная) группировка", def: "Группировка, представляющая собой разбитие на заданное число интервалов, содержащий равный процент наблюдений." },
+      { id: 114, category: "Группировки", term: "Квантиль (процентиль)", def: "Значение, ниже которого лежит данная часть выборки (доля)." },
+      { id: 115, category: "Группировки", term: "Медианная группировка", def: "Разделение совокупности на две части по медиане." },
+      { id: 116, category: "Графики и диаграммы", term: "Статистический одномерный график", def: "Визуализация одномерных распределений. График должен облегчить восприятие." },
+      { id: 117, category: "Графики и диаграммы", term: "Круговая диаграмма", def: "График для номинальных переменных. Не строится для порядковых и количественных. Не слишком большое число секторов." },
+      { id: 118, category: "Графики и диаграммы", term: "Диаграмма столбцов (полос)", def: "Номинальная или порядковая шкала. Высота = частота." },
+      { id: 119, category: "Графики и диаграммы", term: "Полигон распределения", def: "Для порядковых и количественных шкал. Значения без пропусков. По абсолютным или относительным частотам." },
+      { id: 120, category: "Графики и диаграммы", term: "Ленточная диаграмма", def: "Для любых шкал. Абсолютные или относительные частоты. Показывают результаты нескольких групп или динамику во времени." },
+      { id: 121, category: "Графики и диаграммы", term: "Редуцированная ленточная диаграмма", def: "То же самое что и ленточная. Длины полос выражаются в процентах." },
+      { id: 122, category: "Графики и диаграммы", term: "Плотность распределения", def: "Значение частоты из расчета на одну единицу измерения признака." },
+      { id: 123, category: "Графики и диаграммы", term: "Кумуляты", def: "График представляющий собой ломанную линию. У - накопленные частоты. Х - значения." },
+      { id: 124, category: "Графики и диаграммы", term: "График интерквартильного диапазона", def: "«Ящик с усами» строится только для квартильной группировки. Размер от q1 до q3. Усы от Хмакс до Хмин." }
+    ]
+  },
+  stat3: {
+    id: 'stat3',
+    section: 'statistics',
+    title: 'Диктант 3',
+    subtitle: 'Меры центральной тенденции и разброса',
+    terms: [
+      { id: 201, category: "Меры центральной тенденции", term: "Мера центральной тенденции", def: "Показатель, служащий для описания совокупности значений одним числом." },
+      { id: 202, category: "Меры центральной тенденции", term: "Мода", def: "Значение переменной, которому соответствует максимальная частота в распределении частот." },
+      { id: 203, category: "Меры центральной тенденции", term: "Медиана", def: "Значение переменной, которое делит выборку пополам таким образом, что половина выборки имеет значение, не превосходящее медиану, а вторая половина больше, чем медиана." },
+      { id: 204, category: "Меры центральной тенденции", term: "Среднее арифметическое", def: "Показывает, каким было бы значение переменной, если бы у всех объектов выборки оно было бы одинаковым." },
+      { id: 205, category: "Меры центральной тенденции", term: "Усеченное среднее арифметическое", def: "Статистическая мера, которая предполагает усреднение набора данных после удаления некоторого процента самых больших и самых маленьких значений." },
+      { id: 206, category: "Меры разброса", term: "Меры разброса данных", def: "Показатели, характеризующие величину индивидуальных отклонений от центральной тенденции." },
+      { id: 207, category: "Меры разброса", term: "Диапазон", def: "Разница между наибольшим и наименьшим значением признака в изучаемой совокупности." },
+      { id: 208, category: "Меры разброса", term: "Интерквартильный диапазон", def: "Характеризует разброс 50% всех значений, находящихся в центре распределения." },
+      { id: 209, category: "Меры разброса", term: "Отклонение от среднего арифметического", def: "Разность между индивидуальным значением переменной и средним арифметическим." },
+      { id: 210, category: "Меры разброса", term: "Дисперсия", def: "Средний квадрат отклонений значений переменной от среднего арифметического." },
+      { id: 211, category: "Меры разброса", term: "Среднее квадратическое отклонение", def: "Показывает, насколько в среднем индивидуальные значения переменной отклоняются от среднего арифметического." },
+      { id: 212, category: "Меры разброса", term: "Коэффициент вариации", def: "Показывает, сколько процентов составляет СКО от среднего арифметического." },
+      { id: 213, category: "Форма распределения", term: "Протяженность формы распределения", def: "Интервал на действительной оси между Хмин и Хмах." },
+      { id: 214, category: "Форма распределения", term: "Положительные асимметричные распределения", def: "Если коэффициент асимметрии больше 0, то правый хвост длиннее левого." },
+      { id: 215, category: "Форма распределения", term: "Отрицательные асимметричные распределения", def: "Если коэффициент асимметрии меньше 0, то левый хвост распределения длиннее правого." },
+      { id: 216, category: "Стандартизация", term: "Стандартизация (для чего проводится)", def: "Процесс преобразования данных из различных источников в согласованный формат." },
+      { id: 217, category: "Стандартизация", term: "Z-оценки", def: "Даёт представление о том, насколько значение далеко от среднего значения." }
+    ]
+  }
 };
 
-const PARTIAL_FACTOR = 0.5;
+const LEVELS = [
+  { id: 'level-1', num: 1, mode: 'normal', optionsCount: 3, title: 'Знакомство', desc: '3 варианта, выбери верное определение' },
+  { id: 'level-2', num: 2, mode: 'recognition', optionsCount: 4, title: 'Узнавание', desc: '4 варианта, отличи по смыслу' },
+  { id: 'level-3', num: 3, mode: 'truefalse', optionsCount: 2, title: 'Верно или нет', desc: 'Проверь, соответствует ли определение термину' },
+  { id: 'level-4', num: 4, mode: 'find-error', optionsCount: 0, title: 'Найди ошибку', desc: 'Нажми на фрагмент с искажением смысла' },
+  { id: 'level-5', num: 5, mode: 'builder', optionsCount: 0, title: 'Конструктор', desc: 'Собери определение из ключевых слов' },
+  { id: 'level-6', num: 6, mode: 'pairs', optionsCount: 0, title: 'Пары', desc: 'Соедини 3 термина с определениями' },
+  { id: 'level-7', num: 7, mode: 'traps', optionsCount: 5, title: 'Ловушки', desc: '5 вариантов — не попадись на подмену' },
+  { id: 'level-8', num: 8, mode: 'manual', optionsCount: 0, title: 'Ввод ответа', desc: 'Напиши термин по его определению' }
+];
 
-const DEFAULT_DICT_ID = 'methodology-course1';
-let currentDictId = DEFAULT_DICT_ID;
-function storageKey(dictId) { return 'comingo_points_v1_' + dictId; }
+const STORAGE_KEY = 'comingo_app_state_v6';
 
-/* ============================================================
-   ПРОГРЕСС
-   ============================================================ */
-let progress = loadProgress(currentDictId);
+let state = {
+  selectedOption: null,
+  activeSection: 'methodology',
+  lastHubScreen: 'screen-3',
+  currentMethDictantId: 'meth1',
+  currentStatDictantId: 'stat1',
+  progress: {
+    meth1: {}, stat1: {}, stat2: {}, stat3: {}
+  },
+  stars: {
+    meth1: {}, stat1: {}, stat2: {}, stat3: {}
+  },
+  theme: 'light'
+};
 
-function loadProgress(dictId) {
+let session = {
+  dictantId: 'meth1',
+  level: null,
+  questions: [],
+  currentIndex: 0,
+  hearts: 3,
+  selectedAnswer: null,
+  checked: false,
+  mistakes: [],
+  correctCount: 0,
+  builderSelected: [],
+  pairsState: { left: null, right: null, matched: [] }
+};
+
+function getActiveDictantId(sectionOverride) {
+  const sec = sectionOverride || state.activeSection;
+  return sec === 'statistics' ? state.currentStatDictantId : state.currentMethDictantId;
+}
+
+function getCurrentTerms(dictantId) {
+  const dId = dictantId || getActiveDictantId();
+  return DICTANTS[dId].terms;
+}
+
+function loadState() {
   try {
-    const raw = localStorage.getItem(storageKey(dictId));
+    const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      let changed = false;
-      TERMS.forEach(t => {
-        if (!parsed[t.id]) {
-          parsed[t.id] = freshEntry();
-          changed = true;
-        } else {
-          if (typeof parsed[t.id].points !== 'number') { parsed[t.id].points = 0; changed = true; }
-          if (typeof parsed[t.id].mistakes !== 'number') parsed[t.id].mistakes = 0;
-          if (typeof parsed[t.id].correctCount !== 'number') parsed[t.id].correctCount = 0;
-          if (typeof parsed[t.id].status !== 'string') parsed[t.id].status = 'new';
-        }
-      });
-      if (changed) saveProgress(parsed, dictId);
-      return parsed;
+      state = { ...state, ...parsed };
     }
-  } catch(e) {}
+  } catch (e) {}
 
-  const fresh = {};
-  TERMS.forEach(t => { fresh[t.id] = freshEntry(); });
-  return fresh;
+  if (!DICTANTS[state.currentMethDictantId]) state.currentMethDictantId = 'meth1';
+  if (!DICTANTS[state.currentStatDictantId]) state.currentStatDictantId = 'stat1';
+
+  Object.keys(DICTANTS).forEach(dId => {
+    if (!state.progress[dId]) state.progress[dId] = {};
+    DICTANTS[dId].terms.forEach(t => {
+      if (typeof state.progress[dId][t.id] !== 'number') state.progress[dId][t.id] = 0;
+    });
+    if (!state.stars[dId]) state.stars[dId] = {};
+    LEVELS.forEach(l => {
+      if (typeof state.stars[dId][l.id] !== 'number') state.stars[dId][l.id] = 0;
+    });
+  });
+
+  setTheme(state.theme || 'light', false);
 }
 
-function freshEntry() {
-  return { points: 0, status: 'new', mistakes: 0, correctCount: 0 };
-}
-
-function saveProgress(customProgress = null, dictId = currentDictId) {
+function saveState() {
   try {
-    localStorage.setItem(storageKey(dictId), JSON.stringify(customProgress || progress));
-  } catch(e) {}
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {}
 }
 
-function resetProgress() {
-  if (!confirm('Сбросить весь прогресс по терминам и звёздам?')) return;
-  progress = {};
-  TERMS.forEach(t => { progress[t.id] = freshEntry(); });
-  saveProgress();
-  
-  // Сброс звёзд
-  for (let i = 1; i <= 9; i++) {
-    localStorage.removeItem('comingo_stars_level-' + i);
-  }
-
-  refreshMapUI();
-  renderDictionary();
-  alert('Прогресс сброшен.');
-}
-
-function addPoints(termId, weight, partial = false) {
-  const p = progress[termId] || freshEntry();
-  progress[termId] = p;
-  let add = weight * (partial ? PARTIAL_FACTOR : 1);
-  p.points = Math.min(MAX_POINTS, (p.points || 0) + add);
-  p.correctCount = (p.correctCount || 0) + 1;
-  if (partial) p.status = p.status === 'hard' ? 'hard' : 'easy';
-  else p.status = 'easy';
-  saveProgress();
-}
-
-function subtractPoints(termId) {
-  const p = progress[termId] || freshEntry();
-  progress[termId] = p;
-  p.points = Math.max(0, (p.points || 0) - WRONG_PENALTY);
-  p.mistakes = (p.mistakes || 0) + 1;
-  p.status = 'hard';
-  saveProgress();
-}
-
-/* ============================================================
-   ЗВЁЗДЫ
-   ============================================================ */
-function getStarsForLevel(levelId) {
-  if (!levelId) return 0;
-  const saved = localStorage.getItem('comingo_stars_' + levelId);
-  return saved ? parseInt(saved, 10) : 0;
-}
-
-function saveStarsForLevel(levelId, stars) {
-  if (!levelId) return;
-  const current = getStarsForLevel(levelId);
-  if (stars > current) {
-    localStorage.setItem('comingo_stars_' + levelId, stars.toString());
-  }
-}
-
-function renderStarsOnMap() {
-  const levelItems = document.querySelectorAll('.main-content-3 .level-item');
-  levelItems.forEach((item) => {
-    const levelId = item.getAttribute('onclick')?.match(/'level-\d+'/)?.[0]?.replace(/'/g, '');
-    if (!levelId) return;
-    
-    const stars = getStarsForLevel(levelId);
-    const starsContainer = item.querySelector('.level-stars');
-    if (starsContainer) {
-      const starSpans = starsContainer.querySelectorAll('.star');
-      starSpans.forEach((span, i) => {
-        span.classList.toggle('filled', i < stars);
-      });
-    }
+function syncCourseTabs(activeCourse) {
+  document.querySelectorAll('.course-tabs').forEach(tabsEl => {
+    const btns = tabsEl.querySelectorAll('.tab-btn');
+    btns.forEach((btn, idx) => {
+      const isCourse1 = idx === 0;
+      const matches = (activeCourse === 'course1' && isCourse1) || (activeCourse === 'course2' && !isCourse1);
+      btn.classList.toggle('active', matches);
+    });
   });
 }
 
-/* ============================================================
-   НАВИГАЦИЯ
-   ============================================================ */
-function goToScreen(id) {
+function goToScreen(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if (id === 'screen-3') {
-    refreshMapUI();
-    renderStarsOnMap();
+  const target = document.getElementById(screenId);
+  if (target) target.classList.add('active');
+
+  if (screenId === 'screen-course2') {
+    syncCourseTabs('course2');
+  } else if (screenId === 'screen-3' || screenId === 'screen-statistics') {
+    syncCourseTabs('course1');
   }
-  if (id === 'screen-4') renderDictionary();
+
+  if (screenId === 'screen-3') {
+    state.activeSection = 'methodology';
+    state.lastHubScreen = 'screen-3';
+    saveState();
+    renderMethodologyHub();
+  } else if (screenId === 'screen-statistics') {
+    state.activeSection = 'statistics';
+    state.lastHubScreen = 'screen-statistics';
+    saveState();
+    renderStatisticsHub();
+  }
 }
 
-let selectedTopic = null;
-function selectOption(card) {
-  document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
-  selectedTopic = card.id;
-  const btn = document.getElementById('continue-btn');
-  btn.classList.add('active');
-  btn.disabled = false;
-}
-function proceedToTasks() { if (selectedTopic) goToScreen('screen-3'); }
 function resetAndGoBack() {
+  state.selectedOption = null;
   document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-  selectedTopic = null;
   const btn = document.getElementById('continue-btn');
   btn.classList.remove('active');
   btn.disabled = true;
   goToScreen('screen-1');
 }
 
-function switchCourse(btn, course) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  
-  document.querySelectorAll('.course-tabs').forEach(container => {
-    const btns = container.querySelectorAll('.tab-btn');
-    if (btns.length >= 2) {
-      if (course === 'course1') {
-        btns[0].classList.add('active');
-        btns[1].classList.remove('active');
-      } else {
-        btns[1].classList.add('active');
-        btns[0].classList.remove('active');
-      }
-    }
-  });
+function selectOption(cardEl, optionKey) {
+  document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  cardEl.classList.add('selected');
+  state.selectedOption = optionKey;
+  const btn = document.getElementById('continue-btn');
+  btn.classList.add('active');
+  btn.disabled = false;
+}
 
-  if (course === 'course2') {
+function proceedToTasks() {
+  if (!state.selectedOption) return;
+  state.activeSection = state.selectedOption;
+  const target = state.selectedOption === 'statistics' ? 'screen-statistics' : 'screen-3';
+  state.lastHubScreen = target;
+  saveState();
+  goToScreen(target);
+}
+
+function switchCourse(btnEl, courseKey) {
+  syncCourseTabs(courseKey);
+
+  if (courseKey === 'course2') {
     goToScreen('screen-course2');
   } else {
-    goToScreen('screen-3');
+    const target = state.activeSection === 'statistics' ? 'screen-statistics' : 'screen-3';
+    goToScreen(target);
   }
 }
 
-function toggleTerm(card) { card.classList.toggle('active'); }
-
-/* ============================================================
-   НАСТРОЙКИ / ТЕМА
-   ============================================================ */
-function toggleSettings(show) {
-  const m = document.getElementById('settings-modal');
-  if (show) { m.style.display='flex'; setTimeout(()=>m.classList.add('show'),10); }
-  else { m.classList.remove('show'); setTimeout(()=>m.style.display='none',300); }
-}
-function overlayClick(e) { if (e.target === document.getElementById('settings-modal')) toggleSettings(false); }
-function setTheme(theme) {
-  const body = document.body;
-  const l = document.getElementById('theme-light');
-  const d = document.getElementById('theme-dark');
-  if (theme==='light') { body.classList.remove('dark-theme'); l.classList.add('active'); d.classList.remove('active'); }
-  else { body.classList.add('dark-theme'); d.classList.add('active'); l.classList.remove('active'); }
-  localStorage.setItem('comingo_theme', theme);
-}
-(function initTheme(){
-  const t = localStorage.getItem('comingo_theme');
-  if (t === 'dark') setTheme('dark');
-})();
-
-/* ============================================================
-   UI КАРТЫ
-   ============================================================ */
-function countMastered() {
-  return TERMS.filter(t => (progress[t.id]?.points || 0) >= MASTERY_THRESHOLD).length;
-}
-function averageProgress() {
-  if (!TERMS.length) return 0;
-  const sum = TERMS.reduce((acc, t) => acc + (progress[t.id]?.points || 0), 0);
-  return sum / (TERMS.length * MAX_POINTS);
-}
-function refreshMapUI() {
-  const mastered = countMastered();
-  const total = TERMS.length;
-  document.getElementById('mastery-counter').textContent = `${mastered} из ${total}`;
-  const avg = averageProgress();
-  document.getElementById('mastery-fill').style.width = `${avg * 100}%`;
+function returnFromCourse2() {
+  const target = state.activeSection === 'statistics' ? 'screen-statistics' : 'screen-3';
+  goToScreen(target);
 }
 
-/* ============================================================
-   СЛОВАРЬ
-   ============================================================ */
-function renderDictionary() {
-  const container = document.getElementById('dict-content');
-  const byCategory = {};
-  TERMS.forEach(t => {
-    if (!byCategory[t.category]) byCategory[t.category] = [];
-    byCategory[t.category].push(t);
+function switchStatSubtab(subtab) {
+  document.getElementById('tab-dictants').classList.toggle('active', subtab === 'dictants');
+  document.getElementById('tab-tasks').classList.toggle('active', subtab === 'tasks');
+  document.getElementById('stat-dictants-view').style.display = subtab === 'dictants' ? 'block' : 'none';
+  document.getElementById('stat-tasks-view').style.display = subtab === 'tasks' ? 'block' : 'none';
+}
+
+// === НОВЫЙ РЕНДЕР: ДИКТАНТ + ЕГО УРОВНИ В ОДНОМ БЛОКЕ ===
+function renderDictantBlock(dId) {
+  const dict = DICTANTS[dId];
+  const terms = dict.terms;
+  const total = terms.length;
+  const mastered = terms.filter(t => (state.progress[dId][t.id] || 0) >= 2).length;
+  const pct = total ? Math.round((mastered / total) * 100) : 0;
+
+  let levelsHtml = '';
+  LEVELS.forEach(lvl => {
+    const earned = (state.stars[dId] && state.stars[dId][lvl.id]) || 0;
+    const starsHtml = [1, 2, 3].map(i => `<span class="star ${i <= earned ? 'filled' : ''}">★</span>`).join('');
+    levelsHtml += `
+      <div class="level-item" onclick="startTaskLevel('${lvl.id}', '${dId}')">
+        <div class="level-circle unlocked">${lvl.num}</div>
+        <div class="level-title">${lvl.title}</div>
+        <div class="level-desc">${lvl.desc}</div>
+        <div class="level-stars">${starsHtml}</div>
+      </div>
+    `;
   });
-  const mastered = countMastered();
-  const avg = averageProgress();
-  let html = `
-    <div class="progress-card" style="margin-top:10px;">
-      <div class="progress-header"><span>Освоено терминов</span><span>${mastered} из ${TERMS.length}</span></div>
-      <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${avg * 100}%"></div></div>
-    </div>`;
-  for (const cat in byCategory) {
+
+  return `
+    <div class="dictant-block" style="margin-bottom:16px;">
+      <div class="dictant-card">
+        <div class="dict-card-info">
+          <div class="dict-card-label">ДИКТАНТ ${dId.endsWith('1') ? '1' : (dId.endsWith('2') ? '2' : '3')}</div>
+          <div class="dict-card-sub">${dict.subtitle}</div>
+          <div class="dictant-progress-container">
+            <div class="dictant-progress-fill" style="width: ${pct}%"></div>
+          </div>
+        </div>
+        <div class="dict-card-btn" onclick="event.stopPropagation(); openDictionaryById('${dId}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <span>Словарь</span>
+        </div>
+      </div>
+      <div class="levels-group">
+        ${levelsHtml}
+      </div>
+    </div>
+  `;
+}
+
+function renderMethodologyHub() {
+  const container = document.getElementById('meth-dictants-scroll');
+  if (!container) return;
+  // Для методологии показываем только диктанты раздела methodology
+  const available = Object.keys(DICTANTS).filter(id => DICTANTS[id].section === 'methodology');
+  container.innerHTML = available.map(id => renderDictantBlock(id)).join('');
+}
+
+function renderStatisticsHub() {
+  const container = document.getElementById('stat-dictants-scroll');
+  if (!container) return;
+  // Для статистики показываем ВСЕ диктанты раздела statistics (включая stat3)
+  const available = Object.keys(DICTANTS).filter(id => DICTANTS[id].section === 'statistics');
+  container.innerHTML = available.map(id => renderDictantBlock(id)).join('');
+}
+
+function renderHubs() {
+  renderMethodologyHub();
+  renderStatisticsHub();
+}
+
+function openDictionary(sectionOverride) {
+  if (sectionOverride) state.activeSection = sectionOverride;
+  const dId = getActiveDictantId();
+  openDictionaryById(dId);
+}
+
+function openDictionaryById(dId) {
+  state.activeSection = DICTANTS[dId].section;
+  state.currentMethDictantId = DICTANTS[dId].section === 'methodology' ? dId : state.currentMethDictantId;
+  state.currentStatDictantId = DICTANTS[dId].section === 'statistics' ? dId : state.currentStatDictantId;
+  saveState();
+  renderDictionary(dId);
+  goToScreen('screen-4');
+}
+
+function goBackFromDict() {
+  const target = state.activeSection === 'statistics' ? 'screen-statistics' : 'screen-3';
+  goToScreen(target);
+}
+
+function renderDictionary(dIdParam) {
+  const dId = dIdParam || getActiveDictantId();
+  const listEl = document.getElementById('dict-list');
+  const dict = DICTANTS[dId];
+  const sectionLabel = dict.section === 'statistics' ? 'Статистика' : 'Методология';
+  document.getElementById('dict-header-title').textContent = `Словарь · ${sectionLabel} (${dict.title})`;
+
+  const categories = [...new Set(dict.terms.map(t => t.category))];
+  let html = '';
+
+  categories.forEach(cat => {
     html += `<div class="category-header">${cat}</div>`;
-    byCategory[cat].forEach(t => {
-      const p = progress[t.id] || freshEntry();
-      const statusLabel = p.status==='hard'?'Трудный':p.status==='easy'?'Лёгкий':'Новый';
-      const statusClass = p.status==='hard'?'status-hard':p.status==='easy'?'status-easy':'status-new';
-      const pts = Math.round((p.points || 0) * 10) / 10;
+    const items = dict.terms.filter(t => t.category === cat);
+    items.forEach(item => {
+      const pts = state.progress[dId][item.id] || 0;
+      let statusClass = 'status-new', statusLabel = 'Новый';
+      if (pts >= 2) { statusClass = 'status-easy'; statusLabel = 'Освоен'; }
+      else if (pts < 0) { statusClass = 'status-hard'; statusLabel = 'Сложный'; }
+
       html += `
-        <div class="term-card" onclick="toggleTerm(this)">
+        <div class="term-card" onclick="this.classList.toggle('active')">
           <div class="term-header">
-            <span class="term-title">${t.term}</span>
+            <div class="term-title">${item.term}</div>
             <span class="term-status ${statusClass}">${statusLabel}</span>
           </div>
           <div class="term-body">
-            <div class="def-text">${t.correct}</div>
-            <div class="term-points">Баллов: ${pts} / ${MAX_POINTS}${pts >= MASTERY_THRESHOLD ? ' · освоено' : ''}</div>
+            <div class="def-text">${item.def}</div>
+            <div class="term-points">Прогресс термина: ${pts} ${pts >= 2 ? '(освоен)' : '(нужно 2 балла)'}</div>
           </div>
-        </div>`;
+        </div>
+      `;
     });
-  }
-  container.innerHTML = html;
+  });
+
+  listEl.innerHTML = html;
 }
 
-/* ============================================================
-   ЛОГИКА ЗАДАНИЙ
-   ============================================================ */
-let game = null;
-let isAnswerSelected = false;
-let isAnswerChecked = false;
-let selectedIsCorrect = false;
-let selectedIsPartial = false;
-
-let builderAnswer = [];
-let builderPool = [];
-let pairsState = null;
-let keyboardAnswer = '';
-let blankAnswer = '';
-
-function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) {
+function shuffleArray(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    [copy[i], copy[j]] = [copy[j], copy[i]];
   }
-  return a;
-}
-function splitWords(text) {
-  return text.split(/\s+/).filter(w => w.length > 0);
+  return copy;
 }
 
-/* ============================================================
-   ФАБРИКИ ЗАДАНИЙ
-   ============================================================ */
-function makeFindErrorTask(term) {
-  const words = splitWords(term.correct);
-  const contentWords = words.filter(w => w.length > 3);
-  if (contentWords.length === 0) return { ...term, type: 'choice', optionCount: 4 };
-
-  const wrongWord = contentWords[Math.floor(Math.random() * contentWords.length)];
-  const otherTerms = TERMS.filter(t => t.id !== term.id);
-  const otherTerm = otherTerms[Math.floor(Math.random() * otherTerms.length)];
-  const otherWords = splitWords(otherTerm.correct);
-  const replacement = otherWords[Math.floor(Math.random() * otherWords.length)] || 'неверное';
-  const corruptedDef = term.correct.replace(new RegExp(`\\b${wrongWord}\\b`, 'i'), replacement);
-
-  return {
-    ...term,
-    type: 'find-error',
-    displayDef: corruptedDef,
-    wrongFragment: replacement,
-    originalWord: wrongWord
-  };
+function pickRandomTerms(dictantId, count, excludeIds = []) {
+  const pool = getCurrentTerms(dictantId).filter(t => !excludeIds.includes(t.id));
+  return shuffleArray(pool).slice(0, count);
 }
 
-function makeBuilderTask(term, extraCount = 0) {
-  const words = splitWords(term.correct);
-  const extras = [];
-  if (extraCount > 0) {
-    const otherTerms = shuffle(TERMS.filter(t => t.id !== term.id));
-    for (let i = 0; i < extraCount && i < otherTerms.length; i++) {
-      const ow = splitWords(otherTerms[i].correct).filter(w => !words.includes(w));
-      if (ow.length) extras.push(ow[Math.floor(Math.random() * ow.length)]);
-    }
-  }
-  return { ...term, type: 'builder', pool: shuffle([...words, ...extras]) };
-}
+function buildQuestionsForLevel(level, dictantId) {
+  const currentTerms = getCurrentTerms(dictantId);
+  const baseTerms = shuffleArray(currentTerms).slice(0, 5);
 
-function makeBlankTask(term) {
-  const words = splitWords(term.correct);
-  const candidates = words.filter(w => w.length > 4);
-  const target = candidates.length
-    ? candidates[Math.floor(Math.random() * candidates.length)]
-    : words[0];
-  const cleanTarget = target.replace(/[.,;:!?()«»]/g, '');
-  const blanked = term.correct.replace(
-    new RegExp(`\\b${cleanTarget.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i'),
-    '____'
-  );
-  return { ...term, type: 'blank', displayDef: blanked, answer: cleanTarget };
-}
-
-function makeManualDefTask(term) {
-  return { ...term, type: 'manual', displayDef: term.correct };
-}
-
-/* ============================================================
-   СБОРКА ОЧЕРЕДЕЙ ПО УРОВНЯМ
-   ============================================================ */
-function buildPairsQueue(need) {
-  const pool = shuffle([...TERMS]).slice(0, 5);
-  const queue = [{ type: 'pairs', terms: pool }];
-  const rest = shuffle(TERMS.filter(t => !pool.find(p => p.id === t.id))).slice(0, need - 1);
-  rest.forEach((term, i) => {
-    if (i % 3 === 0) queue.push(makeBuilderTask(term, 2));
-    else if (i % 3 === 1) queue.push(makeFindErrorTask(term));
-    else {
-      const isTrue = Math.random() > 0.5;
-      let displayDef = term.correct;
-      if (!isTrue) {
-        const others = TERMS.filter(t => t.id !== term.id);
-        displayDef = others[Math.floor(Math.random() * others.length)].correct;
-      }
-      queue.push({ ...term, type: 'tf', displayDef, isTrue });
-    }
-  });
-  return queue;
-}
-
-function buildTrapsQueue(need) {
-  const mix = shuffle([...TERMS]).slice(0, need);
-  return mix.map((term, i) => {
-    if (i % 4 === 0) return { ...term, type: 'choice', optionCount: 5 };
-    if (i % 4 === 1) return makeBuilderTask(term, 3);
-    if (i % 4 === 2) return makeFindErrorTask(term);
-    const isTrue = Math.random() > 0.5;
-    let displayDef = term.correct;
-    if (!isTrue) {
-      const others = TERMS.filter(t => t.id !== term.id);
-      displayDef = others[Math.floor(Math.random() * others.length)].correct;
-    }
-    return { ...term, type: 'tf', displayDef, isTrue };
-  });
-}
-
-function buildManualQueue(need) {
-  const mix = shuffle([...TERMS]).slice(0, need);
-  return mix.map((term, i) => {
-    if (i % 3 === 0) return makeManualDefTask(term);
-    if (i % 3 === 1) return makeBlankTask(term);
-    return makeBuilderTask(term, 2);
-  });
-}
-
-function buildExamQueue(need) {
-  const mix = shuffle([...TERMS]).slice(0, need);
-  const queue = [];
-  let pairInserted = false;
-  mix.forEach((term, i) => {
-    switch (i % 6) {
-      case 0: queue.push(makeBuilderTask(term, 4)); break;
-      case 1: queue.push(makeManualDefTask(term)); break;
-      case 2: queue.push(makeFindErrorTask(term)); break;
-      case 3: queue.push({ ...term, type: 'choice', optionCount: 5 }); break;
-      case 4:
-        if (!pairInserted) {
-          const pool = shuffle([...TERMS]).slice(0, 5);
-          queue.push({ type: 'pairs', terms: pool });
-          pairInserted = true;
-        } else {
-          queue.push(makeBlankTask(term));
-        }
-        break;
-      default: {
-        const isTrue = Math.random() > 0.5;
-        let displayDef = term.correct;
-        if (!isTrue) {
-          const others = TERMS.filter(t => t.id !== term.id);
-          displayDef = others[Math.floor(Math.random() * others.length)].correct;
-        }
-        queue.push({ ...term, type: 'tf', displayDef, isTrue });
-      }
-    }
-  });
-  return queue;
-}
-
-/* ============================================================
-   ЗАПУСК УРОВНЯ
-   ============================================================ */
-function startTaskLevel(mode, optionCount = 3, levelId = null) {
-  let questions = [];
-
-  if (mode === 'truefalse') {
-    const mix = shuffle([...TERMS]).slice(0, 10);
-    mix.forEach((term, index) => {
-      if (index % 2 === 0) {
-        const isTrue = Math.random() > 0.5;
-        let displayDef = term.correct;
-        if (!isTrue) {
-          const others = TERMS.filter(t => t.id !== term.id);
-          displayDef = others[Math.floor(Math.random() * others.length)].correct;
-        }
-        questions.push({ ...term, type: 'tf', displayDef, isTrue });
-      } else {
-        questions.push({ ...term, type: 'choice', optionCount: 4 });
-      }
+  if (level.mode === 'normal' || level.mode === 'recognition' || level.mode === 'traps') {
+    return baseTerms.map(target => {
+      const distractors = pickRandomTerms(dictantId, level.optionsCount - 1, [target.id]);
+      const options = shuffleArray([target, ...distractors]);
+      return {
+        type: 'choice',
+        term: target,
+        options,
+        correctId: target.id
+      };
     });
-  } else if (mode === 'find-error') {
-    const mix = shuffle([...TERMS]).slice(0, 10);
-    mix.forEach((term, index) => {
-      if (index % 3 === 0) {
-        const isTrue = Math.random() > 0.5;
-        let displayDef = term.correct;
-        if (!isTrue) {
-          const others = TERMS.filter(t => t.id !== term.id);
-          displayDef = others[Math.floor(Math.random() * others.length)].correct;
-        }
-        questions.push({ ...term, type: 'tf', displayDef, isTrue });
-      } else {
-        questions.push(makeFindErrorTask(term));
-      }
-    });
-  } else if (mode === 'builder') {
-    const mix = shuffle([...TERMS]).slice(0, 9);
-    mix.forEach((term, index) => {
-      if (index % 3 === 1) {
-        questions.push({ ...term, type: 'choice' });
-      } else {
-        questions.push(makeBuilderTask(term, 0));
-      }
-    });
-  } else if (mode === 'pairs') {
-    questions = buildPairsQueue(10);
-  } else if (mode === 'traps') {
-    questions = buildTrapsQueue(11);
-  } else if (mode === 'manual') {
-    questions = buildManualQueue(11);
-  } else if (mode === 'exam') {
-    questions = buildExamQueue(14);
-  } else {
-    const count = mode === 'recognition' ? 4 : 3;
-    questions = shuffle([...TERMS]).slice(0, QUESTIONS_PER_LEVEL).map(t => ({ ...t, type: 'choice', optionCount: count }));
   }
 
-  game = {
-    mode,
-    optionCount,
-    levelId,
-    queue: questions,
-    targetCount: questions.length,
-    solvedCount: 0,
+  if (level.mode === 'truefalse') {
+    return baseTerms.map((target, idx) => {
+      const isTrue = idx % 2 === 0;
+      const shownDef = isTrue ? target.def : pickRandomTerms(dictantId, 1, [target.id])[0].def;
+      return {
+        type: 'truefalse',
+        term: target,
+        shownDef,
+        isTrue
+      };
+    });
+  }
+
+  if (level.mode === 'find-error') {
+    return baseTerms.map(target => {
+      const wrongSource = pickRandomTerms(dictantId, 1, [target.id])[0];
+      const origWords = target.def.replace(/\.$/, '').split(/\s+/);
+      const wrongWords = wrongSource.def.replace(/\.$/, '').split(/\s+/);
+      const replaceIdx = Math.min(origWords.length - 1, Math.max(1, Math.floor(origWords.length / 2)));
+      const badFragment = wrongWords[Math.min(wrongWords.length - 1, replaceIdx)] || 'искажённый';
+      const tokens = origWords.map((w, i) => ({
+        text: w,
+        isError: i === replaceIdx,
+        displayText: i === replaceIdx ? badFragment : w
+      }));
+      return {
+        type: 'find-error',
+        term: target,
+        tokens,
+        errorIdx: replaceIdx,
+        originalWord: origWords[replaceIdx]
+      };
+    });
+  }
+
+  if (level.mode === 'builder') {
+    return baseTerms.slice(0, 4).map(target => {
+      const words = target.def.replace(/\.$/, '').split(/\s+/).filter(w => w.length > 0);
+      const extraWords = pickRandomTerms(dictantId, 2, [target.id]).flatMap(t => t.def.replace(/\.$/, '').split(/\s+/).slice(0, 1));
+      const pool = shuffleArray([...words, ...extraWords].map((w, idx) => ({ uid: `${target.id}-${idx}-${w}`, text: w })));
+      return {
+        type: 'builder',
+        term: target,
+        targetWords: words,
+        pool
+      };
+    });
+  }
+
+  if (level.mode === 'pairs') {
+    const rounds = [];
+    const shuffled = shuffleArray(currentTerms);
+    for (let i = 0; i < 3; i++) {
+      const three = shuffled.slice(i * 3, i * 3 + 3);
+      if (three.length === 3) {
+        rounds.push({
+          type: 'pairs',
+          items: three,
+          leftOrder: shuffleArray(three),
+          rightOrder: shuffleArray(three)
+        });
+      }
+    }
+    return rounds;
+  }
+
+  return baseTerms.map(target => ({
+    type: 'manual',
+    term: target
+  }));
+}
+
+function startTaskLevel(levelId, dictantIdOverride) {
+  const level = LEVELS.find(l => l.id === levelId);
+  if (!level) return;
+
+  const dId = dictantIdOverride || getActiveDictantId();
+  state.currentMethDictantId = DICTANTS[dId].section === 'methodology' ? dId : state.currentMethDictantId;
+  state.currentStatDictantId = DICTANTS[dId].section === 'statistics' ? dId : state.currentStatDictantId;
+  saveState();
+
+  session = {
+    dictantId: dId,
+    level,
+    questions: buildQuestionsForLevel(level, dId),
+    currentIndex: 0,
     hearts: 3,
-    maxHearts: 3,
-    mistakeLog: [],
-    returnedOnce: new Set(),
-    currentTask: null
+    selectedAnswer: null,
+    checked: false,
+    mistakes: [],
+    correctCount: 0,
+    builderSelected: [],
+    pairsState: { left: null, right: null, matched: [] }
   };
-
-  pairsState = null;
-  keyboardAnswer = '';
-  blankAnswer = '';
 
   goToScreen('screen-5');
-  renderHearts();
-  loadQuestion();
+  renderQuestion();
 }
 
-const QUESTIONS_PER_LEVEL = 8;
+function restartCurrentLevel() {
+  if (!session.level) return;
+  startTaskLevel(session.level.id, session.dictantId);
+}
+
+function exitTask() {
+  const target = state.activeSection === 'statistics' ? 'screen-statistics' : 'screen-3';
+  goToScreen(target);
+}
 
 function renderHearts() {
-  const container = document.getElementById('task-hearts');
-  container.innerHTML = '';
-  const full = Math.floor(game.hearts);
-  const hasHalf = (game.hearts - full) >= 0.5;
-  const empty = game.maxHearts - full - (hasHalf ? 1 : 0);
-
-  const fullSvg = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
-  const halfSvg = `<svg width="24" height="24" viewBox="0 0 24 24"><defs><linearGradient id="hg"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="currentColor" stop-opacity=".2"/></linearGradient></defs><path fill="url(#hg)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
-  const emptySvg = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-opacity=".3" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
-
-  for (let i = 0; i < full; i++) container.innerHTML += fullSvg;
-  if (hasHalf) container.innerHTML += halfSvg;
-  for (let i = 0; i < empty; i++) container.innerHTML += emptySvg;
+  const el = document.getElementById('task-hearts');
+  const full = '❤️'.repeat(Math.max(0, session.hearts));
+  const empty = '🤍'.repeat(Math.max(0, 3 - session.hearts));
+  el.textContent = full + empty;
 }
 
-function updateProgressBar() {
-  const pct = (game.solvedCount / game.targetCount) * 100;
-  document.getElementById('task-progress').style.width = pct + '%';
-}
-
-function getWrongOptions(task, count) {
-  const sameCat = shuffle(TERMS.filter(t => t.id !== task.id && t.category === task.category));
-  const otherCat = shuffle(TERMS.filter(t => t.id !== task.id && t.category !== task.category));
-  const pool = [...sameCat, ...otherCat];
-  return pool.slice(0, count).map(t => t.correct);
-}
-
-/* ============================================================
-   ЗАГРУЗКА ВОПРОСА
-   ============================================================ */
-function loadQuestion() {
-  if (game.hearts <= 0) { showGameOver(); return; }
-  if (game.queue.length === 0) { finishLevel(); return; }
-
-  isAnswerSelected = false;
-  isAnswerChecked = false;
-  selectedIsCorrect = false;
-  selectedIsPartial = false;
-  builderAnswer = [];
-  builderPool = [];
-  keyboardAnswer = '';
-  blankAnswer = '';
-  pairsState = null;
-
-  document.getElementById('error-feedback').classList.remove('show');
-  document.getElementById('error-feedback').classList.remove('partial');
-
-  const btn = document.getElementById('task-check-btn');
+function setCheckBtnState(mode, label) {
+  const btn = document.getElementById('check-btn');
   btn.className = 'check-btn';
-  btn.textContent = 'ПРОВЕРИТЬ';
-  btn.onclick = checkAnswer;
-  btn.style.display = 'block';
+  btn.disabled = true;
+  if (label) btn.textContent = label;
+  if (mode === 'active') {
+    btn.classList.add('active');
+    btn.disabled = false;
+  } else if (mode === 'success') {
+    btn.classList.add('success');
+    btn.disabled = false;
+  } else if (mode === 'error') {
+    btn.classList.add('error');
+    btn.disabled = false;
+  }
+}
 
-  const task = game.queue[0];
-  game.currentTask = task;
-  const content = document.getElementById('task-content-area');
+function hideFeedback() {
+  const panel = document.getElementById('feedback-panel');
+  panel.className = 'error-feedback-panel';
+  document.getElementById('feedback-title').textContent = '';
+  document.getElementById('feedback-text').textContent = '';
+}
 
-  if (task.type === 'tf') {
+function showFeedback(isCorrect, title, text) {
+  const panel = document.getElementById('feedback-panel');
+  panel.className = `error-feedback-panel show ${isCorrect ? 'success-panel' : ''}`;
+  document.getElementById('feedback-title').textContent = title;
+  document.getElementById('feedback-text').textContent = text;
+}
+
+function renderQuestion() {
+  renderHearts();
+  hideFeedback();
+  session.selectedAnswer = null;
+  session.checked = false;
+  session.builderSelected = [];
+  session.pairsState = { left: null, right: null, matched: [] };
+  setCheckBtnState('disabled', 'ПРОВЕРИТЬ');
+
+  const total = session.questions.length;
+  const pct = Math.round((session.currentIndex / total) * 100);
+  document.getElementById('task-progress-fill').style.width = `${pct}%`;
+
+  const q = session.questions[session.currentIndex];
+  const content = document.getElementById('task-content');
+
+  if (q.type === 'choice') {
     content.innerHTML = `
-      <div class="truefalse-title">Верно ли утверждение?</div>
-      <div class="truefalse-term">${task.term}</div>
-      <div class="truefalse-def">${task.displayDef}</div>
-      <div class="truefalse-buttons">
-        <button class="tf-btn true-btn" onclick="selectTrueFalse(this, true)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> ВЕРНО
-        </button>
-        <button class="tf-btn false-btn" onclick="selectTrueFalse(this, false)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> НЕВЕРНО
-        </button>
-      </div>
-      <div class="task-question-block" style="margin-top:20px; justify-content:center;">
-        <img src="метода нейтрал.png" alt="Маскот" class="task-character" style="margin-right:0; width:80px;" onerror="this.src='https://via.placeholder.com/100x120?text=Фото'">
-      </div>
-    `;
-  } else if (task.type === 'find-error') {
-    const parts = task.displayDef.split(/(\s+)/);
-    let textHTML = '';
-    parts.forEach(part => {
-      if (part.trim().length === 0) {
-        textHTML += part;
-      } else {
-        const cleanWord = part.replace(/[.,;:!?()«»]/g, '');
-        textHTML += `<span class="word-chip" onclick="selectErrorWord(this, '${cleanWord.replace(/'/g, "\\'")}')">${part}</span>`;
-      }
-    });
-    content.innerHTML = `
-      <div class="find-error-instruction">Нажми на неверное слово в определении</div>
-      <div class="find-error-text">${textHTML}</div>
-      <div class="task-question-block" style="margin-top:20px; justify-content:center;">
-        <img src="метода нейтрал.png" alt="Маскот" class="task-character" style="margin-right:0; width:80px;" onerror="this.src='https://via.placeholder.com/100x120?text=Фото'">
-      </div>
-    `;
-  } else if (task.type === 'builder') {
-    builderPool = task.pool.map((word, index) => ({ word, id: index }));
-    renderBuilderUI(task.term);
-  } else if (task.type === 'pairs') {
-    renderPairsUI();
-  } else if (task.type === 'blank') {
-    renderBlankUI();
-  } else if (task.type === 'manual') {
-    renderKeyboardUI();
-  } else {
-    const optCount = task.optionCount || game.optionCount || 3;
-    const wrongTexts = getWrongOptions(task, optCount - 1);
-    const options = [
-      { text: task.correct, isCorrect: true },
-      ...wrongTexts.map(w => ({ text: w, isCorrect: false }))
-    ];
-    shuffle(options);
-
-    let optionsHTML = '';
-    options.forEach((opt, i) => {
-      optionsHTML += `
-        <div class="answer-option" data-correct="${opt.isCorrect}" onclick="selectAnswer(this)">
-          <div class="answer-number">${i + 1}</div>
-          <div>${opt.text}</div>
-        </div>`;
-    });
-
-    content.innerHTML = `
-      <h2 class="task-title">Выбери определение</h2>
       <div class="task-question-block">
-        <img src="метода нейтрал.png" alt="Маскот" class="task-character" onerror="this.src='https://via.placeholder.com/100x120?text=Фото'">
-        <div class="task-bubble">${task.term}</div>
+        <img src="Пахомова.png" alt="" class="task-character" onerror="this.style.display='none'">
+        <div class="task-bubble">Выбери определение для термина:<br><span style="color:var(--primary-blue)">${q.term.term}</span></div>
       </div>
-      ${optionsHTML}
+      <div>
+        ${q.options.map((opt, idx) => `
+          <div class="answer-option" data-id="${opt.id}" onclick="selectChoiceOption(this, ${opt.id})">
+            <div class="answer-number">${idx + 1}</div>
+            <div>${opt.def}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  } else if (q.type === 'truefalse') {
+    content.innerHTML = `
+      <div class="truefalse-title">Проверь определение</div>
+      <div class="truefalse-term">${q.term.term}</div>
+      <div class="truefalse-def">${q.shownDef}</div>
+      <div class="truefalse-buttons">
+        <button class="tf-btn" id="tf-true" onclick="selectTrueFalse(true)">✓ Верно</button>
+        <button class="tf-btn" id="tf-false" onclick="selectTrueFalse(false)">✕ Неверно</button>
+      </div>
+    `;
+  } else if (q.type === 'find-error') {
+    content.innerHTML = `
+      <div class="find-error-term">${q.term.term}</div>
+      <div class="find-error-instruction">Нажми на слово, которое искажает смысл определения:</div>
+      <div class="find-error-text">
+        ${q.tokens.map((tok, idx) => `<span class="word-chip" data-idx="${idx}" onclick="selectWordChip(this, ${idx})">${tok.displayText}</span>`).join('')}
+      </div>
+    `;
+  } else if (q.type === 'builder') {
+    content.innerHTML = `
+      <div class="builder-header">
+        <img src="Сорока.png" alt="" class="builder-mascot" onerror="this.style.display='none'">
+        <div class="builder-bubble">Собери определение: <span style="color:var(--primary-blue)">${q.term.term}</span></div>
+      </div>
+      <div class="builder-answer-box">
+        <div class="builder-line" id="builder-line"></div>
+      </div>
+      <div class="builder-pool" id="builder-pool">
+        ${q.pool.map(w => `<button type="button" class="builder-word" data-uid="${w.uid}" onclick="toggleBuilderWord('${w.uid}')">${w.text}</button>`).join('')}
+      </div>
+    `;
+  } else if (q.type === 'pairs') {
+    content.innerHTML = `
+      <div class="truefalse-title">Соедини пары</div>
+      <div class="pairs-sub">Сначала выбери термин слева, затем определение справа.</div>
+      <div class="pairs-grid">
+        <div class="pair-col">
+          ${q.leftOrder.map(item => `<div class="pair-item" data-side="left" data-id="${item.id}" onclick="selectPairItem(this, 'left', ${item.id})">${item.term}</div>`).join('')}
+        </div>
+        <div class="pair-col">
+          ${q.rightOrder.map(item => `<div class="pair-item" data-side="right" data-id="${item.id}" onclick="selectPairItem(this, 'right', ${item.id})">${item.def}</div>`).join('')}
+        </div>
+      </div>
+    `;
+  } else if (q.type === 'manual') {
+    content.innerHTML = `
+      <div class="truefalse-title">Напиши термин</div>
+      <div class="keyboard-input-wrap">
+        <div class="keyboard-instruction">Определение:</div>
+        <div class="def-text" style="margin-bottom:14px;">${q.term.def}</div>
+        <textarea class="keyboard-input" id="manual-input" placeholder="Введи название термина..." oninput="onManualInput()"></textarea>
+      </div>
     `;
   }
-
-  content.scrollTop = 0;
-  updateProgressBar();
 }
 
-/* ============================================================
-   РЕНДЕР: КОНСТРУКТОР
-   ============================================================ */
-function renderBuilderUI(termTitle) {
-  const content = document.getElementById('task-content-area');
-
-  let answerHTML = '';
-  builderAnswer.forEach((item, idx) => {
-    answerHTML += `<div class="builder-word in-answer" onclick="removeBuilderWord(${idx})">${item.word}</div>`;
-  });
-
-  let poolHTML = '';
-  builderPool.forEach(item => {
-    const isUsed = builderAnswer.some(a => a.id === item.id);
-    poolHTML += `<div class="builder-word ${isUsed ? 'hidden' : ''}" onclick="addBuilderWord(${item.id})">${item.word}</div>`;
-  });
-
-  content.innerHTML = `
-    <div class="builder-header">
-      <img src="метода нейтрал.png" alt="Маскот" class="builder-mascot" onerror="this.src='https://via.placeholder.com/100x120?text=Фото'">
-      <div class="builder-bubble">${termTitle}</div>
-    </div>
-    <div class="builder-answer-box">
-      <div class="builder-line">${answerHTML}</div>
-      <div class="builder-line"></div>
-      <div class="builder-line"></div>
-    </div>
-    <div class="builder-pool">${poolHTML}</div>
-  `;
-
-  const btn = document.getElementById('task-check-btn');
-  if (builderAnswer.length > 0) {
-    btn.classList.add('active'); isAnswerSelected = true;
-  } else {
-    btn.classList.remove('active'); isAnswerSelected = false;
-  }
-}
-
-function addBuilderWord(id) {
-  if (isAnswerChecked) return;
-  const item = builderPool.find(x => x.id === id);
-  if (item) {
-    builderAnswer.push(item);
-    renderBuilderUI(game.currentTask.term);
-  }
-}
-function removeBuilderWord(idx) {
-  if (isAnswerChecked) return;
-  builderAnswer.splice(idx, 1);
-  renderBuilderUI(game.currentTask.term);
-}
-
-/* ============================================================
-   РЕНДЕР: ПАРЫ
-   ============================================================ */
-function renderPairsUI() {
-  const content = document.getElementById('task-content-area');
-  const task = game.currentTask;
-
-  if (!pairsState) {
-    const defs = shuffle(task.terms.map(t => ({ id: t.id, text: t.correct })));
-    pairsState = {
-      terms: task.terms,
-      defs,
-      selectedTerm: null,
-      matched: new Set(),
-      wrongAttempts: 0
-    };
-  }
-
-  let termsHTML = '';
-  pairsState.terms.forEach(t => {
-    const matched = pairsState.matched.has(t.id);
-    const selected = pairsState.selectedTerm === t.id;
-    termsHTML += `<div class="pair-item ${matched ? 'matched' : ''} ${selected ? 'selected' : ''}" onclick="selectPairTerm('${t.id}')">${t.term}</div>`;
-  });
-
-  let defsHTML = '';
-  pairsState.defs.forEach(d => {
-    const matched = pairsState.matched.has(d.id);
-    defsHTML += `<div class="pair-item ${matched ? 'matched' : ''}" onclick="selectPairDef('${d.id}')">${d.text}</div>`;
-  });
-
-  content.innerHTML = `
-    <div class="find-error-instruction">Соедини термин с его определением</div>
-    <div class="pairs-container">
-      <div class="pair-column">${termsHTML}</div>
-      <div class="pair-column">${defsHTML}</div>
-    </div>
-  `;
-
-  const btn = document.getElementById('task-check-btn');
-  if (pairsState.matched.size === pairsState.terms.length) {
-    btn.classList.add('active'); isAnswerSelected = true;
-  } else {
-    btn.classList.remove('active'); isAnswerSelected = false;
-  }
-}
-
-function selectPairTerm(id) {
-  if (isAnswerChecked) return;
-  if (pairsState.matched.has(id)) return;
-  pairsState.selectedTerm = pairsState.selectedTerm === id ? null : id;
-  renderPairsUI();
-}
-
-function selectPairDef(defId) {
-  if (isAnswerChecked) return;
-  if (!pairsState.selectedTerm) return;
-  if (pairsState.matched.has(defId)) return;
-
-  if (pairsState.selectedTerm === defId) {
-    pairsState.matched.add(defId);
-    pairsState.selectedTerm = null;
-    renderPairsUI();
-  } else {
-    pairsState.wrongAttempts++;
-    const termEl = [...document.querySelectorAll('.pair-column:first-child .pair-item')]
-      .find(el => el.textContent.trim() === pairsState.terms.find(t => t.id === pairsState.selectedTerm)?.term);
-    const defEl = [...document.querySelectorAll('.pair-column:last-child .pair-item')]
-      .find(el => el.textContent.trim() === pairsState.defs.find(d => d.id === defId)?.text);
-    if (termEl) termEl.classList.add('wrong-pair');
-    if (defEl) defEl.classList.add('wrong-pair');
-    setTimeout(() => {
-      if (termEl) termEl.classList.remove('wrong-pair');
-      if (defEl) defEl.classList.remove('wrong-pair');
-    }, 500);
-    pairsState.selectedTerm = null;
-    renderPairsUI();
-  }
-}
-
-/* ============================================================
-   РЕНДЕР: ПРОПУСК
-   ============================================================ */
-function renderBlankUI() {
-  const content = document.getElementById('task-content-area');
-  const task = game.currentTask;
-  content.innerHTML = `
-    <div class="find-error-instruction">Впиши пропущенное слово</div>
-    <div class="fill-blank-text">${task.displayDef}</div>
-    <div class="keyboard-input-wrap">
-      <div class="keyboard-instruction">Твой ответ:</div>
-      <input type="text" class="blank-input" id="blank-input" value="${blankAnswer}"
-        placeholder="введите слово" oninput="onBlankInput(this)" autocomplete="off" autocapitalize="off">
-    </div>
-    <div class="task-question-block" style="margin-top:20px; justify-content:center;">
-      <img src="метода нейтрал.png" alt="Маскот" class="task-character" style="margin-right:0; width:80px;" onerror="this.src='https://via.placeholder.com/100x120?text=Фото'">
-    </div>
-  `;
-  const btn = document.getElementById('task-check-btn');
-  if (blankAnswer.trim().length > 0) {
-    btn.classList.add('active'); isAnswerSelected = true;
-  } else {
-    btn.classList.remove('active'); isAnswerSelected = false;
-  }
-  setTimeout(() => document.getElementById('blank-input')?.focus(), 100);
-}
-function onBlankInput(el) {
-  blankAnswer = el.value;
-  const btn = document.getElementById('task-check-btn');
-  if (blankAnswer.trim().length > 0) { btn.classList.add('active'); isAnswerSelected = true; }
-  else { btn.classList.remove('active'); isAnswerSelected = false; }
-}
-
-/* ============================================================
-   РЕНДЕР: ВВОД С КЛАВИАТУРЫ
-   ============================================================ */
-function renderKeyboardUI() {
-  const content = document.getElementById('task-content-area');
-  const task = game.currentTask;
-  content.innerHTML = `
-    <div class="find-error-instruction">Впиши определение термина</div>
-    <div class="task-question-block">
-      <img src="метода нейтрал.png" alt="Маскот" class="task-character" onerror="this.src='https://via.placeholder.com/100x120?text=Фото'">
-      <div class="task-bubble">${task.term}</div>
-    </div>
-    <div class="keyboard-input-wrap">
-      <div class="keyboard-instruction">Напиши определение:</div>
-      <textarea class="keyboard-input" id="keyboard-input" placeholder="Введите определение..."
-        oninput="onKeyboardInput(this)" autocomplete="off" autocapitalize="off">${keyboardAnswer}</textarea>
-    </div>
-  `;
-  const btn = document.getElementById('task-check-btn');
-  if (keyboardAnswer.trim().length > 0) {
-    btn.classList.add('active'); isAnswerSelected = true;
-  } else {
-    btn.classList.remove('active'); isAnswerSelected = false;
-  }
-  setTimeout(() => document.getElementById('keyboard-input')?.focus(), 100);
-}
-function onKeyboardInput(el) {
-  keyboardAnswer = el.value;
-  const btn = document.getElementById('task-check-btn');
-  if (keyboardAnswer.trim().length > 0) { btn.classList.add('active'); isAnswerSelected = true; }
-  else { btn.classList.remove('active'); isAnswerSelected = false; }
-}
-
-/* ============================================================
-   ВЫБОР ОТВЕТА
-   ============================================================ */
-function selectTrueFalse(el, val) {
-  if (isAnswerChecked) return;
-  document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  isAnswerSelected = true;
-  selectedIsCorrect = (val === game.currentTask.isTrue);
-  document.getElementById('task-check-btn').classList.add('active');
-}
-function selectErrorWord(el, word) {
-  if (isAnswerChecked) return;
-  document.querySelectorAll('.word-chip').forEach(w => w.classList.remove('selected'));
-  el.classList.add('selected');
-  isAnswerSelected = true;
-  selectedIsCorrect = (word === game.currentTask.wrongFragment);
-  document.getElementById('task-check-btn').classList.add('active');
-}
-function selectAnswer(el) {
-  if (isAnswerChecked) return;
+function selectChoiceOption(el, id) {
+  if (session.checked) return;
   document.querySelectorAll('.answer-option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
-  isAnswerSelected = true;
-  selectedIsCorrect = el.dataset.correct === 'true';
-  document.getElementById('task-check-btn').classList.add('active');
+  session.selectedAnswer = id;
+  setCheckBtnState('active', 'ПРОВЕРИТЬ');
 }
 
-/* ============================================================
-   ПРОВЕРКА ОТВЕТА
-   ============================================================ */
-function normalizeText(s) {
-  return s.toLowerCase().replace(/[.,;:!?()«»"'—–-]/g, ' ').replace(/\s+/g, ' ').trim();
+function selectTrueFalse(val) {
+  if (session.checked) return;
+  document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById(val ? 'tf-true' : 'tf-false').classList.add('selected');
+  session.selectedAnswer = val;
+  setCheckBtnState('active', 'ПРОВЕРИТЬ');
 }
 
-function isAlmostCorrectManual(userText, correctText) {
-  const u = normalizeText(userText).split(' ').filter(Boolean);
-  const c = normalizeText(correctText).split(' ').filter(Boolean);
-  if (u.length === 0) return false;
-  const setC = new Set(c);
-  const matches = u.filter(w => setC.has(w)).length;
-  const ratio = matches / Math.max(u.length, c.length);
-  return ratio >= 0.6 && ratio < 1;
+function selectWordChip(el, idx) {
+  if (session.checked) return;
+  document.querySelectorAll('.word-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  session.selectedAnswer = idx;
+  setCheckBtnState('active', 'ПРОВЕРИТЬ');
 }
 
-function weightForTask(task, pairsPerfect) {
-  switch (task.type) {
-    case 'choice': return POINTS_WEIGHT.choice;
-    case 'tf': return POINTS_WEIGHT.tf;
-    case 'find-error': return POINTS_WEIGHT['find-error'];
-    case 'builder': return POINTS_WEIGHT.builder;
-    case 'manual': return POINTS_WEIGHT.manual;
-    case 'blank': return POINTS_WEIGHT.blank;
-    case 'pairs': return pairsPerfect ? POINTS_WEIGHT['pairs-perfect'] : POINTS_WEIGHT['pairs-partial'];
-    default: return 1;
-  }
-}
+function toggleBuilderWord(uid) {
+  if (session.checked) return;
+  const q = session.questions[session.currentIndex];
+  const wordObj = q.pool.find(w => w.uid === uid);
+  if (!wordObj) return;
 
-function applyPairsPoints(task) {
-  const perfect = pairsState && pairsState.wrongAttempts === 0;
-  const w = perfect ? POINTS_WEIGHT['pairs-perfect'] : POINTS_WEIGHT['pairs-partial'];
-  task.terms.forEach(t => addPoints(t.id, w, false));
-}
-
-function checkAnswer() {
-  if (!isAnswerSelected || isAnswerChecked) return;
-  isAnswerChecked = true;
-
-  const btn = document.getElementById('task-check-btn');
-  const task = game.currentTask;
-  const mascot = document.querySelector('.task-character');
-
-  let isCorrect = selectedIsCorrect;
-  let isPartial = false;
-
-  if (task.type === 'find-error') {
-    const selectedChip = document.querySelector('.word-chip.selected');
-    if (selectedChip) {
-      const selectedText = selectedChip.textContent.replace(/[.,;:!?()«»]/g, '');
-      isCorrect = (selectedText === task.wrongFragment);
-    } else {
-      isCorrect = false;
-    }
-  }
-
-  if (task.type === 'builder') {
-    const originalWords = splitWords(task.correct);
-    const answerWords = builderAnswer.map(x => x.word);
-    if (answerWords.length !== originalWords.length) {
-      isCorrect = false;
-    } else {
-      isCorrect = answerWords.every((w, i) => w === originalWords[i]);
-    }
-    if (!isCorrect) {
-      const matches = answerWords.filter((w, i) => w === originalWords[i]).length;
-      if (matches / originalWords.length >= 0.5) isPartial = true;
-    }
-  }
-
-  if (task.type === 'pairs') {
-    isCorrect = pairsState && pairsState.matched.size === pairsState.terms.length;
-  }
-
-  if (task.type === 'blank') {
-    if (normalizeText(blankAnswer) === normalizeText(task.answer)) {
-      isCorrect = true;
-    } else if (normalizeText(blankAnswer).length > 2 &&
-               normalizeText(task.answer).startsWith(normalizeText(blankAnswer))) {
-      isCorrect = false; isPartial = true;
-    } else {
-      isCorrect = false;
-    }
-  }
-
-  if (task.type === 'manual') {
-    if (normalizeText(keyboardAnswer) === normalizeText(task.correct)) {
-      isCorrect = true;
-    } else if (isAlmostCorrectManual(keyboardAnswer, task.correct)) {
-      isCorrect = false; isPartial = true;
-    } else {
-      isCorrect = false;
-    }
-  }
-
-  /* ===== ПРАВИЛЬНО ===== */
-  if (isCorrect) {
-    if (task.type === 'tf') {
-      const sel = document.querySelector('.tf-btn.selected');
-      if (sel) sel.classList.add('correct');
-      addPoints(task.id, weightForTask(task), false);
-    } else if (task.type === 'find-error') {
-      const sel = document.querySelector('.word-chip.selected');
-      if (sel) sel.classList.add('correct-fragment');
-      addPoints(task.id, weightForTask(task), false);
-    } else if (task.type === 'choice') {
-      const sel = document.querySelector('.answer-option.selected');
-      if (sel) sel.classList.add('correct');
-      addPoints(task.id, weightForTask(task), false);
-    } else if (task.type === 'blank') {
-      document.getElementById('blank-input')?.classList.add('correct');
-      addPoints(task.id, weightForTask(task), false);
-    } else if (task.type === 'manual') {
-      document.getElementById('keyboard-input')?.classList.add('correct');
-      addPoints(task.id, weightForTask(task), false);
-    } else if (task.type === 'builder') {
-      addPoints(task.id, weightForTask(task), false);
-    } else if (task.type === 'pairs') {
-      document.querySelectorAll('.pair-item.matched').forEach(el => el.classList.add('correct-pair'));
-      applyPairsPoints(task);
-    }
-
-    if (mascot) mascot.src = 'метода з.png';
-    btn.className = 'check-btn success';
-    btn.textContent = 'ПРОДОЛЖИТЬ';
-    btn.onclick = () => {
-      game.queue.shift();
-      game.solvedCount++;
-      updateProgressBar();
-      loadQuestion();
-    };
-    return;
-  }
-
-  /* ===== «ПОЧТИ ВЕРНО» (ЖЁЛТЫЙ) ===== */
-  if (isPartial) {
-    if (task.type === 'manual') document.getElementById('keyboard-input')?.classList.add('partial');
-    if (task.type === 'blank') document.getElementById('blank-input')?.classList.add('partial');
-
-    addPoints(task.id, weightForTask(task), true);
-
-    const errorPanel = document.getElementById('error-feedback');
-    errorPanel.classList.add('partial');
-    document.querySelector('.error-feedback-title').textContent = 'Почти верно';
-    document.getElementById('error-feedback-text').innerHTML =
-      `<div><b>${task.term}</b> — ${task.correct}</div>`;
-    errorPanel.classList.add('show');
-
-    btn.className = 'check-btn partial';
-    btn.textContent = 'ПРОДОЛЖИТЬ';
-    btn.onclick = () => {
-      game.queue.shift();
-      game.solvedCount++;
-      updateProgressBar();
-      loadQuestion();
-    };
-    return;
-  }
-
-  /* ===== ОШИБКА ===== */
-  if (task.type === 'tf') {
-    const sel = document.querySelector('.tf-btn.selected');
-    if (sel) sel.classList.add('wrong');
-    const correctBtn = task.isTrue ? document.querySelector('.true-btn') : document.querySelector('.false-btn');
-    if (correctBtn) correctBtn.classList.add('correct');
-    subtractPoints(task.id);
-  } else if (task.type === 'find-error') {
-    const sel = document.querySelector('.word-chip.selected');
-    if (sel) sel.classList.add('wrong-fragment');
-    document.querySelectorAll('.word-chip').forEach(chip => {
-      const clean = chip.textContent.replace(/[.,;:!?()«»]/g, '');
-      if (clean === task.wrongFragment) chip.classList.add('correct-fragment');
-    });
-    subtractPoints(task.id);
-  } else if (task.type === 'builder') {
-    document.querySelectorAll('.builder-word.in-answer').forEach(w => w.style.borderColor = 'var(--error-border)');
-    subtractPoints(task.id);
-  } else if (task.type === 'blank') {
-    document.getElementById('blank-input')?.classList.add('wrong');
-    subtractPoints(task.id);
-  } else if (task.type === 'manual') {
-    document.getElementById('keyboard-input')?.classList.add('wrong');
-    subtractPoints(task.id);
-  } else if (task.type === 'pairs') {
-    task.terms.forEach(t => subtractPoints(t.id));
+  const existingIdx = session.builderSelected.findIndex(w => w.uid === uid);
+  if (existingIdx >= 0) {
+    session.builderSelected.splice(existingIdx, 1);
   } else {
-    const sel = document.querySelector('.answer-option.selected');
-    if (sel) sel.classList.add('wrong');
-    document.querySelectorAll('.answer-option').forEach(o => {
-      if (o.dataset.correct === 'true') o.classList.add('correct');
-    });
-    subtractPoints(task.id);
+    session.builderSelected.push(wordObj);
   }
-
-  if (mascot) mascot.src = 'метода ч.png';
-
-  let correctFeedback = '';
-  if (task.type === 'builder') {
-    correctFeedback = `
-      <div style="margin-bottom:10px;">Правильный порядок:</div>
-      <div style="font-weight:700; color:var(--text-main); margin-bottom:15px;">${task.correct}</div>
-      <div><b>${task.term}</b> — ${task.correct}</div>
-    `;
-  } else if (task.type === 'find-error') {
-    correctFeedback = `
-      <div style="margin-bottom:10px;">Правильное слово:</div>
-      <div style="font-weight:700; color:var(--text-main); margin-bottom:15px;">${task.originalWord}</div>
-      <div><b>${task.term}</b> — ${task.correct}</div>
-    `;
-  } else if (task.type === 'blank') {
-    correctFeedback = `
-      <div style="margin-bottom:10px;">Пропущенное слово:</div>
-      <div style="font-weight:700; color:var(--text-main); margin-bottom:15px;">${task.answer}</div>
-      <div><b>${task.term}</b> — ${task.correct}</div>
-    `;
-  } else if (task.type === 'manual') {
-    correctFeedback = `
-      <div style="margin-bottom:10px;">Правильное определение:</div>
-      <div style="font-weight:700; color:var(--text-main); margin-bottom:15px;">${task.correct}</div>
-    `;
-  } else {
-    correctFeedback = `<div><b>${task.term}</b> — ${task.correct}</div>`;
-  }
-
-  const errorPanel = document.getElementById('error-feedback');
-  errorPanel.classList.remove('partial');
-  document.querySelector('.error-feedback-title').textContent = 'Неверно';
-  document.getElementById('error-feedback-text').innerHTML = correctFeedback;
-  errorPanel.classList.add('show');
-
-  btn.className = 'check-btn error';
-
-  if (game.hearts - 1 <= 0) {
-    btn.textContent = 'ПОНЯТНО';
-    btn.onclick = () => showGameOver();
-  } else {
-    btn.textContent = 'ДАЛЬШЕ';
-    btn.onclick = () => {
-      game.queue.shift();
-      if (!game.returnedOnce.has(task.id)) {
-        game.returnedOnce.add(task.id);
-        const retry = TERMS.find(t => t.id === task.id) || task;
-        game.queue.push({ ...retry, type: 'choice', optionCount: 3 });
-      } else {
-        game.solvedCount++;
-      }
-      updateProgressBar();
-      loadQuestion();
-    };
-  }
-
-  if (!game.mistakeLog.find(m => m.id === task.id)) game.mistakeLog.push(task);
-  game.hearts -= 1;
-  if (game.hearts < 0) game.hearts = 0;
-  renderHearts();
+  renderBuilderState(q);
 }
 
-function quitTask() {
-  if (!confirm('Выйти из задания? Прогресс раунда не сохранится.')) return;
-  game = null;
-  goToScreen('screen-3');
-}
+function renderBuilderState(q) {
+  const line = document.getElementById('builder-line');
+  line.innerHTML = session.builderSelected.map(w => `
+    <button type="button" class="builder-word in-answer" onclick="toggleBuilderWord('${w.uid}')">${w.text}</button>
+  `).join('');
 
-function finishLevel() {
-  const heartsLeft = game.hearts;
-  let stars = 0;
-  
-  const flooredHearts = Math.floor(heartsLeft);
-  if (flooredHearts >= 3) stars = 3;
-  else if (flooredHearts >= 2) stars = 2;
-  else if (flooredHearts >= 1) stars = 1;
-  else stars = 1; // минимум 1 звезда
-
-  if (game && game.levelId) {
-    saveStarsForLevel(game.levelId, stars);
-  }
-
-  const errors = game.mistakeLog.length;
-
-  let emoji = '🏆', title = 'Уровень пройден!', sub = 'Отличная работа';
-  if (errors === 0) { emoji = '🏆'; title = 'Идеально!'; sub = `Все термины — верно`; }
-  else if (stars === 3) { emoji = '🎉'; title = 'Уровень пройден!'; sub = 'Отлично справилась'; }
-  else if (stars === 2) { emoji = '👍'; title = 'Уровень пройден!'; sub = 'Хороший результат'; }
-  else { emoji = '✅'; title = 'Уровень пройден'; sub = 'Есть над чем поработать'; }
-
-  document.getElementById('result-emoji').textContent = emoji;
-  document.getElementById('result-title').textContent = title;
-  document.getElementById('result-sub').textContent = sub;
-
-  document.querySelectorAll('#stars-row .star').forEach((s, i) => {
-    s.classList.toggle('filled', i < stars);
+  q.pool.forEach(w => {
+    const btn = document.querySelector(`.builder-pool .builder-word[data-uid="${w.uid}"]`);
+    if (btn) {
+      const used = session.builderSelected.some(s => s.uid === w.uid);
+      btn.classList.toggle('hidden', used);
+    }
   });
 
-  let statsHTML = `<div>✅ Верных ответов: <b>${game.solvedCount}</b> из ${game.targetCount}</div>`;
-  statsHTML += `<div>❌ Ошибок: <b>${errors}</b></div>`;
-  statsHTML += `<div>💔 Сердец осталось: <b>${heartsLeft}</b></div>`;
-  document.getElementById('result-stats').innerHTML = statsHTML;
-
-  goToScreen('screen-7');
-  game = null;
+  if (session.builderSelected.length > 0) {
+    setCheckBtnState('active', 'ПРОВЕРИТЬ');
+  } else {
+    setCheckBtnState('disabled', 'ПРОВЕРИТЬ');
+  }
 }
 
-function showGameOver() {
-  const list = document.getElementById('mistake-list');
-  if (!game || game.mistakeLog.length === 0) {
-    list.innerHTML = `<div class="mistake-card"><div class="mistake-term">Ничего нет 🤔</div></div>`;
+function selectPairItem(el, side, id) {
+  if (session.checked || el.classList.contains('matched')) return;
+
+  if (side === 'left') {
+    document.querySelectorAll('.pair-item[data-side="left"]:not(.matched)').forEach(i => i.classList.remove('selected'));
+    el.classList.add('selected');
+    session.pairsState.left = id;
   } else {
-    list.innerHTML = game.mistakeLog.map(t => `
-      <div class="mistake-card">
-        <div class="mistake-term">${t.term}</div>
-        <div class="mistake-def">${t.correct}</div>
-      </div>
-    `).join('');
+    document.querySelectorAll('.pair-item[data-side="right"]:not(.matched)').forEach(i => i.classList.remove('selected'));
+    el.classList.add('selected');
+    session.pairsState.right = id;
   }
+
+  if (session.pairsState.left !== null && session.pairsState.right !== null) {
+    const L = session.pairsState.left;
+    const R = session.pairsState.right;
+    const leftEl = document.querySelector(`.pair-item[data-side="left"][data-id="${L}"]`);
+    const rightEl = document.querySelector(`.pair-item[data-side="right"][data-id="${R}"]`);
+
+    if (L === R) {
+      leftEl.classList.remove('selected');
+      rightEl.classList.remove('selected');
+      leftEl.classList.add('matched');
+      rightEl.classList.add('matched');
+      session.pairsState.matched.push(L);
+      session.pairsState.left = null;
+      session.pairsState.right = null;
+
+      const q = session.questions[session.currentIndex];
+      if (session.pairsState.matched.length === q.items.length) {
+        session.checked = true;
+        session.correctCount++;
+        const dId = session.dictantId;
+        q.items.forEach(it => {
+          state.progress[dId][it.id] = (state.progress[dId][it.id] || 0) + 1;
+        });
+        saveState();
+        showFeedback(true, 'Все пары найдены!', 'Отличная работа.');
+        setCheckBtnState('success', session.currentIndex === session.questions.length - 1 ? 'ЗАВЕРШИТЬ' : 'ДАЛЕЕ');
+      }
+    } else {
+      leftEl.classList.add('wrong-pair');
+      rightEl.classList.add('wrong-pair');
+      session.hearts--;
+      renderHearts();
+      session.pairsState.left = null;
+      session.pairsState.right = null;
+      setTimeout(() => {
+        leftEl.classList.remove('selected', 'wrong-pair');
+        rightEl.classList.remove('selected', 'wrong-pair');
+      }, 500);
+      if (session.hearts <= 0) {
+        const q = session.questions[session.currentIndex];
+        q.items.forEach(it => session.mistakes.push(it));
+        setTimeout(() => finishWithGameOver(), 350);
+      }
+    }
+  }
+}
+
+function onManualInput() {
+  if (session.checked) return;
+  const val = document.getElementById('manual-input').value.trim();
+  if (val.length > 0) setCheckBtnState('active', 'ПРОВЕРИТЬ');
+  else setCheckBtnState('disabled', 'ПРОВЕРИТЬ');
+}
+
+function handleCheckOrNext() {
+  if (session.checked) {
+    session.currentIndex++;
+    if (session.currentIndex >= session.questions.length) {
+      finishLevelSuccess();
+    } else {
+      renderQuestion();
+    }
+    return;
+  }
+
+  const q = session.questions[session.currentIndex];
+  let isCorrect = false;
+  let explanation = '';
+
+  if (q.type === 'choice') {
+    isCorrect = session.selectedAnswer === q.correctId;
+    explanation = `${q.term.term}: ${q.term.def}`;
+    document.querySelectorAll('.answer-option').forEach(opt => {
+      const id = Number(opt.dataset.id);
+      if (id === q.correctId) opt.classList.add('correct');
+      else if (id === session.selectedAnswer) opt.classList.add('wrong');
+    });
+  } else if (q.type === 'truefalse') {
+    isCorrect = session.selectedAnswer === q.isTrue;
+    explanation = `${q.term.term} — это: ${q.term.def}`;
+    const chosenBtn = document.getElementById(session.selectedAnswer ? 'tf-true' : 'tf-false');
+    chosenBtn.classList.add(isCorrect ? 'correct' : 'wrong');
+  } else if (q.type === 'find-error') {
+    isCorrect = session.selectedAnswer === q.errorIdx;
+    explanation = `Подменённое слово было «${q.tokens[q.errorIdx].displayText}» вместо «${q.originalWord}». Полное определение: ${q.term.def}`;
+    document.querySelectorAll('.word-chip').forEach(chip => {
+      const idx = Number(chip.dataset.idx);
+      if (idx === q.errorIdx) chip.classList.add('correct-fragment');
+      else if (idx === session.selectedAnswer && !isCorrect) chip.classList.add('wrong-fragment');
+    });
+  } else if (q.type === 'builder') {
+    const built = session.builderSelected.map(w => w.text.toLowerCase()).join(' ');
+    const expected = q.targetWords.map(w => w.toLowerCase()).join(' ');
+    isCorrect = built === expected;
+    explanation = `${q.term.term}: ${q.term.def}`;
+  } else if (q.type === 'manual') {
+    const inputEl = document.getElementById('manual-input');
+    const userVal = inputEl.value.trim().toLowerCase();
+    const targetVal = q.term.term.toLowerCase();
+    isCorrect = userVal === targetVal || (targetVal.includes(userVal) && userVal.length >= 4);
+    inputEl.classList.add(isCorrect ? 'correct' : 'wrong');
+    explanation = `Верный термин: ${q.term.term}.`;
+  }
+
+  session.checked = true;
+  const dId = session.dictantId;
+
+  if (isCorrect) {
+    session.correctCount++;
+    state.progress[dId][q.term.id] = (state.progress[dId][q.term.id] || 0) + 1;
+    saveState();
+    showFeedback(true, 'Верно!', explanation);
+    setCheckBtnState('success', session.currentIndex === session.questions.length - 1 ? 'ЗАВЕРШИТЬ' : 'ДАЛЕЕ');
+  } else {
+    session.hearts--;
+    state.progress[dId][q.term.id] = Math.min(-1, (state.progress[dId][q.term.id] || 0) - 1);
+    session.mistakes.push(q.term);
+    saveState();
+    renderHearts();
+    showFeedback(false, 'Не совсем так', explanation);
+
+    if (session.hearts <= 0) {
+      setCheckBtnState('error', 'ПОСМОТРЕТЬ ИТОГ');
+      document.getElementById('check-btn').onclick = () => {
+        document.getElementById('check-btn').onclick = handleCheckOrNext;
+        finishWithGameOver();
+      };
+    } else {
+      setCheckBtnState('error', session.currentIndex === session.questions.length - 1 ? 'ЗАВЕРШИТЬ' : 'ДАЛЕЕ');
+    }
+  }
+}
+
+function finishWithGameOver() {
+  const listEl = document.getElementById('mistake-list');
+  const uniqueMistakes = [];
+  const seen = new Set();
+  session.mistakes.forEach(m => {
+    if (!seen.has(m.id)) { seen.add(m.id); uniqueMistakes.push(m); }
+  });
+
+  listEl.innerHTML = uniqueMistakes.length
+    ? uniqueMistakes.map(m => `
+        <div class="mistake-card">
+          <div class="mistake-term">${m.term}</div>
+          <div class="mistake-def">${m.def}</div>
+        </div>
+      `).join('')
+    : `<div class="mistake-card"><div class="mistake-def">Попробуй пройти уровень ещё раз и внимательно сверяй определения.</div></div>`;
+
   goToScreen('screen-6');
 }
 
-function restartLevel() {
-  const mode = game?.mode || 'normal';
-  const count = game?.optionCount || 3;
-  const levelId = game?.levelId || null;
-  startTaskLevel(mode, count, levelId);
+function finishLevelSuccess() {
+  document.getElementById('task-progress-fill').style.width = '100%';
+  const starsEarned = session.hearts === 3 ? 3 : (session.hearts === 2 ? 2 : 1);
+  const dId = session.dictantId;
+  const prevStars = state.stars[dId][session.level.id] || 0;
+  if (starsEarned > prevStars) {
+    state.stars[dId][session.level.id] = starsEarned;
+    saveState();
+  }
+
+  document.getElementById('result-emoji').textContent = starsEarned === 3 ? '🏆' : '🎉';
+  document.getElementById('result-title').textContent = `Уровень ${session.level.num} пройден!`;
+  document.getElementById('result-sub').textContent = `Режим «${session.level.title}» выполнен.`;
+
+  const starEls = document.querySelectorAll('#result-stars .star');
+  starEls.forEach((s, idx) => s.classList.toggle('filled', idx < starsEarned));
+
+  document.getElementById('result-stats').innerHTML = `
+    <div><b>Верных ответов:</b> ${session.correctCount} из ${session.questions.length}</div>
+    <div><b>Осталось сердец:</b> ${session.hearts} из 3</div>
+  `;
+
+  goToScreen('screen-7');
 }
+
+// --- НАСТРОЙКИ ---
+function openSettings() {
+  const overlay = document.getElementById('settings-overlay');
+  overlay.classList.add('show');
+}
+
+function closeSettings() {
+  const overlay = document.getElementById('settings-overlay');
+  overlay.classList.remove('show');
+}
+
+function closeSettingsOnBackdrop(e) {
+  if (e.target.id === 'settings-overlay') closeSettings();
+}
+
+function setTheme(theme, save = true) {
+  state.theme = theme;
+  document.body.classList.toggle('dark-theme', theme === 'dark');
+  const lightEl = document.getElementById('theme-light');
+  const darkEl = document.getElementById('theme-dark');
+  if (lightEl && darkEl) {
+    lightEl.classList.toggle('active', theme === 'light');
+    darkEl.classList.toggle('active', theme === 'dark');
+  }
+  if (save) saveState();
+}
+
+function resetProgress() {
+  const dId = getActiveDictantId();
+  if (!confirm(`Сбросить весь прогресс для диктанта «${DICTANTS[dId].title}»?`)) return;
+  DICTANTS[dId].terms.forEach(t => {
+    state.progress[dId][t.id] = 0;
+  });
+  LEVELS.forEach(l => {
+    state.stars[dId][l.id] = 0;
+  });
+  saveState();
+  renderHubs();
+  closeSettings();
+}
+
+// --- ИНИЦИАЛИЗАЦИЯ ---
+loadState();
+renderHubs();
 </script>
 </body>
 </html>
