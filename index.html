@@ -274,6 +274,7 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 .word-chip.correct-fragment{background:var(--success-bg);color:var(--success-border);font-weight:700;}
 .word-chip.wrong-fragment{background:var(--error-bg);color:var(--error-border);text-decoration:line-through;}
 
+/* БЛОК С КАРТИНКОЙ И ЗАДАНИЕМ */
 .task-question-block { display: flex; align-items: center; margin-bottom: 20px; width: 100%; gap: 12px; }
 .task-character { width: 84px; height: auto; object-fit: contain; border-radius: 12px; flex-shrink: 0; }
 .task-bubble { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 18px; padding: 16px; font-size: 17px; font-weight: 700; flex-grow: 1; line-height: 1.4; }
@@ -383,6 +384,7 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 .theme-name{font-size:15px;font-weight:700;}
 .reset-btn{width:100%;padding:14px;background:var(--error-bg);color:var(--error-border);border:2px solid var(--error-border);border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;}
 .settings-footer{text-align:center;font-size:12px;color:var(--text-muted);margin-top:14px;font-weight:600;}
+.settings-footer span {display: block; margin-top: 6px; font-size: 11px; opacity: 0.8;}
 
 /* ЗАГЛУШКА КУРС 2 */
 #screen-course2 { background: var(--bg-color); }
@@ -579,7 +581,11 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
         </div>
       </div>
       <button class="reset-btn" onclick="resetProgress()">Сбросить прогресс текущего диктанта</button>
-      <div class="settings-footer">Comingo · Методология и Статистика</div>
+      
+      <div class="settings-footer">
+        Comingo · Методология и Статистика
+        <span>замечания и предложения — @wild_abobus</span>
+      </div>
     </div>
   </div>
 
@@ -1207,6 +1213,21 @@ function showFeedback(isCorrect, title, text) {
   document.getElementById('feedback-text').textContent = text;
 }
 
+// === ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ КАРТИНКИ ===
+function getMascotImage(isCorrect) {
+  const section = DICTANTS[session.dictantId].section;
+  const prefix = section === 'methodology' ? 'метода' : 'стата';
+  const stateText = isCorrect === null ? 'нейтрал' : (isCorrect ? 'з' : 'ч');
+  return `${prefix} ${stateText}.png`;
+}
+
+function updateMascot(isCorrect) {
+  const imgEl = document.getElementById('task-mascot');
+  if (imgEl) {
+    imgEl.src = getMascotImage(isCorrect);
+  }
+}
+
 function renderQuestion() {
   renderHearts();
   hideFeedback();
@@ -1223,10 +1244,13 @@ function renderQuestion() {
   const q = session.questions[session.currentIndex];
   const content = document.getElementById('task-content');
 
+  // Получаем нейтральную картинку для текущего раздела
+  const neutralImg = getMascotImage(null);
+
   if (q.type === 'choice') {
     content.innerHTML = `
       <div class="task-question-block">
-        <img src="Пахомова.png" alt="" class="task-character" onerror="this.style.display='none'">
+        <img id="task-mascot" src="${neutralImg}" alt="" class="task-character" onerror="this.style.display='none'">
         <div class="task-bubble">Выбери определение для термина:<br><span style="color:var(--primary-blue)">${q.term.term}</span></div>
       </div>
       <div>
@@ -1259,7 +1283,7 @@ function renderQuestion() {
   } else if (q.type === 'builder') {
     content.innerHTML = `
       <div class="builder-header">
-        <img src="Сорока.png" alt="" class="builder-mascot" onerror="this.style.display='none'">
+        <img id="task-mascot" src="${neutralImg}" alt="" class="builder-mascot" onerror="this.style.display='none'">
         <div class="builder-bubble">Собери определение: <span style="color:var(--primary-blue)">${q.term.term}</span></div>
       </div>
       <div class="builder-answer-box">
@@ -1473,6 +1497,9 @@ function handleCheckOrNext() {
 
   session.checked = true;
   const dId = session.dictantId;
+
+  // Меняем картинку в зависимости от правильности ответа
+  updateMascot(isCorrect);
 
   if (isCorrect) {
     session.correctCount++;
