@@ -201,24 +201,76 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
   transition: width 0.3s;
 }
 
+/* ЗМЕЙКА КНОПОК УРОВНЕЙ */
 .levels-group {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0;
   margin-bottom: 28px;
-  padding-top: 4px;
+  padding-top: 12px;
 }
 
-.level-item{display:flex;flex-direction:column;align-items:center;margin-bottom:26px;text-align:center;cursor:pointer;}
-.level-circle{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;margin-bottom:10px;background:var(--border-color);color:var(--text-muted);border:5px solid var(--bg-secondary);box-shadow:0 0 0 3px var(--border-color);transition:transform .15s;}
-.level-item:active .level-circle{transform:scale(.94);}
-.level-circle.unlocked{background:var(--primary-blue);color:#fff;box-shadow:0 0 0 4px rgba(28,126,214,.28);}
-.level-title{font-size:19px;font-weight:800;margin-bottom:4px;}
-.level-desc{font-size:14px;color:var(--text-muted);margin-bottom:6px;font-weight:600;}
+.level-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  text-align: center;
+  cursor: pointer;
+  max-width: 210px;
+  --snake-x: 0px;
+  transform: translateX(var(--snake-x));
+  transition: transform .18s ease;
+}
+.level-item.snake-left { --snake-x: -68px; }
+.level-item.snake-center { --snake-x: 0px; }
+.level-item.snake-right { --snake-x: 68px; }
 
-.level-stars { display: flex; justify-content: center; gap: 4px; }
-.level-stars .star { font-size: 20px; opacity: 0.25; transition: all 0.3s; }
-.level-stars .star.filled { opacity: 1; color: var(--warning-border); transform: scale(1.1); }
+.level-item:active {
+  transform: translateX(var(--snake-x)) scale(.95);
+}
+
+.level-circle {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  background: var(--border-color);
+  color: var(--text-muted);
+  border: 4px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 5px 0 #1565c0, 0 8px 16px rgba(28, 126, 214, 0.22);
+  transition: transform .15s, box-shadow .15s;
+}
+body.dark-theme .level-circle {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.level-circle.unlocked {
+  background: var(--primary-blue);
+  color: #fff;
+}
+.level-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 3px;
+  line-height: 1.2;
+}
+.level-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.level-stars { display: flex; justify-content: center; gap: 3px; }
+.level-stars .star { font-size: 18px; opacity: 0.25; transition: all 0.3s; }
+.level-stars .star.filled { opacity: 1; color: var(--warning-border); transform: scale(1.08); }
 
 .tasks-placeholder{background:var(--card-bg);border:2px solid var(--border-color);border-radius:20px;padding:28px 20px;text-align:center;margin-top:10px;}
 .tasks-placeholder h3{font-size:20px;font-weight:800;margin-bottom:8px;}
@@ -274,11 +326,12 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 .task-character { width: 84px; height: auto; object-fit: contain; border-radius: 12px; flex-shrink: 0; }
 .task-bubble { background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 18px; padding: 16px; font-size: 17px; font-weight: 700; flex-grow: 1; line-height: 1.4; }
 
-.builder-header{display:flex;align-items:center;margin-bottom:18px;gap:12px;}
+.builder-header{display:flex;align-items:center;margin-bottom:14px;gap:12px;}
 .builder-mascot{width:76px;height:auto;object-fit:contain;border-radius:12px;flex-shrink:0;}
 .builder-bubble{background:var(--card-bg);border:2px solid var(--border-color);border-radius:18px;padding:14px 16px;font-size:16px;font-weight:700;flex-grow:1;line-height:1.35;}
-.builder-answer-box{min-height:110px;display:flex;flex-direction:column;justify-content:flex-end;margin-bottom:20px;}
-.builder-line{border-bottom:2px solid var(--border-color);min-height:54px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;padding-bottom:8px;}
+.builder-hint{font-size:13px;color:var(--text-muted);font-weight:600;margin-bottom:12px;line-height:1.4;}
+.builder-answer-box{min-height:100px;display:flex;flex-direction:column;justify-content:flex-end;margin-bottom:18px;}
+.builder-line{border-bottom:2px solid var(--border-color);min-height:52px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;padding-bottom:8px;}
 .builder-pool{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;margin-bottom:16px;}
 .builder-word{background:var(--card-bg);border:2px solid var(--border-color);border-radius:12px;padding:10px 14px;font-size:14px;font-weight:700;color:var(--text-main);cursor:pointer;box-shadow:0 2px 0 var(--border-color);}
 .builder-word.in-answer{background:var(--primary-blue);color:#fff;border-color:var(--primary-blue);box-shadow:none;}
@@ -886,11 +939,42 @@ const LEVELS = [
   { id: 'level-2', num: 2, mode: 'recognition', optionsCount: 4, title: 'Узнавание', desc: '4 варианта, отличи по смыслу' },
   { id: 'level-3', num: 3, mode: 'truefalse', optionsCount: 2, title: 'Верно или нет', desc: 'Проверь, соответствует ли определение термину' },
   { id: 'level-4', num: 4, mode: 'find-error', optionsCount: 0, title: 'Найди ошибку', desc: 'Нажми на фрагмент с искажением смысла' },
-  { id: 'level-5', num: 5, mode: 'builder', optionsCount: 0, title: 'Конструктор', desc: 'Собери определение из ключевых слов' },
+  { id: 'level-5', num: 5, mode: 'builder', optionsCount: 0, title: 'Конструктор', desc: 'Собери ключевые слова определения (порядок не строгий)' },
   { id: 'level-6', num: 6, mode: 'pairs', optionsCount: 0, title: 'Пары', desc: 'Соедини 3 термина с определениями' },
   { id: 'level-7', num: 7, mode: 'traps', optionsCount: 5, title: 'Ловушки', desc: '5 вариантов — не попадись на подмену' },
   { id: 'level-8', num: 8, mode: 'manual', optionsCount: 0, title: 'Ввод ответа', desc: 'Напиши термин по его определению' }
 ];
+
+const SNAKE_PATTERN = ['snake-center', 'snake-left', 'snake-center', 'snake-right'];
+
+const STOP_WORDS = new Set([
+  'и', 'в', 'во', 'на', 'с', 'со', 'по', 'для', 'из', 'изо', 'от', 'ото',
+  'что', 'это', 'как', 'при', 'к', 'ко', 'о', 'об', 'обо', 'у', 'за', 'над',
+  'под', 'между', 'через', 'или', 'либо', 'не', 'ни', 'же', 'ли', 'бы', 'то',
+  'а', 'но', 'да', 'их', 'его', 'её', 'ее', 'их', 'тем', 'том', 'той', 'тех'
+]);
+
+function normalizeToken(word) {
+  return word
+    .toLowerCase()
+    .replace(/[.,:;!?()"'«»—–−…/\\|+*=\[\]{}<>]/g, '')
+    .replace(/ё/g, 'е')
+    .trim();
+}
+
+function extractKeyWords(defText) {
+  const rawTokens = defText.split(/\s+/);
+  const seen = new Set();
+  const keys = [];
+  rawTokens.forEach(raw => {
+    const clean = normalizeToken(raw);
+    if (clean.length >= 2 && !STOP_WORDS.has(clean) && !seen.has(clean)) {
+      seen.add(clean);
+      keys.push(clean);
+    }
+  });
+  return keys;
+}
 
 const STORAGE_KEY = 'comingo_app_state_v11';
 
@@ -1086,11 +1170,12 @@ function renderDictantBlock(dId) {
   const pct = total ? Math.round((mastered / total) * 100) : 0;
 
   let levelsHtml = '';
-  LEVELS.forEach(lvl => {
+  LEVELS.forEach((lvl, idx) => {
     const earned = (state.stars[dId] && state.stars[dId][lvl.id]) || 0;
     const starsHtml = [1, 2, 3].map(i => `<span class="star ${i <= earned ? 'filled' : ''}">★</span>`).join('');
+    const snakeClass = SNAKE_PATTERN[idx % SNAKE_PATTERN.length];
     levelsHtml += `
-      <div class="level-item" onclick="startTaskLevel('${lvl.id}', '${dId}')">
+      <div class="level-item ${snakeClass}" onclick="startTaskLevel('${lvl.id}', '${dId}')">
         <div class="level-circle unlocked">${lvl.num}</div>
         <div class="level-title">${lvl.title}</div>
         <div class="level-desc">${lvl.desc}</div>
@@ -1291,13 +1376,32 @@ function buildQuestionsForLevel(level, dictantId) {
   if (level.mode === 'builder') {
     return baseTerms.slice(0, 4).map(target => {
       trackSessionTerms([target]);
-      const words = target.def.replace(/\.$/, '').split(/\s+/).filter(w => w.length > 0);
-      const extraWords = pickRandomTerms(dictantId, 2, [target.id]).flatMap(t => t.def.replace(/\.$/, '').split(/\s+/).slice(0, 1));
-      const pool = shuffleArray([...words, ...extraWords].map((w, idx) => ({ uid: `${target.id}-${idx}-${w}`, text: w })));
+      const keyWords = extractKeyWords(target.def);
+      const keySet = new Set(keyWords);
+
+      const otherTerms = pickRandomTerms(dictantId, 3, [target.id]);
+      const distractorWords = [];
+      for (const ot of otherTerms) {
+        for (const w of extractKeyWords(ot.def)) {
+          if (!keySet.has(w) && !distractorWords.includes(w)) {
+            distractorWords.push(w);
+            if (distractorWords.length >= 3) break;
+          }
+        }
+        if (distractorWords.length >= 3) break;
+      }
+
+      const poolWords = shuffleArray([...keyWords, ...distractorWords]);
+      const pool = poolWords.map((w, idx) => ({
+        uid: `${target.id}-${idx}-${w}`,
+        text: w,
+        norm: w
+      }));
+
       return {
         type: 'builder',
         term: target,
-        targetWords: words,
+        keyWords,
         pool
       };
     });
@@ -1490,8 +1594,9 @@ function renderQuestion() {
     content.innerHTML = `
       <div class="builder-header">
         <img id="task-mascot" src="${neutralImg}" alt="" class="builder-mascot" onerror="this.style.display='none'">
-        <div class="builder-bubble">Собери определение: <span style="color:var(--primary-blue)">${q.term.term}</span></div>
+        <div class="builder-bubble">Собери смысл: <span style="color:var(--primary-blue)">${q.term.term}</span></div>
       </div>
+      <div class="builder-hint">Выбери ключевые слова определения (порядок не важен, лишние слова отсеиваются).</div>
       <div class="builder-answer-box">
         <div class="builder-line" id="builder-line"></div>
       </div>
@@ -1688,10 +1793,12 @@ function handleCheckOrNext() {
       else if (idx === session.selectedAnswer && !isCorrect) chip.classList.add('wrong-fragment');
     });
   } else if (q.type === 'builder') {
-    const built = session.builderSelected.map(w => w.text.toLowerCase()).join(' ');
-    const expected = q.targetWords.map(w => w.toLowerCase()).join(' ');
-    isCorrect = built === expected;
-    explanation = `${q.term.term}: ${q.term.def}`;
+    const selectedNorms = new Set(session.builderSelected.map(w => w.norm));
+    const keySet = new Set(q.keyWords);
+    const matchedKeys = [...selectedNorms].filter(n => keySet.has(n));
+    const ratio = q.keyWords.length > 0 ? matchedKeys.length / q.keyWords.length : 1;
+    isCorrect = session.builderSelected.length >= 2 && ratio >= 0.65;
+    explanation = `Ключевых слов: ${matchedKeys.length} из ${q.keyWords.length}. Полное определение: ${q.term.def}`;
   } else if (q.type === 'manual') {
     const inputEl = document.getElementById('manual-input');
     const userVal = inputEl.value.trim().toLowerCase();
