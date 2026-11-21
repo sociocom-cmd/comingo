@@ -4,14 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Comingo - Обучение</title>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T3JWTRK4');</script>
-<!-- End Google Tag Manager -->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Rubik:wght@600;700;800&display=swap" rel="stylesheet">
@@ -114,6 +106,16 @@ body.dark-theme .option-card.selected{background:rgba(59,130,246,.12);}
 }
 
 .main-content-3{padding:16px 20px 24px;flex-grow:1;overflow-y:auto;}
+
+/* Вкладка Задачи (как на фото-заглушке) */
+#stat-tasks-view {
+  background: var(--bg-color);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
 
 .module-banner{background:var(--primary-blue);border-radius:18px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;color:#fff;margin-bottom:16px;gap:12px;box-shadow:0 4px 0 #1565c0;}
 .module-text h3{font-size:12px;text-transform:uppercase;opacity:.85;margin-bottom:4px;letter-spacing:.5px;}
@@ -280,10 +282,6 @@ body.dark-theme .level-circle {
 .level-stars .star { font-size: 18px; opacity: 0.25; transition: all 0.3s; }
 .level-stars .star.filled { opacity: 1; color: var(--warning-border); transform: scale(1.08); }
 
-.tasks-placeholder{background:var(--card-bg);border:2px solid var(--border-color);border-radius:20px;padding:28px 20px;text-align:center;margin-top:10px;}
-.tasks-placeholder h3{font-size:20px;font-weight:800;margin-bottom:8px;}
-.tasks-placeholder p{font-size:15px;color:var(--text-muted);line-height:1.5;font-weight:600;}
-
 /* ЭКРАН 4: СЛОВАРЬ */
 #screen-4{background:var(--bg-secondary);}
 .dict-header-bar{display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--bg-color);border-bottom:1px solid var(--border-color);}
@@ -449,7 +447,7 @@ body.dark-theme .review-pill.active-hard{color:#fbbf24;}
 .settings-footer{text-align:center;font-size:12px;color:var(--text-muted);margin-top:14px;font-weight:600;}
 .settings-footer span {display: block; margin-top: 6px; font-size: 11px; opacity: 0.8;}
 
-/* ЗАГЛУШКА КУРС 2 */
+/* ЗАГЛУШКИ КУРС 2 И ЗАДАЧИ */
 #screen-course2 { background: var(--bg-color); }
 .course2-content { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
 .course2-mascot { width: 210px; max-width: 80%; height: auto; object-fit: contain; margin-bottom: 18px; border-radius: 16px; }
@@ -458,11 +456,6 @@ body.dark-theme .review-pill.active-hard{color:#fbbf24;}
 </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3JWTRK4"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 <div class="app-container">
 
   <!-- ЭКРАН 1 -->
@@ -537,10 +530,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="main-content-3" id="stat-tasks-view" style="display:none;">
-      <div class="tasks-placeholder">
-        <h3>Раздел «Задачи»</h3>
-        <p id="stat-tasks-desc">Практические задачи по статистике для модуля «Совокупности, шкалы и инструменты» будут добавлены сюда.</p>
-      </div>
+      <img id="stat-tasks-img" src="ЗадачиС.png" alt="Задачи" class="course2-mascot" onerror="this.style.display='none'">
+      <div class="course2-title" id="stat-tasks-title">скоро</div>
+      <div class="course2-sub" id="stat-tasks-desc">Практические задачи по статистике скоро появятся</div>
     </div>
 
     <div class="bottom-nav">
@@ -1452,7 +1444,7 @@ function switchStatSubtab(subtab) {
   document.getElementById('tab-dictants').classList.toggle('active', subtab === 'dictants');
   document.getElementById('tab-tasks').classList.toggle('active', subtab === 'tasks');
   document.getElementById('stat-dictants-view').style.display = subtab === 'dictants' ? 'block' : 'none';
-  document.getElementById('stat-tasks-view').style.display = subtab === 'tasks' ? 'block' : 'none';
+  document.getElementById('stat-tasks-view').style.display = subtab === 'tasks' ? 'flex' : 'none';
 }
 
 function renderDictantBlock(dId) {
@@ -1519,11 +1511,23 @@ function renderStatisticsHub() {
     .sort((a, b) => (DICTANTS[a].num || 0) - (DICTANTS[b].num || 0));
   container.innerHTML = available.map(id => renderDictantBlock(id)).join('');
 
+  const tasksImg = document.getElementById('stat-tasks-img');
+  const tasksTitle = document.getElementById('stat-tasks-title');
   const tasksDesc = document.getElementById('stat-tasks-desc');
-  if (tasksDesc) {
-    tasksDesc.textContent = course === 'course2'
-      ? 'Практические задачи по статистике для 2-го курса будут добавлены сюда.'
-      : 'Практические задачи по статистике для модуля «Совокупности, шкалы и инструменты» будут добавлены сюда.';
+
+  if (tasksImg && tasksTitle && tasksDesc) {
+    tasksImg.style.display = 'block';
+    if (course === 'course2') {
+      tasksImg.src = 'Бог.png';
+      tasksImg.alt = 'Бог';
+      tasksTitle.textContent = 'скоро';
+      tasksDesc.textContent = 'Практические задачи по статистике для Курса 2 скоро появятся';
+    } else {
+      tasksImg.src = 'ЗадачиС.png';
+      tasksImg.alt = 'ЗадачиС';
+      tasksTitle.textContent = 'скоро';
+      tasksDesc.textContent = 'Практические задачи по статистике для Курса 1 скоро появятся';
+    }
   }
 }
 
