@@ -1072,7 +1072,7 @@ if (allKeyWordsPresent) return true;
 return false;
 }
 
-const STORAGE_KEY = 'comingo_app_state_v12';
+const STORAGE_KEY = 'comingo_app_state';
 let state = {
 selectedOption: null, activeSection: 'methodology', activeCourse: 'course1', lastHubScreen: 'screen-3',
 currentMethDictantId: 'meth1', currentStatDictantId: 'stat1', currentStatCourse2DictantId: 'stat_c2_1',
@@ -1209,7 +1209,18 @@ return DICTANTS[dId].terms;
 
 function loadState() {
 try {
-const raw = localStorage.getItem(STORAGE_KEY);
+let raw = localStorage.getItem(STORAGE_KEY);
+if (!raw) {
+const legacyKeys = ['comingo_app_state_v12', 'comingo_app_state_v11', 'comingo_app_state_v10', 'comingo_app_state_v1', 'comingo_app_state_v2'];
+for (const oldKey of legacyKeys) {
+const oldRaw = localStorage.getItem(oldKey);
+if (oldRaw) {
+raw = oldRaw;
+localStorage.setItem(STORAGE_KEY, oldRaw);
+break;
+}
+}
+}
 if (raw) {
 const parsed = JSON.parse(raw);
 state = { ...state, ...parsed };
