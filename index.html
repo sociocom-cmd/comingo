@@ -514,7 +514,7 @@ body.dark-theme .warning-screen-box {
 <!-- ЭКРАН 6: GAME OVER -->
 <div id="screen-6" class="screen">
 <img id="gameover-fail-img" src="stata_fail.png" alt="" class="gameover-mascot" onerror="this.style.display='none'">
-<div class="gameover-title">Сердца закончились!</div>
+<div class="gameover-title">На пересдачу!</div>
 <div class="gameover-sub">Повтори термины, в которых возникли ошибки, и попробуй снова.</div>
 <div class="mistake-list-title">Ошибки в попытке</div>
 <div class="mistake-list" id="mistake-list"></div>
@@ -1547,9 +1547,14 @@ return { type: 'choice', term: target, options, correctId: target.id };
 });
 }
 if (level.mode === 'truefalse') {
+const isStat = DICTANTS[dictantId] && DICTANTS[dictantId].section === 'statistics';
+let tfPattern = [true, false, true, false, true];
+if (isStat) {
+tfPattern = shuffleArray([true, true, false, false, Math.random() < 0.5]);
+}
 return baseTerms.map((target, idx) => {
 trackSessionTerms([target]);
-const isTrue = idx % 2 === 0;
+const isTrue = isStat ? tfPattern[idx % tfPattern.length] : (idx % 2 === 0);
 const shownDef = isTrue ? getTermDef(target) : getTermDef(pickRandomTerms(dictantId, 1, [target.id])[0]);
 return { type: 'truefalse', term: target, shownDef, isTrue };
 });
@@ -1563,21 +1568,25 @@ return buildSemanticErrorQuestion(target, dictantId);
 if (level.mode === 'builder') {
 return baseTerms.slice(0, 4).map(target => {
 trackSessionTerms([target]);
-const keyWords = extractKeyWords(getTermDef(target));
+const rawKeyWords = extractKeyWords(getTermDef(target));
+const keyWords = rawKeyWords.map(normalizeToken);
 const keySet = new Set(keyWords);
 const otherTerms = pickRandomTerms(dictantId, 3, [target.id]);
 const distractorWords = [];
 for (const ot of otherTerms) {
 for (const w of extractKeyWords(getTermDef(ot))) {
-if (!keySet.has(w) && !distractorWords.includes(w)) {
-distractorWords.push(w);
+const normW = normalizeToken(w);
+if (!keySet.has(normW) && !distractorWords.includes(normW)) {
+distractorWords.push(normW);
 if (distractorWords.length >= 3) break;
 }
 }
 if (distractorWords.length >= 3) break;
 }
-const poolWords = shuffleArray([...keyWords, ...distractorWords]);
-const pool = poolWords.map((w, idx) => ({ uid: `${target.id}-${idx}-${w}`, text: w, norm: w }));
+const formattedKeyWords = keyWords.map((w, i) => i === 0 ? (w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()) : w.toLowerCase());
+const formattedDistractors = distractorWords.map(w => w.toLowerCase());
+const poolWords = shuffleArray([...formattedKeyWords, ...formattedDistractors]);
+const pool = poolWords.map((w, idx) => ({ uid: `${target.id}-${idx}-${w}`, text: w, norm: normalizeToken(w) }));
 return { type: 'builder', term: target, keyWords, pool };
 });
 }
