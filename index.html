@@ -1547,14 +1547,10 @@ return { type: 'choice', term: target, options, correctId: target.id };
 });
 }
 if (level.mode === 'truefalse') {
-const isStat = DICTANTS[dictantId] && DICTANTS[dictantId].section === 'statistics';
-let tfPattern = [true, false, true, false, true];
-if (isStat) {
-tfPattern = shuffleArray([true, true, false, false, Math.random() < 0.5]);
-}
+const tfPattern = shuffleArray([true, true, false, false, Math.random() < 0.5]);
 return baseTerms.map((target, idx) => {
 trackSessionTerms([target]);
-const isTrue = isStat ? tfPattern[idx % tfPattern.length] : (idx % 2 === 0);
+const isTrue = tfPattern[idx % tfPattern.length];
 const shownDef = isTrue ? getTermDef(target) : getTermDef(pickRandomTerms(dictantId, 1, [target.id])[0]);
 return { type: 'truefalse', term: target, shownDef, isTrue };
 });
